@@ -1020,7 +1020,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_2x16 (layer F.Cu) (tedit 0) (tstamp 588F87BC)
-    (at 119.51 87.77)
+    (at 230.875 58.42)
     (descr "Through hole pin header")
     (tags "pin header")
     (path /5885F43A)
@@ -1906,7 +1906,7 @@
   )
 
   (module Housings_QFP:LQFP-100_14x14mm_Pitch0.5mm (layer F.Cu) (tedit 54130A77) (tstamp 588F89EE)
-    (at 69.22 102.01)
+    (at 142.65 121.1)
     (descr "LQFP100: plastic low profile quad flat package; 100 leads; body 14 x 14 x 1.4 mm (see NXP sot407-1_po.pdf and sot407-1_fr.pdf)")
     (tags "QFP 0.5")
     (path /5885EE71)
