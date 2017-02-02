@@ -2774,6 +2774,11 @@
       (net 1 "Net-(BATT-IN1-Pad1)"))
     (pad 2 thru_hole oval (at 5 0 90) (size 1.9812 3.9624) (drill 1.3208) (layers *.Cu B.Paste B.Mask)
       (net 2 GND))
+    (model /home/achmadi/development/Projects/fo_respiro/Model_3D/pcb/pcb_cover/lipo.wrl
+      (at (xyz 0 4.5 0))
+      (scale (xyz 0.5 0.75 1))
+      (rotate (xyz 0 0 180))
+    )
   )
 
   (module Connect:AK300-2 (layer B.Cu) (tedit 54792136) (tstamp 58904401)
@@ -2877,6 +2882,11 @@
       (net 19 VDD))
     (pad 2 thru_hole oval (at 5 0 90) (size 1.9812 3.9624) (drill 1.3208) (layers *.Cu B.Paste B.Mask)
       (net 14 "Net-(D-LASER1-Pad2)"))
+    (model /home/achmadi/development/Projects/fo_respiro/Model_3D/pcb/pcb_cover/switch_pwr.wrl
+      (at (xyz -0.38 5 -0.5))
+      (scale (xyz 0.3 0.3 0.3))
+      (rotate (xyz 90 0 0))
+    )
   )
 
   (module Connect:AK300-2 (layer B.Cu) (tedit 54792136) (tstamp 58904407)
@@ -2980,6 +2990,11 @@
       (net 12 "Net-(CP-PWR2-Pad1)"))
     (pad 2 thru_hole oval (at 5 0 90) (size 1.9812 3.9624) (drill 1.3208) (layers *.Cu B.Paste B.Mask)
       (net 1 "Net-(BATT-IN1-Pad1)"))
+    (model /home/achmadi/development/Projects/fo_respiro/Model_3D/pcb/pcb_cover/switch_pwr.wrl
+      (at (xyz -1 5.5 -0.5))
+      (scale (xyz 0.3 0.3 0.3))
+      (rotate (xyz 90 0 0))
+    )
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x02 (layer B.Cu) (tedit 54EA090C) (tstamp 5891498B)
@@ -3482,7 +3497,7 @@
       (xy -0.378658 11.074641) (xy -0.209238 11.0776) (xy -0.024523 11.078667) (xy 0 11.078679)
       (xy 0.186949 11.077833)) (layer B.SilkS) (width 0.01))
     (model /home/achmadi/development/Projects/fo_respiro/Model_3D/box/cover.wrl
-      (at (xyz 4.4 -1 -0.4))
+      (at (xyz 4.4 -1.1 -0.4))
       (scale (xyz 0.5 0.4 0.2))
       (rotate (xyz 0 0 0))
     )
