@@ -1,4 +1,4 @@
-update=Tue 31 Jan 2017 12:48:54 AM WIB
+update=Fri 03 Feb 2017 10:10:25 AM WIB
 version=1
 last_client=kicad
 [pcbnew]
@@ -63,3 +63,13 @@ LibName31=ftdi
 LibName32=switches
 LibName33=/usr/share/kicad/eagle-lbr-imported/eagle/lib/adafruit2
 LibName34=/usr/share/kicad/eagle-lbr-imported/eagle/lib/switch
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60

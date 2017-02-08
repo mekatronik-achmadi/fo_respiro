@@ -1,3 +1,15 @@
+ugfx/board_ILI9320.h
+ui/for_draft/output/widgetstyles.h
+ui/for_draft/output/userfonts.h
+ui/for_draft/output/colors.h
+ui/for_draft/output/demo.mk
+ui/for_draft/output/gfxconf.h
+ui/for_draft/output/gui.c
+ui/for_draft/output/gui.h
+ui/for_draft/output/main.c
+ui/for_draft/output/romfs_files.h
+ui/for_draft/output/rsc/graph.h
+ui/for_draft/output/rsc/DejaVuSans16.c
 Makefile
 chconf.h
 connections
@@ -17,7 +29,6 @@ mcuconf.h
 board/board.c
 board/board.h
 ugfx/ugfx.mk
-ugfx/board_ILI9320.h
 ugfx/gmouse_lld_ADS7843_board.h
 ugfx/gmouse_lld_ADS7843_board_OFF.h
 chconf.h

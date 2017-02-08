@@ -8,3 +8,5 @@ graph
 /opt/stm32lib/chibios/os/various
 /opt/stm32lib/chibios/test/rt
 /opt/ugfx/ugfx_library/
+ui/for_draft/output/rsc
+ui/for_draft/output
