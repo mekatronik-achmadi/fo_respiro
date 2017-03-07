@@ -1,0 +1,10 @@
+(fp_lib_table
+  (lib (name Pin_Headers)(type KiCad)(uri /usr/share/kicad/footprints/Pin_Headers.pretty)(options "")(descr ""))
+  (lib (name Capacitors_SMD)(type KiCad)(uri /usr/share/kicad/footprints/Capacitors_SMD.pretty)(options "")(descr ""))
+  (lib (name Diodes_SMD)(type KiCad)(uri /usr/share/kicad/footprints/Diodes_SMD.pretty)(options "")(descr ""))
+  (lib (name LEDs)(type KiCad)(uri /usr/share/kicad/footprints/LEDs.pretty)(options "")(descr ""))
+  (lib (name Resistors_SMD)(type KiCad)(uri /usr/share/kicad/footprints/Resistors_SMD.pretty)(options "")(descr ""))
+  (lib (name Potentiometers)(type KiCad)(uri /usr/share/kicad/footprints/Potentiometers.pretty)(options "")(descr ""))
+  (lib (name Housings_SOIC)(type KiCad)(uri /usr/share/kicad/footprints/Housings_SOIC.pretty)(options "")(descr ""))
+  (lib (name switch-dil)(type Legacy)(uri /usr/share/kicad/eagle-lbr-imported/eagle/mod/switch-dil.mod)(options "")(descr ""))
+)

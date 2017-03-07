@@ -236,7 +236,7 @@
   )
 
   (module Potentiometers:Potentiometer_Trimmer-EVM3E (layer F.Cu) (tedit 580B90AB) (tstamp 58BE5B80)
-    (at 41.72 77.22)
+    (at 132.98 108.18)
     (descr http://www.comkey.in/sites/default/files/attachments/EVM3ESX50B15.pdf)
     (tags "trimmer smd")
     (path /58BE762B)
@@ -287,7 +287,7 @@
   )
 
   (module Potentiometers:Potentiometer_Trimmer-EVM3E (layer F.Cu) (tedit 580B90AB) (tstamp 58BE5B87)
-    (at 48.67 72.085)
+    (at 139.93 103.045)
     (descr http://www.comkey.in/sites/default/files/attachments/EVM3ESX50B15.pdf)
     (tags "trimmer smd")
     (path /58BE54E9)
@@ -338,7 +338,7 @@
   )
 
   (module Capacitors_SMD:C_0805_HandSoldering (layer F.Cu) (tedit 541A9B8D) (tstamp 58BE5B8D)
-    (at 40.29 61.49)
+    (at 131.55 92.45)
     (descr "Capacitor SMD 0805, hand soldering")
     (tags "capacitor 0805")
     (path /58BE7644)
@@ -371,7 +371,7 @@
   )
 
   (module Capacitors_SMD:C_0805_HandSoldering (layer F.Cu) (tedit 541A9B8D) (tstamp 58BE5B93)
-    (at 68.66 82.97)
+    (at 159.92 113.93)
     (descr "Capacitor SMD 0805, hand soldering")
     (tags "capacitor 0805")
     (path /58BE6188)
@@ -404,7 +404,7 @@
   )
 
   (module Capacitors_SMD:C_0805_HandSoldering (layer F.Cu) (tedit 541A9B8D) (tstamp 58BE5B99)
-    (at 65.15 71.35)
+    (at 156.41 102.31)
     (descr "Capacitor SMD 0805, hand soldering")
     (tags "capacitor 0805")
     (path /58BE763B)
@@ -437,7 +437,7 @@
   )
 
   (module Capacitors_SMD:C_0805_HandSoldering (layer F.Cu) (tedit 541A9B8D) (tstamp 58BE5B9F)
-    (at 64 68.28)
+    (at 155.26 99.24)
     (descr "Capacitor SMD 0805, hand soldering")
     (tags "capacitor 0805")
     (path /58BE5DA6)
@@ -470,7 +470,7 @@
   )
 
   (module Diodes_SMD:MELF_Handsoldering (layer F.Cu) (tedit 552FE6B7) (tstamp 58BE5BA5)
-    (at 64.39894 58.31)
+    (at 155.65894 89.27)
     (descr "Diode MELF Handsoldering")
     (tags "Diode MELF Handsoldering")
     (path /58BEE03B)
@@ -514,7 +514,7 @@
   )
 
   (module Diodes_SMD:SMB_Handsoldering (layer F.Cu) (tedit 552FF2F0) (tstamp 58BE5BAB)
-    (at 64.26998 54.23)
+    (at 155.52998 85.19)
     (descr "Diode SMB Handsoldering")
     (tags "Diode SMB Handsoldering")
     (path /58BEE184)
@@ -566,7 +566,7 @@
   )
 
   (module LEDs:LED_0805 (layer F.Cu) (tedit 55BDE1C2) (tstamp 58BE5BB1)
-    (at 57.55098 66.31)
+    (at 148.81098 97.27)
     (descr "LED 0805 smd package")
     (tags "LED 0805 SMD")
     (path /58BE59A0)
@@ -610,7 +610,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x03 (layer F.Cu) (tedit 0) (tstamp 58BE5BB8)
-    (at 63.5 86.6)
+    (at 154.76 117.56)
     (descr "Through hole pin header")
     (tags "pin header")
     (path /58BE75ED)
@@ -645,7 +645,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x03 (layer F.Cu) (tedit 0) (tstamp 58BE5BBF)
-    (at 57.99 86.57)
+    (at 149.25 117.53)
     (descr "Through hole pin header")
     (tags "pin header")
     (path /58BE4AC8)
@@ -680,7 +680,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_1x03 (layer F.Cu) (tedit 0) (tstamp 58BE5BC6)
-    (at 69.67 88.57)
+    (at 160.93 119.53)
     (descr "Through hole pin header")
     (tags "pin header")
     (path /58BEE36F)
@@ -715,7 +715,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Straight_2x23 (layer F.Cu) (tedit 0) (tstamp 58BE5BF8)
-    (at 80.23 64.83)
+    (at 171.49 95.79)
     (descr "Through hole pin header")
     (tags "pin header")
     (path /58BEFE8D)
@@ -837,7 +837,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 58307B90) (tstamp 58BE5BFE)
-    (at 51.49 97.26)
+    (at 142.75 128.22)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /58BE75F6)
@@ -870,7 +870,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 58307B90) (tstamp 58BE5C04)
-    (at 66.82 98.62)
+    (at 158.08 129.58)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /58BE4C46)
@@ -903,7 +903,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 58307B90) (tstamp 58BE5C0A)
-    (at 59.15 98.84)
+    (at 150.41 129.8)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /58BE75DF)
@@ -936,7 +936,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 58307B90) (tstamp 58BE5C10)
-    (at 52.03 102.53)
+    (at 143.29 133.49)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /58BE49A6)
@@ -969,7 +969,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 58307B90) (tstamp 58BE5C16)
-    (at 51.37 66.18)
+    (at 142.63 97.14)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /58BE75E5)
@@ -1002,7 +1002,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 58307B90) (tstamp 58BE5C1C)
-    (at 57.68 70.07)
+    (at 148.94 101.03)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /58BE4A29)
@@ -1035,7 +1035,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 58307B90) (tstamp 58BE5C22)
-    (at 53.36 78.32)
+    (at 144.62 109.28)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /58BE5762)
@@ -1068,7 +1068,7 @@
   )
 
   (module Potentiometers:Potentiometer_Trimmer-EVM3E (layer F.Cu) (tedit 580B90AB) (tstamp 58BE5C29)
-    (at 33.6 82.065)
+    (at 124.86 113.025)
     (descr http://www.comkey.in/sites/default/files/attachments/EVM3ESX50B15.pdf)
     (tags "trimmer smd")
     (path /58BE761B)
@@ -1119,7 +1119,7 @@
   )
 
   (module Potentiometers:Potentiometer_Trimmer-EVM3E (layer F.Cu) (tedit 580B90AB) (tstamp 58BE5C30)
-    (at 65.18 76.805)
+    (at 156.44 107.765)
     (descr http://www.comkey.in/sites/default/files/attachments/EVM3ESX50B15.pdf)
     (tags "trimmer smd")
     (path /58BE527A)
@@ -1170,7 +1170,7 @@
   )
 
   (module Potentiometers:Potentiometer_Trimmer-EVM3E (layer F.Cu) (tedit 580B90AB) (tstamp 58BE5C37)
-    (at 36.46 91.855)
+    (at 127.72 122.815)
     (descr http://www.comkey.in/sites/default/files/attachments/EVM3ESX50B15.pdf)
     (tags "trimmer smd")
     (path /58BE7604)
@@ -1221,7 +1221,7 @@
   )
 
   (module Potentiometers:Potentiometer_Trimmer-EVM3E (layer F.Cu) (tedit 580B90AB) (tstamp 58BE5C3E)
-    (at 43.61 93.455)
+    (at 134.87 124.415)
     (descr http://www.comkey.in/sites/default/files/attachments/EVM3ESX50B15.pdf)
     (tags "trimmer smd")
     (path /58BE4F26)
@@ -1272,7 +1272,7 @@
   )
 
   (module switch-dil:DIP02YL (layer F.Cu) (tedit 0) (tstamp 58BE5C46)
-    (at 49.46 54.53)
+    (at 140.72 85.49)
     (descr "<b>DIL/CODE SWITCH</b><p>")
     (path /58BED734)
     (fp_text reference SW-PWR1 (at -4.7752 -0.0508 90) (layer Eco1.User)
@@ -1334,7 +1334,7 @@
   )
 
   (module Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm (layer F.Cu) (tedit 54130A77) (tstamp 58BE5C52)
-    (at 37.26 69.385)
+    (at 128.52 100.345)
     (descr "8-Lead Plastic Small Outline (SN) - Narrow, 3.90 mm Body [SOIC] (see Microchip Packaging Specification 00000049BS.pdf)")
     (tags "SOIC 1.27")
     (path /58BE75D9)
@@ -1385,7 +1385,7 @@
   )
 
   (module Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm (layer F.Cu) (tedit 54130A77) (tstamp 58BE5C5E)
-    (at 49.48 86.205)
+    (at 140.74 117.165)
     (descr "8-Lead Plastic Small Outline (SN) - Narrow, 3.90 mm Body [SOIC] (see Microchip Packaging Specification 00000049BS.pdf)")
     (tags "SOIC 1.27")
     (path /58BE4874)
