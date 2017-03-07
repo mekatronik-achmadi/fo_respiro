@@ -166,11 +166,11 @@ F 3 "" H 3000 2900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L POT_TRIM 100K2
+L POT_TRIM RV-LOOP2
 U 1 1 58BE54E9
 P 2700 3100
-F 0 "100K2" V 2525 3100 50  0000 C CNN
-F 1 "POT_TRIM" V 2600 3100 50  0000 C CNN
+F 0 "RV-LOOP2" V 2525 3100 50  0000 C CNN
+F 1 "100K" V 2600 3100 50  0000 C CNN
 F 2 "Potentiometers:Potentiometer_Trimmer-EVM3E" H 2700 3100 50  0001 C CNN
 F 3 "" H 2700 3100 50  0000 C CNN
 	1    2700 3100
@@ -331,11 +331,11 @@ F 3 "" H 2900 5450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L POT_TRIM 100K1
+L POT_TRIM RV-LOOP1
 U 1 1 58BE762B
 P 2600 5650
-F 0 "100K1" V 2425 5650 50  0000 C CNN
-F 1 "POT_TRIM" V 2500 5650 50  0000 C CNN
+F 0 "RV-LOOP1" V 2425 5650 50  0000 C CNN
+F 1 "100K" V 2500 5650 50  0000 C CNN
 F 2 "Potentiometers:Potentiometer_Trimmer-EVM3E" H 2600 5650 50  0001 C CNN
 F 3 "" H 2600 5650 50  0000 C CNN
 	1    2600 5650
@@ -453,7 +453,7 @@ F 1 "CONN_02X23" V 5050 4500 50  0000 C CNN
 F 2 "Pin_Headers:Pin_Header_Straight_2x23" H 5050 3650 50  0001 C CNN
 F 3 "" H 5050 3650 50  0000 C CNN
 	1    5050 4500
-	1    0    0    -1  
+	-1   0    0    -1  
 $EndComp
 $Comp
 L GND #PWR013
@@ -466,15 +466,9 @@ F 3 "" H 4500 3400 50  0000 C CNN
 	1    4500 3400
 	1    0    0    -1  
 $EndComp
-Text Label 5550 3400 0    60   ~ 0
-PIN_VDD
 Text Label 3650 2250 0    60   ~ 0
 ADC0
 Text Label 3550 4800 0    60   ~ 0
-ADC1
-Text Label 4600 3800 0    60   ~ 0
-ADC0
-Text Label 5500 3800 0    60   ~ 0
 ADC1
 $Comp
 L R R-LED1
@@ -557,7 +551,7 @@ Wire Wire Line
 Wire Wire Line
 	3400 2250 3400 3300
 Wire Wire Line
-	2700 2950 2700 2350
+	2700 2350 2700 2950
 Wire Wire Line
 	2250 2350 2250 2400
 Wire Wire Line
@@ -612,7 +606,7 @@ Wire Wire Line
 Wire Wire Line
 	3300 4800 3300 5850
 Wire Wire Line
-	2600 5500 2600 4900
+	2600 4900 2600 5500
 Wire Wire Line
 	2150 4900 2150 4950
 Wire Wire Line
@@ -648,19 +642,9 @@ Connection ~ 5500 2000
 Wire Wire Line
 	5050 1700 4900 1700
 Wire Wire Line
-	4800 3400 4500 3400
-Wire Wire Line
-	5300 3400 5550 3400
-Wire Wire Line
-	4800 3700 5400 3700
-Wire Wire Line
 	3400 2250 3650 2250
 Wire Wire Line
 	3300 4800 3550 4800
-Wire Wire Line
-	4800 3800 4600 3800
-Wire Wire Line
-	5300 3800 5500 3800
 Wire Wire Line
 	4950 2600 4850 2600
 Wire Wire Line
@@ -668,7 +652,42 @@ Wire Wire Line
 Wire Wire Line
 	4150 2600 4050 2600
 Wire Wire Line
-	5400 3700 5400 3400
-Connection ~ 5400 3400
-Connection ~ 5300 3700
+	4800 3400 4500 3400
+Wire Wire Line
+	5300 3400 5500 3400
+Text Label 5500 3400 0    60   ~ 0
+PIN_VDD
+Wire Wire Line
+	4800 3700 4500 3700
+Text Label 4500 3700 0    60   ~ 0
+PIN_VDD
+Wire Wire Line
+	5300 3700 5500 3700
+Text Label 5500 3700 0    60   ~ 0
+PIN_VDD
+Wire Wire Line
+	4800 3800 4500 3800
+Text Label 4500 3800 0    60   ~ 0
+ADC0
+Wire Wire Line
+	5300 3800 5500 3800
+Text Label 5500 3800 0    60   ~ 0
+ADC1
+$Comp
+L GND #PWR?
+U 1 1 58BF3840
+P 4500 5600
+F 0 "#PWR?" H 4500 5350 50  0001 C CNN
+F 1 "GND" H 4500 5450 50  0000 C CNN
+F 2 "" H 4500 5600 50  0000 C CNN
+F 3 "" H 4500 5600 50  0000 C CNN
+	1    4500 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 5600 4500 5600
+Wire Wire Line
+	5300 5600 5500 5600
+Text Label 5500 5600 0    60   ~ 0
+PIN_VCC
 $EndSCHEMATC
