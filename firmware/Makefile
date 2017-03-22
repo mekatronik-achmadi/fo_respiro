@@ -105,9 +105,9 @@ include $(GFXLIB)/gfx.mk
 include ./ugfx/ugfx.mk
 # Main Files
 #include ./demo_console/demo.mk
-include ./graph/demo.mk
+#include ./graph/demo.mk
 #include ./ui/for_draft/output/demo.mk
-#include ./gui/demo.mk
+include ./gui/demo.mk
 
 # Define linker script file here
 LDSCRIPT= $(STARTUPLD)/STM32F103xE.ld
@@ -223,7 +223,7 @@ UINCDIR =
 ULIBDIR =
 
 # List all user libraries here
-ULIBS = -lc -specs=nosys.specs
+ULIBS = -lc -specs=nosys.specs -lm
 
 #
 # End of user defines

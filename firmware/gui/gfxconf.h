@@ -47,10 +47,16 @@
 ///////////////////////////////////////////////////////////////////////////
 #define GFX_USE_GWIN                                 TRUE
 
+#define GWIN_NEED_WIDGET                             TRUE
+
 #define GWIN_NEED_WINDOWMANAGER                      TRUE
 
     #define GWIN_NEED_LABEL                          TRUE
         #define GWIN_LABEL_ATTRIBUTE                 TRUE
+
+    #define GWIN_NEED_GRAPH                          TRUE
+
+    #define GWIN_NEED_BUTTON                         TRUE
 
 ///////////////////////////////////////////////////////////////////////////
 // GEVENT                                                                //

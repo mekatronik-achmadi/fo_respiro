@@ -142,12 +142,12 @@ static THD_FUNCTION(thdGenData, arg) {
 
        
         y_1=adc0;
-        data[0].y = y1;
-        
         if(y_1>y_0){dy=y_1-y_0;}
         else{dy=y_0-y_1;}
         y_0=y_1;
         
+        data[0].y = dy;
+
         gfxSleepMilliseconds(500);
     }
 }
@@ -159,18 +159,19 @@ int main(int argc, char* argv[])
 	(void)argc;
 	(void)argv;
 
-    GHandle gh;
+        GHandle gh;
 
 	gfxInit();
     
-    palSetPadMode(GPIOA,0,PAL_MODE_INPUT_ANALOG);
-    adcStart(&ADCD1, NULL);
-    chThdCreateStatic(wa_adcThread, sizeof(wa_adcThread), NORMALPRIO, adcThread, NULL);
+        palSetPadMode(GPIOA,0,PAL_MODE_INPUT_ANALOG);
+        adcStart(&ADCD1, NULL);
+        chThdCreateStatic(wa_adcThread, sizeof(wa_adcThread), NORMALPRIO, adcThread, NULL);
 
-	palSetPadMode(GPIOE,5,PAL_MODE_OUTPUT_PUSHPULL);
-	chThdCreateStatic(waBlink, sizeof(waBlink), NORMALPRIO, thdBlink, NULL);
-    chThdCreateStatic(waGenData, sizeof(waGenData), NORMALPRIO, thdGenData, NULL);
+        palSetPadMode(GPIOE,5,PAL_MODE_OUTPUT_PUSHPULL);
+        chThdCreateStatic(waBlink, sizeof(waBlink), NORMALPRIO, thdBlink, NULL);
+        chThdCreateStatic(waGenData, sizeof(waGenData), NORMALPRIO, thdGenData, NULL);
 
+        gdispSetOrientation(GDISP_ROTATE_90);
 
     {
         GWindowInit wi;
