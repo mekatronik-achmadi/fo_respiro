@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "gfx.h"
 
@@ -14,6 +15,57 @@
 #include "hal.h"
 
 #include "math.h"
+
+#define ADC_GRP1_NUM_CHANNELS   1
+#define ADC_GRP1_BUF_DEPTH      100
+
+static adcsample_t samples[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
+
+adcsample_t adc0;
+uint32_t sum_adc0;
+
+adcsample_t y_0,y_1,dy;
+
+void adccb(ADCDriver *adcp, adcsample_t *buffer, size_t n){
+  (void) buffer; (void) n;
+  int i;
+  if (adcp->state == ADC_COMPLETE) {
+
+    sum_adc0=0;
+
+    for(i=0;i<ADC_GRP1_BUF_DEPTH;i++){
+        sum_adc0=sum_adc0+samples[0+(i*ADC_GRP1_NUM_CHANNELS)];
+    }
+
+    adc0=sum_adc0/ADC_GRP1_BUF_DEPTH;
+
+   }
+ }
+
+static const ADCConversionGroup adcgrpcfg = {
+    FALSE,
+    ADC_GRP1_NUM_CHANNELS,
+    adccb,
+    NULL,
+    /* HW dependent part.*/
+    0,
+    0,
+    ADC_SMPR2_SMP_AN0(ADC_SAMPLE_239P5),
+    0,
+    ADC_SQR1_NUM_CH(ADC_GRP1_NUM_CHANNELS),
+    0,
+    ADC_SQR3_SQ1_N(ADC_CHANNEL_IN0)
+};
+
+static THD_WORKING_AREA(wa_adcThread, 128);
+static THD_FUNCTION(adcThread,arg) {
+  (void)arg;
+
+  while (TRUE) {
+    chThdSleepMilliseconds(100);
+    adcStartConversion(&ADCD1, &adcgrpcfg, samples, ADC_GRP1_BUF_DEPTH);
+  }
+}
 
 // A set of data points that will be displayed in the graph
 static point data[20] = {
@@ -81,15 +133,21 @@ static THD_FUNCTION(thdGenData, arg) {
 
     (void)arg;
 
-    chRegSetThreadName("generate random data");
+    chRegSetThreadName("plot data");
 
     while (true) {
         for(i=19;i>0;i--){
             data[i].y = data[i-1].y;
         }
 
-        data[0].y = rand() % 150;
-
+       
+        y_1=adc0;
+        data[0].y = y1;
+        
+        if(y_1>y_0){dy=y_1-y_0;}
+        else{dy=y_0-y_1;}
+        y_0=y_1;
+        
         gfxSleepMilliseconds(500);
     }
 }
@@ -104,13 +162,15 @@ int main(int argc, char* argv[])
     GHandle gh;
 
 	gfxInit();
+    
+    palSetPadMode(GPIOA,0,PAL_MODE_INPUT_ANALOG);
+    adcStart(&ADCD1, NULL);
+    chThdCreateStatic(wa_adcThread, sizeof(wa_adcThread), NORMALPRIO, adcThread, NULL);
 
 	palSetPadMode(GPIOE,5,PAL_MODE_OUTPUT_PUSHPULL);
-	chThdCreateStatic(waBlink, sizeof(waBlink), NORMALPRIO+1, thdBlink, NULL);
-    chThdCreateStatic(waGenData, sizeof(waGenData), NORMALPRIO+1, thdGenData, NULL);
+	chThdCreateStatic(waBlink, sizeof(waBlink), NORMALPRIO, thdBlink, NULL);
+    chThdCreateStatic(waGenData, sizeof(waGenData), NORMALPRIO, thdGenData, NULL);
 
-	gdispSetBacklight(100);
-	gdispSetContrast(100);
 
     {
         GWindowInit wi;
