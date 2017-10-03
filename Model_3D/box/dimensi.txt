@@ -1,6 +1,0 @@
-Dimension:
-
-tebal 3 mm 
-panjang 121.90 mm --> 130 mm
-lebar 75.5 mm + 10 mm --> 85 mm
-tinggi 40 mm --> 50 mm

@@ -42,6 +42,29 @@ static point data[20] = {
     { 200,0 }
 };
 
+static point data_delta[20] = {
+    { 10, 0 },
+    { 20, 0 },
+    { 30, 0 },
+    { 40, 0 },
+    { 50, 0 },
+    { 60, 0 },
+    { 70, 0 },
+    { 80, 0 },
+    { 90, 0 },
+    { 100,0 },
+    { 110, 0 },
+    { 120, 0 },
+    { 130, 0 },
+    { 140, 0 },
+    { 150, 0 },
+    { 160, 0 },
+    { 170, 0 },
+    { 180, 0 },
+    { 190, 0 },
+    { 200,0 }
+};
+
 void adccb(ADCDriver *adcp, adcsample_t *buffer, size_t n){
   (void) buffer; (void) n;
   int i;
@@ -111,14 +134,19 @@ static void TextUpdate(void){
 
     for(i=19;i>0;i--){
         data[i].y = data[i-1].y;
+        data_delta[i].y = data_delta[i-1].y;
     }
 
     y_1=adc0;
+    if(adc0>=200){y_1 = adc0 - 200;}
+    else{y_1 = 0;}
+
     if(y_1>y_0){dy=y_1-y_0;}
     else{dy=y_0-y_1;}
     y_0=y_1;
 
-    data[0].y = dy;
+    data[0].y = y_1;
+    data_delta[0].y = dy;
 
     chsnprintf(txt_adc,6,"%4i",y_1);
     gwinSetText(ghlblY1, txt_adc, TRUE);
@@ -134,6 +162,7 @@ static void TextUpdate(void){
     gwinGraphSetStyle(ghPlot, &GraphStyle2);
     gwinGraphDrawAxis(ghPlot);
     gwinGraphDrawPoints(ghPlot, data, sizeof(data)/sizeof(data[0]));
+    gwinGraphDrawPoints(ghPlot, data_delta, sizeof(data_delta)/sizeof(data_delta[0]));
 
     chThdSleepMilliseconds(100);
 }
