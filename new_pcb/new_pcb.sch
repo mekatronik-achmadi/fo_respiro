@@ -99,7 +99,7 @@ GLCD_CS1
 Text Label 15700 2900 1    60   ~ 0
 GLCD_CS2
 Text Label 16650 9550 0    60   ~ 0
-GLCD_RST
+GLCD_RS
 Text Label 15800 2900 1    60   ~ 0
 GLCD_RST
 Text Label 16650 9650 0    60   ~ 0
@@ -107,7 +107,7 @@ GLCD_RW
 Text Label 15900 2900 1    60   ~ 0
 GLCD_RW
 Text Label 16650 9750 0    60   ~ 0
-GLCD_RS
+GLCD_RST
 Text Label 16000 2900 1    60   ~ 0
 GLCD_RS
 Text Label 16100 2900 1    60   ~ 0
