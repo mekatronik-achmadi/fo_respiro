@@ -1,0 +1,6 @@
+- ~~add Diode on USB BATT INPUT~~
+- ~~footprint of FT232RL too small~~
+- VCC on MC34 must be connected to VCC on COMP pin
+- MC34 value L = 100uH, R1= 2k, R2 = 5k9, Rsc = 5R1, Rdrv = 180, Dschottky = 1n5819 (SS14) 
+- add VCC-GND LED indicator
+- add Batt charging LED indicator with high R-LED
