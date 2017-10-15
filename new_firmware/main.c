@@ -5,6 +5,7 @@
 #include "fo_shell.h"
 
 #include "glcd_ks0108.h"
+#include "logolab.h"
 
 int main(void) {
 
@@ -14,12 +15,13 @@ int main(void) {
   GLCD_Initalize();
   GLCD_ClearScreen();
 
-  GLCD_TestString();
+  GLCD_Bitmap(LogoLab,0,0,100,52);
+  GLCD_GoTo(0,6);
+  GLCD_WriteString("|  by Photonic Labs |");
 
   FO_Shell_Init();
 
   while (true) {
-//      chThdSleepMilliseconds(100);
       FO_Shell_Run();
   }
 }

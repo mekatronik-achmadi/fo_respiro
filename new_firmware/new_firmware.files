@@ -10,6 +10,7 @@ glcd/glcd_ks0108.c
 glcd/glcd_ks0108.h
 glcd/glcd_stm32chibios.c
 glcd/glcd_stm32chibios.h
+glcd/logolab.h
 halconf.h
 main.c
 mcuconf.h

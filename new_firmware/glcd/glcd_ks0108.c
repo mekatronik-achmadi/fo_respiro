@@ -1,3 +1,7 @@
+/*
+ * http://en.radzio.dxp.pl/ks0108/
+ */
+
 #include "glcd_font.h"
 #include "glcd_ks0108.h"
 #include "glcd_stm32chibios.h"
