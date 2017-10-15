@@ -1,0 +1,12 @@
+gfxconf.h
+ugfx/board_KS0108.h
+board/board.c
+board/board.h
+chconf.h
+fo_shell.c
+fo_shell.h
+fo_uart.c
+fo_uart.h
+halconf.h
+main.c
+mcuconf.h
