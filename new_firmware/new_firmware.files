@@ -1,5 +1,3 @@
-gfxconf.h
-ugfx/board_KS0108.h
 board/board.c
 board/board.h
 chconf.h
