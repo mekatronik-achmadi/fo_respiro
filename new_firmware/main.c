@@ -16,10 +16,10 @@ int main(void) {
 
   GLCD_TestString();
 
-//  FO_Shell_Init();
+  FO_Shell_Init();
 
   while (true) {
-      chThdSleepMilliseconds(100);
-//      FO_Shell_Run();
+//      chThdSleepMilliseconds(100);
+      FO_Shell_Run();
   }
 }

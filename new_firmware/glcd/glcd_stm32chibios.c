@@ -15,8 +15,6 @@
 
 #define KS0108_D0    0
 
-#define DISPLAY_STATUS_BUSY	0x80
-
 extern unsigned char screen_x;
 extern unsigned char screen_y;
 
@@ -64,8 +62,51 @@ switch(controller){
     }
 }
 
+void GLCD_DataPinIn(void){
+    uint8_t i;
+    for(i=0;i<8;i++){
+        palSetPadMode(KS0108_PORT,i,PAL_MODE_INPUT_PULLUP);
+    }
+}
+
+void GLCD_DataPinOut(void){
+    uint8_t i;
+    for(i=0;i<8;i++){
+        palSetPadMode(KS0108_PORT,i,PAL_MODE_OUTPUT_PUSHPULL);
+    }
+}
+
+#if KS0108_READ_STATUS
+unsigned char GLCD_ReadStatus(unsigned char controller)
+{
+    unsigned char status;
+
+    GLCD_DataPinIn();
+
+    palSetPad(KS0108_PORT, KS0108_RW);
+    palClearPad(KS0108_PORT, KS0108_RS);
+    GLCD_EnableController(controller);
+    GLCD_Delay();
+
+    palSetPad(KS0108_PORT, KS0108_EN);
+    GLCD_Delay();
+
+    status = ((palReadPort(KS0108_PORT) >> KS0108_D0) & 0xFF);
+
+    palClearPad(KS0108_PORT, KS0108_EN);
+    GLCD_DisableController(controller);
+
+    return status;
+}
+#endif
+
 void GLCD_WriteCommand(unsigned char commandToWrite, unsigned char controller)
 {
+#if KS0108_READ_STATUS
+    while(GLCD_ReadStatus(controller)&DISPLAY_STATUS_BUSY);
+#endif
+    GLCD_DataPinOut();
+
     palClearPad(KS0108_PORT, KS0108_RS);
     palClearPad(KS0108_PORT, KS0108_RW);
 
@@ -87,8 +128,38 @@ void GLCD_WriteCommand(unsigned char commandToWrite, unsigned char controller)
     GLCD_DisableController(controller);
 }
 
+unsigned char GLCD_ReadData(void)
+{
+    unsigned char tmp;
+#if KS0108_READ_STATUS
+    while(GLCD_ReadStatus(screen_x / 64)&DISPLAY_STATUS_BUSY);
+#endif
+    GLCD_DataPinIn();
+
+    palSetPad(KS0108_PORT, KS0108_RS);
+    palSetPad(KS0108_PORT, KS0108_RW);
+
+    GLCD_EnableController(screen_x / 64);
+    GLCD_Delay();
+
+    palSetPad(KS0108_PORT, KS0108_EN);
+    GLCD_Delay();
+
+    tmp = ((palReadPort(KS0108_PORT) >> KS0108_D0) & 0xFF);
+    palClearPad(KS0108_PORT, KS0108_EN);
+    GLCD_DisableController(screen_x / 64);
+    screen_x++;
+
+    return tmp;
+}
+
 void GLCD_WriteData(unsigned char dataToWrite)
 {
+#if KS0108_READ_STATUS
+    while(GLCD_ReadStatus(screen_x / 64)&DISPLAY_STATUS_BUSY);
+#endif
+
+    GLCD_DataPinOut();
 
     palClearPad(KS0108_PORT, KS0108_RW);
     GLCD_Delay();
@@ -114,16 +185,14 @@ void GLCD_WriteData(unsigned char dataToWrite)
 
 void GLCD_InitalizePorts(void)
 {
-    uint8_t i;
-    for(i=0;i<8;i++){
-        palSetPadMode(KS0108_PORT,i,PAL_MODE_OUTPUT_PUSHPULL);
-    }
-
+    chThdSleepMilliseconds(100);
+    GLCD_DataPinOut();
     palSetPadMode(KS0108_PORT,KS0108_CS1,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPadMode(KS0108_PORT,KS0108_CS2,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPadMode(KS0108_PORT,KS0108_RS,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPadMode(KS0108_PORT,KS0108_RW,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPadMode(KS0108_PORT,KS0108_EN,PAL_MODE_OUTPUT_PUSHPULL);
+
 }
 
 unsigned char GLCD_ReadByteFromROMMemory(char * ptr)

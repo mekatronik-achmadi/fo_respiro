@@ -54,17 +54,20 @@ void GLCD_WriteString(char * stringToWrite)
       GLCD_WriteChar(*stringToWrite++);
 }
 
-//void GLCD_SetPixel(unsigned char x, unsigned char y, unsigned char color)
-//{
-//    unsigned char tmp;
-//    GLCD_GoTo(x, (y / 8));
-//    tmp = GLCD_ReadData();
-//    GLCD_GoTo(x, (y / 8));
-//    tmp = GLCD_ReadData();
-//    GLCD_GoTo(x, (y / 8));
-//    tmp |= (1 << (y % 8));
-//    GLCD_WriteData(tmp);
-//}
+void GLCD_SetPixel(unsigned char x, unsigned char y)
+{
+    unsigned char tmp = 0;
+
+#if KS0108_READ_STATUS
+    GLCD_GoTo(x, (y / 8));
+    tmp = GLCD_ReadData();
+    GLCD_GoTo(x, (y / 8));
+    tmp = GLCD_ReadData();
+#endif
+    GLCD_GoTo(x, (y / 8));
+    tmp |= (1 << (y % 8));
+    GLCD_WriteData(tmp);
+}
 
 void GLCD_Bitmap(char * bmp, unsigned char x, unsigned char y, unsigned char dx, unsigned char dy)
 {
