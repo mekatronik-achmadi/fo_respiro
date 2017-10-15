@@ -10,3 +10,4 @@
 - Core-Board: doubled-vias
 - Core-Board: VDD-GND jumper too close
 - GLCD GND-VCC (power) reversed
+- LCD-EN header connected not in bottom

@@ -98,6 +98,7 @@ include $(CHIBIOS)/os/hal/osal/rt/osal.mk
 include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 # Other files (optional).
+include ./glcd/glcd.mk
 
 # Define linker script file here
 LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
@@ -111,6 +112,7 @@ CSRC =  $(STARTUPSRC) \
         $(HALSRC) \
         $(PLATFORMSRC) \
         $(BOARDSRC) \
+        $(GLCDSRC) \
         $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
         $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
         $(CHIBIOS)/os/hal/lib/streams/nullstreams.c \
@@ -149,7 +151,8 @@ ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) \
          $(CHIBIOS)/os/various \
-         $(CHIBIOS)/os/hal/lib/streams
+         $(CHIBIOS)/os/hal/lib/streams \
+         $(GLCDINC)
 
 #
 # Project, sources and paths

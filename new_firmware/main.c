@@ -4,14 +4,22 @@
 #include "fo_uart.h"
 #include "fo_shell.h"
 
+#include "glcd_ks0108.h"
+
 int main(void) {
 
   halInit();
   chSysInit();
 
-  FO_Shell_Init();
+  GLCD_Initalize();
+  GLCD_ClearScreen();
+
+  GLCD_TestString();
+
+//  FO_Shell_Init();
 
   while (true) {
-      FO_Shell_Run();
+      chThdSleepMilliseconds(100);
+//      FO_Shell_Run();
   }
 }
