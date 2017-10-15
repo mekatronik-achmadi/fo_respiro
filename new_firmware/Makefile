@@ -99,6 +99,7 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 # Other files (optional).
 include ./glcd/glcd.mk
+include ./gui/gui.mk
 
 # Define linker script file here
 LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
@@ -113,6 +114,7 @@ CSRC =  $(STARTUPSRC) \
         $(PLATFORMSRC) \
         $(BOARDSRC) \
         $(GLCDSRC) \
+        $(GUISRC) \
         $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
         $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
         $(CHIBIOS)/os/hal/lib/streams/nullstreams.c \
@@ -152,7 +154,7 @@ INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) \
          $(CHIBIOS)/os/various \
          $(CHIBIOS)/os/hal/lib/streams \
-         $(GLCDINC)
+         $(GLCDINC) $(GUIINC)
 
 #
 # Project, sources and paths

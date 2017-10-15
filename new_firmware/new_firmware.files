@@ -5,12 +5,16 @@ fo_shell.c
 fo_shell.h
 fo_uart.c
 fo_uart.h
+glcd/glcd_draw.c
+glcd/glcd_draw.h
 glcd/glcd_font.h
 glcd/glcd_ks0108.c
 glcd/glcd_ks0108.h
 glcd/glcd_stm32chibios.c
 glcd/glcd_stm32chibios.h
-glcd/logolab.h
+gui/fo_gui.c
+gui/fo_gui.h
+gui/logolab.h
 halconf.h
 main.c
 mcuconf.h

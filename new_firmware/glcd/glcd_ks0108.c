@@ -58,8 +58,10 @@ void GLCD_WriteString(char * stringToWrite)
       GLCD_WriteChar(*stringToWrite++);
 }
 
-void GLCD_SetPixel(unsigned char x, unsigned char y)
+void GLCD_SetPixel(unsigned char x, unsigned char y, unsigned char color)
 {
+    (void) color;
+
     unsigned char tmp = 0;
 
 #if KS0108_READ_STATUS

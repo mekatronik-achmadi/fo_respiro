@@ -23,6 +23,7 @@ void GLCD_ClearScreen(void);
 void GLCD_GoTo(unsigned char x, unsigned char y);
 void GLCD_WriteString(char * stringToWrite);
 unsigned char GLCD_ReadData(void);
+void GLCD_SetPixel(unsigned char x, unsigned char y, unsigned char color);
 void GLCD_Bitmap(char * bmp, unsigned char x, unsigned char y, unsigned char dx, unsigned char dy);
 void GLCD_TestString(void);
 

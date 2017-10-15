@@ -6,4 +6,5 @@
 /opt/stm32lib/chibios30/test/rt
 board
 glcd
+gui
 ugfx

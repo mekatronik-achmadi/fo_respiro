@@ -3,23 +3,23 @@
 
 #include "fo_uart.h"
 #include "fo_shell.h"
-
-#include "glcd_ks0108.h"
-#include "logolab.h"
+#include "fo_gui.h"
 
 int main(void) {
 
   halInit();
   chSysInit();
 
-  GLCD_Initalize();
-  GLCD_ClearScreen();
+  GUI_Start();
+  GUI_Clear();
 
-  GLCD_Bitmap(LogoLab,0,0,100,52);
-  GLCD_GoTo(0,6);
-  GLCD_WriteString("|  by Photonic Labs |");
+  GUI_StartupLogo();
 
   FO_Shell_Init();
+
+  GUI_Clear();
+  GUI_TestDraw();
+//  GUI_TestString();
 
   while (true) {
       FO_Shell_Run();
