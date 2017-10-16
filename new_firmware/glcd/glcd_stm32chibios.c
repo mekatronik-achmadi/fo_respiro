@@ -1,8 +1,6 @@
 #include "glcd_font.h"
 #include "glcd_ks0108.h"
-
-#include "ch.h"
-#include "hal.h"
+#include "glcd_stm32chibios.h"
 
 #define KS0108_PORT  GPIOC
 

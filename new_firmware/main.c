@@ -5,6 +5,9 @@
 #include "fo_shell.h"
 #include "fo_gui.h"
 
+uint16_t val_adc=0;
+uint8_t val_rate=0;
+
 int main(void) {
 
   halInit();
@@ -18,8 +21,8 @@ int main(void) {
   FO_Shell_Init();
 
   GUI_Clear();
-  GUI_TestDraw();
-//  GUI_TestString();
+  GUI_Frame();
+  GUI_DataText(val_adc,val_rate);
 
   while (true) {
       FO_Shell_Run();

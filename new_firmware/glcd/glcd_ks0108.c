@@ -6,6 +6,19 @@
 #include "glcd_ks0108.h"
 #include "glcd_stm32chibios.h"
 
+GlcdStream myGLCD;
+
+static msg_t put(void *ip, uint8_t chr) {
+    (void)ip;
+    GLCD_WriteChar(chr);
+    return MSG_OK;
+}
+
+static const struct GlcdStreamVMT vmt = {NULL, NULL, put, NULL};
+void lsObjectInit(GlcdStream *msp) {
+    msp->vmt = &vmt;
+}
+
 unsigned char screen_x = 0, screen_y = 0;
 
 void GLCD_Initalize(void)
@@ -84,23 +97,4 @@ void GLCD_Bitmap(char * bmp, unsigned char x, unsigned char y, unsigned char dx,
       for(i = 0; i < dx; i++)
         GLCD_WriteData(GLCD_ReadByteFromROMMemory(bmp++));
     }
-}
-
-void GLCD_TestString(void){
-    GLCD_GoTo(0,0);
-    GLCD_WriteString("+-------------------+");
-    GLCD_GoTo(0,1);
-    GLCD_WriteString("|     Universal     |");
-    GLCD_GoTo(0,2);
-    GLCD_WriteString("|   KS0108 library  |");
-    GLCD_GoTo(0,3);
-    GLCD_WriteString("|                   |");
-    GLCD_GoTo(0,4);
-    GLCD_WriteString("|  en.radzio.dxp.pl |");
-    GLCD_GoTo(0,5);
-    GLCD_WriteString("|  STM32 Cortex-M3  |");
-    GLCD_GoTo(0,6);
-    GLCD_WriteString("|  microcontrollers |");
-    GLCD_GoTo(0,7);
-    GLCD_WriteString("+-------------------+");
 }

@@ -1,6 +1,9 @@
 #include "glcd_draw.h"
 #include "glcd_font.h"
 #include "glcd_ks0108.h"
+#include "glcd_stm32chibios.h"
+
+extern GlcdStream myGLCD;
 
 const unsigned char color = 1;
 
@@ -123,4 +126,31 @@ void GLCD_TestDraw(void){
     GLCD_Circle(64,32,10);
     GLCD_Line(0,0,128,64);
     GLCD_Rectangle(20,40,20,10);
+}
+
+void GLCD_TestString(void){
+    GLCD_GoTo(0,0);
+    GLCD_WriteString("+-------------------+");
+    GLCD_GoTo(0,1);
+    GLCD_WriteString("|     Universal     |");
+    GLCD_GoTo(0,2);
+    GLCD_WriteString("|   KS0108 library  |");
+    GLCD_GoTo(0,3);
+    GLCD_WriteString("|                   |");
+    GLCD_GoTo(0,4);
+    GLCD_WriteString("|  en.radzio.dxp.pl |");
+    GLCD_GoTo(0,5);
+    GLCD_WriteString("|  STM32 Cortex-M3  |");
+    GLCD_GoTo(0,6);
+    GLCD_WriteString("|  microcontrollers |");
+    GLCD_GoTo(0,7);
+    GLCD_WriteString("+-------------------+");
+}
+
+void GLCD_TestStrData(void){
+    char str_data[16];
+    chsnprintf(str_data,16,"Test");
+    GLCD_GoTo(0,0);
+    GLCD_WriteString(str_data);
+
 }
