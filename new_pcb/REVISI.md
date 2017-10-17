@@ -12,3 +12,4 @@
 - GLCD GND-VCC (power) reversed
 - LCD-EN header connected not in bottom
 - GLCD-RST to VCC
+- STM32F407 VREF+ connect to VDD
