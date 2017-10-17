@@ -121,7 +121,7 @@ CSRC =  $(STARTUPSRC) \
         $(CHIBIOS)/os/various/shell.c \
         $(CHIBIOS)/os/various/evtimer.c \
         $(CHIBIOS)/os/various/syscalls.c \
-        main.c fo_uart.c fo_shell.c
+        main.c fo_uart.c fo_shell.c fo_adc.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

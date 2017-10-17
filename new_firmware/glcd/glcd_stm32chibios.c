@@ -74,7 +74,7 @@ void GLCD_DataPinOut(void){
     }
 }
 
-#if KS0108_READ_STATUS
+#if KS0108_NEED_READ
 unsigned char GLCD_ReadStatus(unsigned char controller)
 {
     unsigned char status;
@@ -100,7 +100,7 @@ unsigned char GLCD_ReadStatus(unsigned char controller)
 
 void GLCD_WriteCommand(unsigned char commandToWrite, unsigned char controller)
 {
-#if KS0108_READ_STATUS
+#if KS0108_NEED_READ
     while(GLCD_ReadStatus(controller)&DISPLAY_STATUS_BUSY);
 #endif
     GLCD_DataPinOut();
@@ -126,12 +126,13 @@ void GLCD_WriteCommand(unsigned char commandToWrite, unsigned char controller)
     GLCD_DisableController(controller);
 }
 
+#if KS0108_NEED_READ
 unsigned char GLCD_ReadData(void)
 {
     unsigned char tmp;
-#if KS0108_READ_STATUS
+
     while(GLCD_ReadStatus(screen_x / 64)&DISPLAY_STATUS_BUSY);
-#endif
+
     GLCD_DataPinIn();
 
     palSetPad(KS0108_PORT, KS0108_RS);
@@ -150,10 +151,11 @@ unsigned char GLCD_ReadData(void)
 
     return tmp;
 }
+#endif
 
 void GLCD_WriteData(unsigned char dataToWrite)
 {
-#if KS0108_READ_STATUS
+#if KS0108_NEED_READ
     while(GLCD_ReadStatus(screen_x / 64)&DISPLAY_STATUS_BUSY);
 #endif
 

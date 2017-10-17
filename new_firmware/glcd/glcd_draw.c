@@ -152,5 +152,4 @@ void GLCD_TestStrData(void){
     chsnprintf(str_data,16,"Test");
     GLCD_GoTo(0,0);
     GLCD_WriteString(str_data);
-
 }

@@ -1,6 +1,8 @@
 board/board.c
 board/board.h
 chconf.h
+fo_adc.c
+fo_adc.h
 fo_shell.c
 fo_shell.h
 fo_uart.c

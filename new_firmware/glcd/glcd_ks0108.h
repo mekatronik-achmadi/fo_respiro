@@ -41,18 +41,17 @@ void lsObjectInit(GlcdStream *msp);
   #define ON	0x01
   #define OFF	0x00
 #define DISPLAY_STATUS_BUSY	0x80
-#define KS0108_NOP_DLY      FALSE
+#define KS0108_NOP_DLY      TRUE
 
 #define DISPLAY_STATUS_BUSY	0x80
-#define KS0108_READ_STATUS  FALSE
+#define KS0108_NEED_READ  FALSE
 
 void GLCD_Initalize(void);
 void GLCD_ClearScreen(void);
 void GLCD_GoTo(unsigned char x, unsigned char y);
 void GLCD_WriteChar(char charToWrite);
 void GLCD_WriteString(char * stringToWrite);
-unsigned char GLCD_ReadData(void);
-void GLCD_SetPixel(unsigned char x, unsigned char y, unsigned char color);
+void GLCD_SetPixel(unsigned char x, unsigned char y, unsigned char pixel);
 void GLCD_Bitmap(char * bmp, unsigned char x, unsigned char y, unsigned char dx, unsigned char dy);
 
 #endif // GLCD_KS0108_H

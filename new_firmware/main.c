@@ -4,9 +4,23 @@
 #include "fo_uart.h"
 #include "fo_shell.h"
 #include "fo_gui.h"
+#include "fo_adc.h"
 
-uint16_t val_adc=0;
+extern adcsample_t adc0,adc1,adc2;
 uint8_t val_rate=0;
+
+static THD_WORKING_AREA(wa_glcdThread, 128);
+static THD_FUNCTION(glcdThread, arg) {
+  (void)arg;
+  chRegSetThreadName("GLCD Update");
+  while (TRUE) {
+    chThdSleepMilliseconds(500);
+    GUI_Clear();
+//    GUI_PlotADC(adc0);
+    GUI_GraphTest(0);
+    GUI_DataText(adc0,val_rate);
+  }
+}
 
 int main(void) {
 
@@ -19,10 +33,10 @@ int main(void) {
   GUI_StartupLogo();
 
   FO_Shell_Init();
+  FO_Adc_Init();
 
   GUI_Clear();
-  GUI_Frame();
-  GUI_DataText(val_adc,val_rate);
+  chThdCreateStatic(wa_glcdThread, sizeof(wa_glcdThread), NORMALPRIO, glcdThread, NULL);
 
   while (true) {
       FO_Shell_Run();
