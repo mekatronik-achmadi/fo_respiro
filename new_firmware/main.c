@@ -6,7 +6,7 @@
 #include "fo_gui.h"
 #include "fo_adc.h"
 
-extern adcsample_t adc0,adc1,adc2;
+extern adcsample_t adc0;
 uint8_t val_rate=0;
 
 static THD_WORKING_AREA(wa_glcdThread, 128);
@@ -17,8 +17,9 @@ static THD_FUNCTION(glcdThread, arg) {
     chThdSleepMilliseconds(500);
     GUI_Clear();
 //    GUI_PlotADC(adc0);
-    GUI_GraphTest(0);
+//    GUI_GraphTest(0);
     GUI_DataText(adc0,val_rate);
+    chprintf((BaseSequentialStream *)&SD1,"%4i \n\r",adc0);
   }
 }
 

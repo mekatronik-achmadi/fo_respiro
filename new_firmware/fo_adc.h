@@ -19,8 +19,8 @@
 #define MAX_FILLER 16
 #define FLOAT_PRECISION 100
 
-#define ADC_GRP1_NUM_CHANNELS   3
-#define ADC_GRP1_BUF_DEPTH      100
+#define ADC_GRP_NUM_CHANNELS   1
+#define ADC_GRP_BUF_DEPTH      100
 
 void FO_Adc_Init(void);
 
