@@ -16,10 +16,8 @@ static THD_FUNCTION(glcdThread, arg) {
   while (TRUE) {
     chThdSleepMilliseconds(500);
     GUI_Clear();
-//    GUI_PlotADC(adc0);
-//    GUI_GraphTest(0);
     GUI_DataText(adc0,val_rate);
-    chprintf((BaseSequentialStream *)&SD1,"%4i \n\r",adc0);
+    GUI_Graph();
   }
 }
 

@@ -1,7 +1,7 @@
 #include "fo_gui.h"
 #include "logolab.h"
 
-uint16_t data_array[X_LENGTH];
+extern uint16_t data_array[X_LENGTH];
 
 void GUI_StartupLogo(void){
     GLCD_Bitmap(LogoLab,0,0,100,52);
@@ -27,25 +27,4 @@ void GUI_Graph(void){
 
         GLCD_SetPixel(x_val,y_draw,1);
     }
-}
-
-void GUI_GraphTest(uint16_t kons_adc){
-    uint8_t i;
-
-    for(i=0;i<X_LENGTH;i++){
-        data_array[i] = kons_adc;
-    }
-    GUI_Graph();
-}
-
-void GUI_PlotADC(uint16_t v_adc){
-    uint8_t i;
-
-    for(i=1;i<X_LENGTH;i++){
-        data_array[i]=data_array[i-1];
-    }
-
-    data_array[0]=v_adc;
-
-    GUI_Graph();
 }
