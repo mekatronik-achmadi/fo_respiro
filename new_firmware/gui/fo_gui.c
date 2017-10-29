@@ -4,11 +4,14 @@
 extern uint16_t data_array[X_LENGTH];
 
 void GUI_StartupLogo(void){
+
     GLCD_Bitmap(LogoLab,0,0,100,52);
-    GLCD_GoTo(0,6);
+
+    GLCD_GoTo(0,7);
     GLCD_WriteString("|  by Photonic Labs |");
 
-    chThdSleepMilliseconds(2000);
+    GLCD_GoTo(0,6);
+    GLCD_WriteString("|   2 mW DFB LASER  |");
 }
 
 void GUI_DataText(uint16_t v_adc, uint8_t v_rate){
