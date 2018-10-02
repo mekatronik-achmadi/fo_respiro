@@ -104,9 +104,7 @@ GFXLIB = /opt/ugfxlib/
 include $(GFXLIB)/gfx.mk
 include ./ugfx/ugfx.mk
 # Main Files
-#include ./demo_console/demo.mk
-#include ./graph/demo.mk
-include ./ui/demo.mk
+include ./main/main.mk
 
 # Define linker script file here
 LDSCRIPT= $(STARTUPLD)/STM32F103xE.ld
