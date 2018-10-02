@@ -86,7 +86,7 @@ endif
 PROJECT = ch
 
 # Imported source files and paths
-CHIBIOS = /opt/stm32lib/chibios
+CHIBIOS = /opt/stm32lib/chibios30
 # Startup files.
 include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f1xx.mk
 # HAL-OSAL files (optional).
@@ -100,7 +100,7 @@ include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 # Other files (optional).
 include $(CHIBIOS)/test/rt/test.mk
 # uGFX	files (recommended)
-GFXLIB = /opt/ugfx/ugfx_library
+GFXLIB = /opt/ugfxlib/
 include $(GFXLIB)/gfx.mk
 include ./ugfx/ugfx.mk
 # Main Files
