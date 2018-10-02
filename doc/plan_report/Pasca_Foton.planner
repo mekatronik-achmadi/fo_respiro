@@ -27,38 +27,41 @@
     <task id="2" name="OPM - Find Gain" note="" work="115200" start="20180920T000000Z" end="20180925T170000Z" work-start="20180920T080000Z" percent-complete="40" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20180920T000000Z"/>
     </task>
-    <task id="3" name="OPM - Osci Test" note="" work="115200" start="20180923T000000Z" end="20180927T170000Z" work-start="20180924T080000Z" percent-complete="40" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20180923T000000Z"/>
+    <task id="3" name="Libur Wisuda" note="" work="201600" start="20180924T000000Z" end="20181002T170000Z" work-start="20180924T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20180924T000000Z"/>
     </task>
-    <task id="4" name="OPM - Control Design" note="" work="115200" start="20180926T000000Z" end="20181001T170000Z" work-start="20180926T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20180926T000000Z"/>
+    <task id="4" name="OPM - Osci Test" note="" work="115200" start="20181002T000000Z" end="20181005T170000Z" work-start="20181002T080000Z" percent-complete="40" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181002T000000Z"/>
     </task>
-    <task id="5" name="OLS - Find driver strcuture" note="" work="115200" start="20180930T000000Z" end="20181004T170000Z" work-start="20181001T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20180930T000000Z"/>
+    <task id="5" name="OPM - Control Design" note="" work="172800" start="20181002T000000Z" end="20181009T170000Z" work-start="20181002T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181002T000000Z"/>
     </task>
-    <task id="6" name="OLS - Power variance Test" note="" work="115200" start="20181003T000000Z" end="20181008T170000Z" work-start="20181003T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20181003T000000Z"/>
-    </task>
-    <task id="7" name="OLS - Control Design" note="" work="115200" start="20181004T000000Z" end="20181009T170000Z" work-start="20181004T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20181004T000000Z"/>
-    </task>
-    <task id="8" name="INT - Pre-Design" note="" work="201600" start="20181008T000000Z" end="20181016T170000Z" work-start="20181008T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="6" name="OLS - Find driver strcuture" note="" work="115200" start="20181008T000000Z" end="20181011T170000Z" work-start="20181008T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20181008T000000Z"/>
     </task>
-    <task id="9" name="INT - Alpha version build" note="" work="201600" start="20181012T000000Z" end="20181022T170000Z" work-start="20181012T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="7" name="OLS - Power variance Test" note="" work="115200" start="20181012T000000Z" end="20181017T170000Z" work-start="20181012T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20181012T000000Z"/>
     </task>
-    <task id="10" name="INT - Alpha Test" note="" work="201600" start="20181019T000000Z" end="20181029T170000Z" work-start="20181019T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20181019T000000Z"/>
+    <task id="8" name="OLS - Control Design" note="" work="115200" start="20181017T000000Z" end="20181022T170000Z" work-start="20181017T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181017T000000Z"/>
     </task>
-    <task id="11" name="SEN - Pre- Test" note="" work="201600" start="20181026T000000Z" end="20181105T170000Z" work-start="20181026T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20181026T000000Z"/>
+    <task id="9" name="INT - Pre-Design" note="" work="201600" start="20181022T000000Z" end="20181030T170000Z" work-start="20181022T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181022T000000Z"/>
     </task>
-    <task id="12" name="INT - Alpha-Fabric build" note="" work="432000" start="20181031T000000Z" end="20181120T170000Z" work-start="20181031T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20181031T000000Z"/>
+    <task id="10" name="INT - Alpha version build" note="" work="201600" start="20181029T000000Z" end="20181106T170000Z" work-start="20181029T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181029T000000Z"/>
     </task>
-    <task id="13" name="INT - Package Assembly  " note="" work="201600" start="20181118T000000Z" end="20181127T170000Z" work-start="20181119T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20181118T000000Z"/>
+    <task id="11" name="INT - Alpha Test" note="" work="201600" start="20181105T000000Z" end="20181113T170000Z" work-start="20181105T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181105T000000Z"/>
+    </task>
+    <task id="12" name="SEN - Pre- Test" note="" work="201600" start="20181112T000000Z" end="20181120T170000Z" work-start="20181112T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181112T000000Z"/>
+    </task>
+    <task id="13" name="INT - Alpha-Fabric build" note="" work="432000" start="20181119T000000Z" end="20181207T170000Z" work-start="20181119T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181119T000000Z"/>
+    </task>
+    <task id="14" name="INT - Package Assembly  " note="" work="201600" start="20181207T000000Z" end="20181217T170000Z" work-start="20181207T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20181207T000000Z"/>
     </task>
   </tasks>
   <resource-groups/>
