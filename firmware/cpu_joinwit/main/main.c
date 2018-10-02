@@ -25,7 +25,7 @@ static THD_FUNCTION(thdLed1, arg) {
 /*===========================================================================*/
 
 #define N_DATA 200
-#define DISP_DELAY 200
+#define DISP_DELAY 500
 #define PLAY_DELAY 500
 #define LEFT_TO_RIGHT FALSE
 static point vdata[N_DATA];
