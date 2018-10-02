@@ -27,7 +27,7 @@ static THD_FUNCTION(thdLed1, arg) {
 #define N_DATA 200
 #define DISP_DELAY 500
 #define PLAY_DELAY 500
-#define LEFT_TO_RIGHT FALSE
+#define LEFT_TO_RIGHT false
 static point vdata[N_DATA];
 
 static THD_WORKING_AREA(waGenData, 128);
@@ -111,7 +111,7 @@ static THD_FUNCTION(thdDraw, arg) {
       GWindowInit wi;
       gwinClearInit(&wi);
 
-      wi.show = TRUE;
+      wi.show = true;
 
       wi.x = 0;
       wi.y = 0;
@@ -209,7 +209,7 @@ int main(void) {
     gfxInit();
 
     //rotate display
-    gdispSetOrientation(GDISP_ROTATE_270);
+    gdispSetOrientation(gOrientation90);
 
     // ================================================================== //
 
@@ -225,7 +225,7 @@ int main(void) {
 
     // ================================================================== //
 
-    while(TRUE) {
+    while(true) {
         gfxSleepMilliseconds(500);
     }
 }

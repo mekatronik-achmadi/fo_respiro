@@ -2,6 +2,7 @@
 board
 main
 ugfx
+ugfx/ILI9320
 /opt/stm32lib/chibios30/os/rt/include
 /opt/stm32lib/chibios30/os/hal/include
 /opt/stm32lib/chibios30/os/various/

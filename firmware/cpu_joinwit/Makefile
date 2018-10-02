@@ -103,6 +103,7 @@ include $(CHIBIOS)/test/rt/test.mk
 GFXLIB = /opt/ugfxlib/
 include $(GFXLIB)/gfx.mk
 include ./ugfx/ugfx.mk
+include ./ugfx/ILI9320/driver.mk
 # Main Files
 include ./main/main.mk
 
