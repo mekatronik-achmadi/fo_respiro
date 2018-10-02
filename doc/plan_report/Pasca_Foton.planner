@@ -23,11 +23,11 @@
     </calendar>
   </calendars>
   <tasks>
-    <task id="1" name="OPM - Find ADC line" note="" work="115200" start="20180918T000000Z" end="20180921T170000Z" work-start="20180918T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-    <task id="2" name="OPM - Find Gain" note="" work="115200" start="20180920T000000Z" end="20180925T170000Z" work-start="20180920T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="1" name="OPM - Find ADC line" note="" work="115200" start="20180918T000000Z" end="20180921T170000Z" work-start="20180918T080000Z" percent-complete="90" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="2" name="OPM - Find Gain" note="" work="115200" start="20180920T000000Z" end="20180925T170000Z" work-start="20180920T080000Z" percent-complete="40" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20180920T000000Z"/>
     </task>
-    <task id="3" name="OPM - Osci Test" note="" work="115200" start="20180923T000000Z" end="20180927T170000Z" work-start="20180924T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="3" name="OPM - Osci Test" note="" work="115200" start="20180923T000000Z" end="20180927T170000Z" work-start="20180924T080000Z" percent-complete="40" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20180923T000000Z"/>
     </task>
     <task id="4" name="OPM - Control Design" note="" work="115200" start="20180926T000000Z" end="20181001T170000Z" work-start="20180926T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
