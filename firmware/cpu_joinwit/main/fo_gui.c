@@ -25,7 +25,9 @@ static THD_WORKING_AREA(waGenData, 128);
 static THD_FUNCTION(thdGenData, arg) {
 
   (void)arg;
+#if DATA_SRC==0
   u_int8_t n_rnd;
+#endif
   u_int16_t i;
 
   chRegSetThreadName("dataupdate");
@@ -38,17 +40,26 @@ static THD_FUNCTION(thdGenData, arg) {
         vdata[i].y = vdata[i+1].y;
     }
 
+ #if DATA_SRC==0
     n_rnd = rand() % 10;
-    vdata[N_DATA-1].y = 10 * n_rnd;
+    vdata[N_DATA-1].y = DATA_SCALE * n_rnd;
+ #elif DATA_SRC==1
+    vdata[N_DATA-1].y = adc0;
+ #endif
+
 #else
   while (true) {
     for(i=N_DATA-1;i>0;i--){
         vdata[i].y = vdata[i-1].y;
     }
 
+ #if DATA_SRC==0
     n_rnd = rand() % 10;
+    vdata[0].y = DATA_SCALE * n_rnd;
+ #elif DATA_SRC==1
+    vdata[N_DATA-1].y = adc0;
+ #endif
 
-    vdata[0].y = 10 * n_rnd;
 #endif
 
     gfxSleepMilliseconds(50);

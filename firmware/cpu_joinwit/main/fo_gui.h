@@ -16,7 +16,9 @@
 #define LEFT_TO_RIGHT false
 #define DURATION 20
 
-#define DRAW_MODE 3
+#define DRAW_MODE   3
+#define DATA_SRC    0
+#define DATA_SCALE  10
 
 void start_routine(void);
 
