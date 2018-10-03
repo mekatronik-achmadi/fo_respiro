@@ -1,10 +1,15 @@
 #include "fo_gui.h"
+#include "fo_adc.h"
+
+/*===========================================================================*/
+/* IMPORT DATA PART                                                          */
+/*===========================================================================*/
+
+extern adcsample_t adc0,adc1;
 
 /*===========================================================================*/
 /* RANDOM DATA PART                                                          */
 /*===========================================================================*/
-
-
 static point vdata[N_DATA];
 
 static void zeroing(void){
@@ -214,6 +219,8 @@ void start_routine(void){
     palSetPadMode(GPIOC, 0,PAL_MODE_INPUT_PULLUP);
     palSetPadMode(GPIOE, 6,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOE,6);
+
+    gdispSetOrientation(gOrientation90);
 
     chThdCreateStatic(waGenData, sizeof(waGenData),	NORMALPRIO, thdGenData, NULL);
     chThdCreateStatic(waDraw, sizeof(waDraw),	NORMALPRIO, thdDraw, NULL);

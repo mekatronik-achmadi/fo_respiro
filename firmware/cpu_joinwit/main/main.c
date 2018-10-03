@@ -27,10 +27,7 @@ int main(void) {
 
     gfxInit();
 
-    gdispSetOrientation(gOrientation90);
-
     palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
-
     chThdCreateStatic(waLed1, sizeof(waLed1),	NORMALPRIO, thdLed1, NULL);
 
     start_routine();
