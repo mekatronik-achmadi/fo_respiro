@@ -17,7 +17,7 @@
 #define DURATION 20
 
 #define DRAW_MODE   3
-#define DATA_SRC    0
+#define DATA_SRC    1
 #define DATA_SCALE  15
 #define ADC_SCALE   4095
 
