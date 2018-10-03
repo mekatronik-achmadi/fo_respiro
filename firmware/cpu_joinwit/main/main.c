@@ -8,6 +8,7 @@
 #include "string.h"
 
 #include "fo_gui.h"
+#include "fo_adc.h"
 
 static THD_WORKING_AREA(waLed1, 128);
 static THD_FUNCTION(thdLed1, arg) {
@@ -24,21 +25,16 @@ static THD_FUNCTION(thdLed1, arg) {
 
 int main(void) {
 
-    // ================================================================== //
-
-    // Initialize and clear the display
     gfxInit();
 
-    //rotate display
     gdispSetOrientation(gOrientation90);
-
-    // ================================================================== //
 
     palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
 
     chThdCreateStatic(waLed1, sizeof(waLed1),	NORMALPRIO, thdLed1, NULL);
+
     start_routine();
-    // ================================================================== //
+    start_adc();
 
     while(true) {
         gfxSleepMilliseconds(500);
