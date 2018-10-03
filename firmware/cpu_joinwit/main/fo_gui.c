@@ -26,8 +26,11 @@ static THD_FUNCTION(thdGenData, arg) {
 
   (void)arg;
 #if DATA_SRC==0
-  u_int8_t n_rnd;
+  u_int8_t n_value;
+#elif DATA_SRC==1
+  adcsample_t n_value;
 #endif
+
   u_int16_t i;
 
   chRegSetThreadName("dataupdate");
@@ -41,11 +44,11 @@ static THD_FUNCTION(thdGenData, arg) {
     }
 
  #if DATA_SRC==0
-    n_rnd = rand() % 10;
-    vdata[N_DATA-1].y = DATA_SCALE * n_rnd;
+    n_value = rand() % 10;
  #elif DATA_SRC==1
-    vdata[N_DATA-1].y = adc0;
+    n_value = adc0/ADC_SCALE;
  #endif
+    vdata[N_DATA-1].y = DATA_SCALE * n_value;
 
 #else
   while (true) {
@@ -54,11 +57,11 @@ static THD_FUNCTION(thdGenData, arg) {
     }
 
  #if DATA_SRC==0
-    n_rnd = rand() % 10;
-    vdata[0].y = DATA_SCALE * n_rnd;
+   n_value = rand() % 10;
  #elif DATA_SRC==1
-    vdata[N_DATA-1].y = adc0;
+   n_value = adc0/ADC_SCALE;
  #endif
+   vdata[0].y = DATA_SCALE * n_value;
 
 #endif
 
@@ -125,13 +128,13 @@ static THD_FUNCTION(thdDraw, arg) {
       wi.x = 0;
       wi.y = 0;
       wi.width = gdispGetWidth();
-      wi.height = gdispGetHeight()/2;
+      wi.height = (gdispGetHeight()/4)*3;
       gh = gwinGraphCreate(&g, &wi);
 
       wi.x = 0;
-      wi.y = gdispGetHeight()/2;;
+      wi.y = (gdispGetHeight()/4*1)*3;;
       wi.width = gdispGetWidth();
-      wi.height = gdispGetHeight()/2;
+      wi.height = (gdispGetHeight()/4*1);
 
       gc = gwinConsoleCreate(0, &wi);
 

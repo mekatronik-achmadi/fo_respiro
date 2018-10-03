@@ -18,7 +18,8 @@
 
 #define DRAW_MODE   3
 #define DATA_SRC    0
-#define DATA_SCALE  10
+#define DATA_SCALE  15
+#define ADC_SCALE   4095
 
 void start_routine(void);
 
