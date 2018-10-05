@@ -7,8 +7,6 @@
 
 extern adcsample_t adc0,adc1;
 
-char txt_adc0[16];
-
 /*===========================================================================*/
 /* RANDOM DATA PART                                                          */
 /*===========================================================================*/
@@ -106,11 +104,29 @@ static THD_FUNCTION(thdPlay, arg) {
 /*===========================================================================*/
 /* DRAWING PART                                                              */
 /*===========================================================================*/
+GHandle     gh,gc;
+char txt_adc0[16];
+
+static void gui_routine(void){
+    gwinGraphStartSet(gh);
+    gwinGraphDrawAxis(gh);
+    gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
+
+    chsnprintf(txt_adc0,16,"ADC0= %4i |",adc0);
+    gwinPrintf(gc, txt_adc0);
+    chsnprintf(txt_adc0,16," Y0= %4i\n",vdata[0].y);
+    gwinPrintf(gc, txt_adc0);
+
+    gfxSleepMilliseconds(DISP_DELAY);
+    gwinClear(gh);
+    gwinClear(gc);
+    palTogglePad(GPIOE,5);
+}
 
 static THD_WORKING_AREA(waDraw, 256);
 static THD_FUNCTION(thdDraw, arg) {
 
-    GHandle     gh,gc;
+
     font_t	    gfont;
 
     (void)arg;
@@ -144,7 +160,7 @@ static THD_FUNCTION(thdDraw, arg) {
   gwinGraphSetStyle(gh, &GraphLine);
 
   gwinClear(gc);
-  gwinPrintf(gc, "System ready \n");
+  gwinPrintf(gc, "System Ready \n");
   gwinGraphStartSet(gh);
   gwinGraphDrawAxis(gh);
 
@@ -161,34 +177,13 @@ static THD_FUNCTION(thdDraw, arg) {
 #endif
 
 #if DRAW_MODE==1
-    uint16_t    i;
-    while(true){
-        for(i = 0; i < N_DATA; i++) {
-            gwinGraphDrawPoint(gh, vdata[i].x, vdata[i].y);
-        }
+
+    while (true) {
+        gui_routine();
     }
 #endif
 
 #if DRAW_MODE==2
-
-    while (true) {
-        gwinGraphStartSet(gh);
-        gwinGraphDrawAxis(gh);
-        gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
-
-        chsnprintf(txt_adc0,16,"ADC0= %4i |",adc0);
-        gwinPrintf(gc, txt_adc0);
-        chsnprintf(txt_adc0,16," Y0= %4i\n",vdata[0].y);
-        gwinPrintf(gc, txt_adc0);
-
-        gfxSleepMilliseconds(DISP_DELAY);
-        gwinClear(gh);
-        gwinClear(gc);
-        palTogglePad(GPIOE,5);
-    }
-#endif
-
-#if DRAW_MODE==3
   while(true){
         if(!palReadPad(GPIOC,0)){
             if(play_stt == 0){
@@ -196,35 +191,26 @@ static THD_FUNCTION(thdDraw, arg) {
 
                 play_stt = 1;
                 play_dur = 0;
-        #if DATA_SRC==0
-                gwinPrintf(gc, "Source: Random Number \n");
-        #elif DATA_SRC==1
-                gwinPrintf(gc, "Source: ADC0 \n");
-        #endif
-                gwinPrintf(gc, "Start to Play \n");
 
-                palSetPad(GPIOE,6);
+                palSetPad(GPIOE,5);
             }
         }
 
 
         if(play_stt == 1){
-            gwinClear(gh);
-            gwinGraphStartSet(gh);
-            gwinGraphDrawAxis(gh);
-            gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
+            gui_routine();
         }
 
         if(play_dur >= DURATION){
             if(play_stt == 1){
                 play_stt = 0;
-                gwinPrintf(gc, "Playing is over \n");
+                gwinPrintf(gc, "System Ready \n");
 
                 gwinClear(gh);
                 gwinGraphStartSet(gh);
                 gwinGraphDrawAxis(gh);
 
-                palSetPad(GPIOE,6);
+                palSetPad(GPIOE,5);
             }
         }
 

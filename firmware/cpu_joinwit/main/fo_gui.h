@@ -14,9 +14,9 @@
 #define DISP_DELAY 500
 #define PLAY_DELAY 500
 #define LEFT_TO_RIGHT false
-#define DURATION 20
+#define DURATION 50
 
-#define DRAW_MODE   2
+#define DRAW_MODE   1
 #define DATA_SRC    1
 
 #if DATA_SRC==0
