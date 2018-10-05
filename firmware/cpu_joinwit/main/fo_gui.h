@@ -16,10 +16,14 @@
 #define LEFT_TO_RIGHT false
 #define DURATION 20
 
-#define DRAW_MODE   3
+#define DRAW_MODE   2
 #define DATA_SRC    1
-#define DATA_SCALE  15
-#define ADC_SCALE   4095
+
+#if DATA_SRC==0
+    #define DATA_SCALE  15
+#elif DATA_SRC==1
+    #define DATA_SCALE 0.05 // (200/4095)
+#endif
 
 void start_routine(void);
 

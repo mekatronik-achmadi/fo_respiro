@@ -7,6 +7,8 @@
 
 extern adcsample_t adc0,adc1;
 
+char txt_adc0[16];
+
 /*===========================================================================*/
 /* RANDOM DATA PART                                                          */
 /*===========================================================================*/
@@ -27,8 +29,6 @@ static THD_FUNCTION(thdGenData, arg) {
   (void)arg;
 #if DATA_SRC==0
   u_int8_t n_value;
-#elif DATA_SRC==1
-  adcsample_t n_value;
 #endif
 
   u_int16_t i;
@@ -45,10 +45,11 @@ static THD_FUNCTION(thdGenData, arg) {
 
  #if DATA_SRC==0
     n_value = rand() % 10;
- #elif DATA_SRC==1
-    n_value = adc0/ADC_SCALE;
- #endif
     vdata[N_DATA-1].y = DATA_SCALE * n_value;
+ #elif DATA_SRC==1
+    vdata[N_DATA-1].y = DATA_SCALE * adc0;
+ #endif
+
 
 #else
   while (true) {
@@ -58,10 +59,11 @@ static THD_FUNCTION(thdGenData, arg) {
 
  #if DATA_SRC==0
    n_value = rand() % 10;
- #elif DATA_SRC==1
-   n_value = adc0/ADC_SCALE;
- #endif
    vdata[0].y = DATA_SCALE * n_value;
+ #elif DATA_SRC==1
+   vdata[0].y = DATA_SCALE * adc0;;
+ #endif
+
 
 #endif
 
@@ -96,8 +98,6 @@ static THD_FUNCTION(thdPlay, arg) {
     while(true){
         if(play_stt == 1){
             play_dur++;
-
-            palTogglePad(GPIOE,6);
         }
         gfxSleepMilliseconds(PLAY_DELAY);
     }
@@ -128,13 +128,13 @@ static THD_FUNCTION(thdDraw, arg) {
       wi.x = 0;
       wi.y = 0;
       wi.width = gdispGetWidth();
-      wi.height = (gdispGetHeight()/4)*3;
+      wi.height = (gdispGetHeight()/16)*15;
       gh = gwinGraphCreate(&g, &wi);
 
       wi.x = 0;
-      wi.y = (gdispGetHeight()/4*1)*3;;
+      wi.y = (gdispGetHeight()/16)*15;;
       wi.width = gdispGetWidth();
-      wi.height = (gdispGetHeight()/4*1);
+      wi.height = (gdispGetHeight()/16);
 
       gc = gwinConsoleCreate(0, &wi);
 
@@ -170,16 +170,22 @@ static THD_FUNCTION(thdDraw, arg) {
 #endif
 
 #if DRAW_MODE==2
-  gwinPrintf(gc, "Function: Random Number \n");
-  while (true) {
 
-    gwinGraphStartSet(gh);
-    gwinGraphDrawAxis(gh);
-    gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
+    while (true) {
+        gwinGraphStartSet(gh);
+        gwinGraphDrawAxis(gh);
+        gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
 
-    gfxSleepMilliseconds(DISP_DELAY);
-    gwinClear(gh);
-  }
+        chsnprintf(txt_adc0,16,"ADC0= %4i |",adc0);
+        gwinPrintf(gc, txt_adc0);
+        chsnprintf(txt_adc0,16," Y0= %4i\n",vdata[0].y);
+        gwinPrintf(gc, txt_adc0);
+
+        gfxSleepMilliseconds(DISP_DELAY);
+        gwinClear(gh);
+        gwinClear(gc);
+        palTogglePad(GPIOE,5);
+    }
 #endif
 
 #if DRAW_MODE==3
@@ -190,8 +196,11 @@ static THD_FUNCTION(thdDraw, arg) {
 
                 play_stt = 1;
                 play_dur = 0;
-
-                gwinPrintf(gc, "Function: Random Number \n");
+        #if DATA_SRC==0
+                gwinPrintf(gc, "Source: Random Number \n");
+        #elif DATA_SRC==1
+                gwinPrintf(gc, "Source: ADC0 \n");
+        #endif
                 gwinPrintf(gc, "Start to Play \n");
 
                 palSetPad(GPIOE,6);
@@ -231,8 +240,8 @@ static THD_FUNCTION(thdDraw, arg) {
 
 void start_routine(void){
     palSetPadMode(GPIOC, 0,PAL_MODE_INPUT_PULLUP);
-    palSetPadMode(GPIOE, 6,PAL_MODE_OUTPUT_PUSHPULL);
-    palSetPad(GPIOE,6);
+    palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOE, 5);
 
     gdispSetOrientation(gOrientation90);
 
