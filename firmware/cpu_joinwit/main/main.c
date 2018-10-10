@@ -16,6 +16,7 @@ int main(void) {
     gfxInit();
 
     start_adc();
+    start_bt();
     start_routine();
 
     while(true) {
