@@ -5,7 +5,7 @@
 /* IMPORT DATA PART                                                          */
 /*===========================================================================*/
 
-extern adcsample_t adc0,adc1;
+extern adcsample_t adc0;
 
 /*===========================================================================*/
 /* RANDOM DATA PART                                                          */
@@ -59,7 +59,7 @@ static THD_FUNCTION(thdGenData, arg) {
    n_value = rand() % 10;
    vdata[0].y = DATA_SCALE * n_value;
  #elif DATA_SRC==1
-   vdata[0].y = DATA_SCALE * adc0;;
+   vdata[0].y = DATA_SCALE * adc0;
  #endif
 
 
