@@ -9,6 +9,7 @@
 
 #include "fo_gui.h"
 #include "fo_adc.h"
+#include "fo_bt.h"
 
 int main(void) {
 
@@ -18,6 +19,7 @@ int main(void) {
     start_routine();
 
     while(true) {
+        test_bt();
         gfxSleepMilliseconds(500);
     }
 }
