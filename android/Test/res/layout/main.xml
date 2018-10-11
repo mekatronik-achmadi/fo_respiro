@@ -4,20 +4,17 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:weightSum="1">
-    <com.softmoore.android.graphlib.GraphView
-            android:layout_width="800dp"
-            android:layout_height="200dp"
-            android:id="@+id/grafview"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:background="@android:color/darker_gray"/>
 
+    <TextView
+            android:id="@+id/txtOut"
+            android:layout_width="800dp"
+            android:layout_height="200dp" android:background="@android:color/background_light"
+            android:textColor="@android:color/background_dark"/>
     <Button
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:text="@string/btnPesan"
-            android:id="@+id/btnPesan" android:layout_gravity="bottom|center_horizontal"
-            android:textColor="@android:color/holo_orange_dark"
-            android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_Connect"
+            android:id="@+id/btnConnect" android:layout_below="@+id/txtOut" android:layout_alignParentStart="true"/>
+
 </RelativeLayout>
 

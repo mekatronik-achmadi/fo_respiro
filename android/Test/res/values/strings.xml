@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BT-DataLog</string>
-    <string name="btnPesan">Coba</string>
-    <string name="LogoLabDesc">LogoLabFoton</string>
+    <string name="btn_Connect">Connect</string>
+    <string name="btn_Disconnect">Disconnect</string>
 </resources>
