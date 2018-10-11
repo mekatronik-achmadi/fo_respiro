@@ -10,7 +10,7 @@ extern adcsample_t adc0;
 /*===========================================================================*/
 /* RANDOM DATA PART                                                          */
 /*===========================================================================*/
-static point vdata[N_DATA];
+point vdata[N_DATA];
 
 static void zeroing(void){
     u_int16_t i;
