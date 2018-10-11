@@ -9,7 +9,7 @@
             android:id="@+id/txtOut"
             android:layout_width="800dp"
             android:layout_height="200dp" android:background="@android:color/background_light"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_dark" android:gravity="bottom"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
