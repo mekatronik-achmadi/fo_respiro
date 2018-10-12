@@ -29,6 +29,7 @@ public class TestActivity extends Activity {
     Deklarasi variabel dan objek untuk satu class
      */
 
+
     // Bluetooth related
     private BluetoothAdapter btAdapter=null;
     private BluetoothSocket btSocket=null;
@@ -87,6 +88,13 @@ public class TestActivity extends Activity {
                 ConnectBT();
             }
         });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        txtOut.append("\n...Addr: " + addressbt + "...");
+        txtOut.append("\n...UUID: " + MY_UUID + "...");
     }
 
     /*

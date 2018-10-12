@@ -20,7 +20,7 @@ int main(void) {
     start_routine();
 
     while(true) {
-        test_bt();
+        shell_bt();
         gfxSleepMilliseconds(500);
     }
 }

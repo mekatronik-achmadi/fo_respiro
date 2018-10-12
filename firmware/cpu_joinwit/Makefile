@@ -221,7 +221,7 @@ UINCDIR =
 ULIBDIR =
 
 # List all user libraries here
-ULIBS = -lc -specs=nosys.specs
+ULIBS =
 
 #
 # End of user defines
