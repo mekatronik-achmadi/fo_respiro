@@ -19,39 +19,39 @@
 #define _GFXCONF_H
 
 /* The operating system to use. One of these must be defined - preferably in your Makefile */
-#define GFX_USE_OS_CHIBIOS      GFXON
+#define GFX_USE_OS_CHIBIOS      TRUE
 
 /* GFX sub-systems to turn on */
-#define GFX_USE_GDISP			GFXON
-#define GFX_USE_GWIN			GFXON
-#define GFX_USE_GMISC			GFXON
-#define GFX_USE_GTIMER          GFXON
-#define GFX_USE_GQUEUE          GFXON
+#define GFX_USE_GDISP			TRUE
+#define GFX_USE_GWIN			TRUE
+#define GFX_USE_GMISC			TRUE
+#define GFX_USE_GTIMER          TRUE
+#define GFX_USE_GQUEUE          TRUE
 
 /* Features for the GDISP sub-system. */
-#define GDISP_NEED_VALIDATION	GFXON
-#define GDISP_NEED_CLIP			GFXON
-#define GDISP_NEED_TEXT			GFXON
-#define GDISP_NEED_MULTITHREAD	GFXON
-#define GDISP_NEED_CONTROL      GFXON
-#define GDISP_INCLUDE_FONT_UI2	GFXON
-#define GDISP_NEED_STARTUP_LOGO	GFXOFF
+#define GDISP_NEED_VALIDATION	TRUE
+#define GDISP_NEED_CLIP			TRUE
+#define GDISP_NEED_TEXT			TRUE
+#define GDISP_NEED_MULTITHREAD	TRUE
+#define GDISP_NEED_CONTROL      TRUE
+#define GDISP_INCLUDE_FONT_UI2	TRUE
+#define GDISP_NEED_STARTUP_LOGO	FALSE
 
 /* Features for the GWIN subsystem. */
-#define GWIN_NEED_WINDOWMANAGER	GFXON
-#define GWIN_NEED_GRAPH			GFXON
-#define GWIN_NEED_CONSOLE		GFXON
-    #define GWIN_CONSOLE_ESCSEQ             GFXON
-    #define GWIN_CONSOLE_USE_HISTORY        GFXON
-    #define GWIN_CONSOLE_HISTORY_AVERAGING	GFXON
-    #define GWIN_CONSOLE_HISTORY_ATCREATE	GFXON
+#define GWIN_NEED_WINDOWMANAGER	TRUE
+#define GWIN_NEED_GRAPH			TRUE
+#define GWIN_NEED_CONSOLE		TRUE
+    #define GWIN_CONSOLE_ESCSEQ             TRUE
+    #define GWIN_CONSOLE_USE_HISTORY        TRUE
+    #define GWIN_CONSOLE_HISTORY_AVERAGING	TRUE
+    #define GWIN_CONSOLE_HISTORY_ATCREATE	TRUE
 
 /* Features for the GQUEUE subsystem. */
-#define GQUEUE_NEED_ASYNC       GFXON
+#define GQUEUE_NEED_ASYNC       TRUE
 
 /* Features for the GMISC subsystem. */
-#define GMISC_NEED_FASTTRIG         GFXON
-#define GMISC_NEED_MATRIXFLOAT2D    GFXON
-#define GMISC_NEED_MATRIXFIXED2D    GFXON
+#define GMISC_NEED_FASTTRIG         TRUE
+#define GMISC_NEED_MATRIXFLOAT2D    TRUE
+#define GMISC_NEED_MATRIXFIXED2D    TRUE
 
 #endif /* _GFXCONF_H */

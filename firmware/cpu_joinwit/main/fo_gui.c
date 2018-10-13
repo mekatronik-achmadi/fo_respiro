@@ -229,7 +229,7 @@ void start_routine(void){
     palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOE, 5);
 
-    gdispSetOrientation(gOrientation90);
+    gdispSetOrientation(GDISP_ROTATE_90);
 
     chThdCreateStatic(waGenData, sizeof(waGenData),	NORMALPRIO, thdGenData, NULL);
     chThdCreateStatic(waDraw, sizeof(waDraw),	NORMALPRIO, thdDraw, NULL);

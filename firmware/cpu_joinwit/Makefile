@@ -10,7 +10,7 @@ endif
 
 # C specific options here (added to USE_OPT).
 ifeq ($(USE_COPT),)
-  USE_COPT = 
+  USE_COPT =
 endif
 
 # C++ specific options here (added to USE_OPT).
@@ -25,7 +25,7 @@ endif
 
 # Linker extra options here.
 ifeq ($(USE_LDOPT),)
-  USE_LDOPT = 
+  USE_LDOPT =
 endif
 
 # Enable this if you want link time optimizations (LTO)
@@ -103,7 +103,6 @@ include $(CHIBIOS)/test/rt/test.mk
 GFXLIB = /opt/ugfxlib/
 include $(GFXLIB)/gfx.mk
 include ./ugfx/ugfx.mk
-include ./ugfx/ILI9320/driver.mk
 # Main Files
 include ./main/main.mk
 
@@ -209,7 +208,7 @@ CPPWARN = -Wall -Wextra -Wundef
 #
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS =
+UDEFS = -DGFX_USE_OS_CHIBIOS=TRUE
 
 # Define ASM defines here
 UADEFS =

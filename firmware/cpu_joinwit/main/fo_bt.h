@@ -14,8 +14,6 @@
 
 #define SHELL_WA_SIZE THD_WORKING_AREA_SIZE(512)
 
-thread_t *shellCreate(const ShellConfig *scp, size_t size, tprio_t prio);
-
 void start_bt(void);
 void shell_bt(void);
 
