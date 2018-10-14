@@ -29,22 +29,24 @@ public class TestActivity extends Activity {
     Deklarasi variabel dan objek untuk satu class
      */
 
-
     // Bluetooth related
     private BluetoothAdapter btAdapter=null;
     private BluetoothSocket btSocket=null;
     private StringBuilder sb = new StringBuilder();
 
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    private static String addressbt = "98:D3:32:21:44:6E";
+    private static final String addressbt = "98:D3:32:21:44:6E";
 
     private ConnectedThread mConnectedThread;
     final int RECIEVE_MESSAGE = 1;
     Handler hdl;
+//    int ALLOW_SEND = 0;
+//    Handler hsend;
 
     // Widget
     TextView txtOut;
     Button btnConnect;
+    Button btnData;
 
     /*
     Aktifitas Intent Utama
@@ -56,6 +58,7 @@ public class TestActivity extends Activity {
 
         //Widget Creation
         btnConnect = (Button) findViewById(R.id.btnConnect);
+        btnData = (Button) findViewById(R.id.btnData);
         txtOut = (TextView) findViewById(R.id.txtOut);
         txtOut.setMovementMethod(new ScrollingMovementMethod());
 
@@ -78,6 +81,16 @@ public class TestActivity extends Activity {
             }
         };
 
+//        hsend = new Handler();
+//        hsend.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                if(ALLOW_SEND == 1){
+//                    mConnectedThread.write("adc0\n\r");
+//                }
+//            }
+//        },500);
+
         //Bluetooth Creation
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         CheckStateBT();
@@ -86,6 +99,13 @@ public class TestActivity extends Activity {
             @Override
             public void onClick(View view) {
                 ConnectBT();
+            }
+        });
+
+        btnData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mConnectedThread.write("adc0\n\r");
             }
         });
     }
@@ -165,6 +185,10 @@ public class TestActivity extends Activity {
 
         mConnectedThread = new ConnectedThread(btSocket);
         mConnectedThread.start();
+
+        btnData.setEnabled(true);
+
+//        ALLOW_SEND = 1;
     }
 
     /*

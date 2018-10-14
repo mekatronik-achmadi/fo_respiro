@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">BT-DataLog</string>
     <string name="btn_Connect">Connect</string>
+    <string name="btn_Data">Data</string>
 </resources>

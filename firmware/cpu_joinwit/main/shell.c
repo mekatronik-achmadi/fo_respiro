@@ -141,7 +141,7 @@ static THD_FUNCTION(shell_thread, p) {
   char *args[SHELL_MAX_ARGUMENTS + 1];
 
   chRegSetThreadName("shell");
-  chprintf(chp, "\r\nChibiOS/RT Shell\r\n");
+//  chprintf(chp, "\r\nChibiOS/RT Shell\r\n");
   while (true) {
 //    chprintf(chp, "stm32>> ");
     if (shellGetLine(chp, line, sizeof(line))) {
@@ -287,14 +287,14 @@ bool shellGetLine(BaseSequentialStream *chp, char *line, unsigned size) {
       continue;
     }
     if (c == '\r') {
-      chprintf(chp, "\r\n");
+//      chprintf(chp, "\r\n");
       *p = 0;
       return false;
     }
     if (c < 0x20)
       continue;
     if (p < line + size - 1) {
-      chSequentialStreamPut(chp, c);
+//      chSequentialStreamPut(chp, c);
       *p++ = (char)c;
     }
   }
