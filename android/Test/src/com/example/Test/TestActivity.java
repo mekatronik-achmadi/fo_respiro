@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 public class TestActivity extends Activity {
@@ -40,13 +42,15 @@ public class TestActivity extends Activity {
     private ConnectedThread mConnectedThread;
     final int RECIEVE_MESSAGE = 1;
     Handler hdl;
-//    int ALLOW_SEND = 0;
-//    Handler hsend;
+
+    private Runnable datreq;
+    Handler hreq;
 
     // Widget
     TextView txtOut;
+    TextView txtData;
     Button btnConnect;
-    Button btnData;
+    Button btnStart;
 
     /*
     Aktifitas Intent Utama
@@ -58,7 +62,8 @@ public class TestActivity extends Activity {
 
         //Widget Creation
         btnConnect = (Button) findViewById(R.id.btnConnect);
-        btnData = (Button) findViewById(R.id.btnData);
+        btnStart = (Button) findViewById(R.id.btnStart);
+        txtData = (TextView) findViewById(R.id.txtData);
         txtOut = (TextView) findViewById(R.id.txtOut);
         txtOut.setMovementMethod(new ScrollingMovementMethod());
 
@@ -74,22 +79,21 @@ public class TestActivity extends Activity {
                         if(eolIndex > 0) {
                             String sbprint = sb.substring(0,eolIndex);
                             sb.delete(0,sb.length());
-                            txtOut.append(sbprint + "\n\r");
+                            txtData.append(sbprint);
                         }
                         break;
                 }
             }
         };
 
-//        hsend = new Handler();
-//        hsend.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                if(ALLOW_SEND == 1){
-//                    mConnectedThread.write("adc0\n\r");
-//                }
-//            }
-//        },500);
+        hreq = new Handler();
+        datreq = new Runnable() {
+            @Override
+            public void run() {
+                DataRequest();
+                hreq.postDelayed(this,200);
+            }
+        };
 
         //Bluetooth Creation
         btAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -102,10 +106,12 @@ public class TestActivity extends Activity {
             }
         });
 
-        btnData.setOnClickListener(new View.OnClickListener() {
+        btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mConnectedThread.write("adc0\n\r");
+                txtOut.append("\n...Data Request Start...");
+                hreq.post(datreq);
+                btnStart.setEnabled(false);
             }
         });
     }
@@ -186,15 +192,18 @@ public class TestActivity extends Activity {
         mConnectedThread = new ConnectedThread(btSocket);
         mConnectedThread.start();
 
-        btnData.setEnabled(true);
+        txtOut.append("\n...Bluetooth Connected...");
+        btnStart.setEnabled(true);
+    }
 
-//        ALLOW_SEND = 1;
+    private void DataRequest(){
+        txtData.setText("");
+        mConnectedThread.write("adc0\n\r");
     }
 
     /*
     Thread tambahan
      */
-
     private class ConnectedThread extends Thread {
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;

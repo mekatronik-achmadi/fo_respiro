@@ -8,25 +8,35 @@
     <TextView
             android:id="@+id/txtOut"
             android:layout_width="800dp"
-            android:layout_height="200dp"
+            android:layout_height="50dp"
             android:background="@android:color/background_light"
             android:textColor="@android:color/background_dark"
             android:gravity="bottom"/>
+
+    <TextView
+            android:layout_width="800dp"
+            android:layout_height="25dp"
+            android:id="@+id/txtData"
+            android:background="@android:color/background_light"
+            android:textColor="@android:color/background_dark"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/txtOut"/>
+
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_Connect"
             android:id="@+id/btnConnect"
-            android:layout_below="@+id/txtOut"
+            android:layout_below="@+id/txtData"
             android:layout_alignParentStart="true"/>
     <Button
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@string/btn_Data"
-            android:id="@+id/btnData"
+            android:text="@string/btn_Start"
+            android:id="@+id/btnStart"
+            android:enabled="false"
             android:layout_alignTop="@+id/btnConnect"
-            android:layout_toEndOf="@+id/btnConnect"
-            android:enabled="false"/>
+            android:layout_toEndOf="@+id/btnConnect"/>
 
 </RelativeLayout>
 
