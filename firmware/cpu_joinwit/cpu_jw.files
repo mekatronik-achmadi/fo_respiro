@@ -13,6 +13,8 @@ main/fo_gui.h
 main/gfxconf.h
 main/main.c
 main/main.mk
+main/shell.c
+main/shell.h
 mcuconf.h
 ugfx/ILI9320/driver.mk
 ugfx/ILI9320/gdisp_lld_ILI9320.c
