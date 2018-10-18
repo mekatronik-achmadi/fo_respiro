@@ -10,6 +10,7 @@
 #include "fo_gui.h"
 #include "fo_adc.h"
 #include "fo_bt.h"
+#include "fo_data.h"
 
 int main(void) {
 
@@ -17,6 +18,7 @@ int main(void) {
 
     start_adc();
     start_bt();
+    start_data();
     start_routine();
 
     while(true) {

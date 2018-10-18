@@ -25,7 +25,7 @@ static void cmd_adc0(BaseSequentialStream *chp, int argc, char *argv[]){
     (void) argv;
     (void) argc;
 
-    chprintf(chp,"ADC0= %4i | Y0= %4i\n\r",adc0,vdata[0].y);
+    chprintf(chp,"data,%4i,%4i\n\r",adc0,vdata[0].y);
     return;
 }
 

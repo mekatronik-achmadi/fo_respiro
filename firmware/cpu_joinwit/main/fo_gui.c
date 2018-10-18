@@ -1,78 +1,18 @@
 #include "fo_gui.h"
-#include "fo_adc.h"
+
 
 /*===========================================================================*/
 /* IMPORT DATA PART                                                          */
 /*===========================================================================*/
 
 extern adcsample_t adc0;
-
-/*===========================================================================*/
-/* RANDOM DATA PART                                                          */
-/*===========================================================================*/
-point vdata[N_DATA];
-
-static void zeroing(void){
-    u_int16_t i;
-
-    for(i=0;i<N_DATA;i++){
-       vdata[i].x = 2*i;
-       vdata[i].y = 0;
-    }
-}
-
-static THD_WORKING_AREA(waGenData, 128);
-static THD_FUNCTION(thdGenData, arg) {
-
-  (void)arg;
-#if DATA_SRC==0
-  u_int8_t n_value;
-#endif
-
-  u_int16_t i;
-
-  chRegSetThreadName("dataupdate");
-
-  zeroing();
-
-#if LEFT_TO_RIGHT
-  while (true) {
-    for(i=0;i<N_DATA-1;i++){
-        vdata[i].y = vdata[i+1].y;
-    }
-
- #if DATA_SRC==0
-    n_value = rand() % 10;
-    vdata[N_DATA-1].y = DATA_SCALE * n_value;
- #elif DATA_SRC==1
-    vdata[N_DATA-1].y = DATA_SCALE * adc0;
- #endif
-
-
-#else
-  while (true) {
-    for(i=N_DATA-1;i>0;i--){
-        vdata[i].y = vdata[i-1].y;
-    }
-
- #if DATA_SRC==0
-   n_value = rand() % 10;
-   vdata[0].y = DATA_SCALE * n_value;
- #elif DATA_SRC==1
-   vdata[0].y = DATA_SCALE * adc0;
- #endif
-
-
-#endif
-
-    gfxSleepMilliseconds(50);
-  }
-}
+extern point vdata[N_DATA];
 
 /*===========================================================================*/
 /* GRAPH PART                                                                */
 /*===========================================================================*/
-
+u_int8_t play_stt;
+u_int16_t play_dur;
 static GGraphObject g;
 
 static GGraphStyle GraphLine = {
@@ -84,9 +24,6 @@ static GGraphStyle GraphLine = {
     { GGRAPH_LINE_DOT, 5, Gray, 50 },     // Y grid
     GWIN_GRAPH_STYLE_POSITIVE_AXIS_ARROWS   // Flags
 };
-
-u_int8_t play_stt;
-u_int16_t play_dur;
 
 static THD_WORKING_AREA(waPlay, 256);
 static THD_FUNCTION(thdPlay, arg) {
@@ -231,7 +168,6 @@ void start_routine(void){
 
     gdispSetOrientation(GDISP_ROTATE_90);
 
-    chThdCreateStatic(waGenData, sizeof(waGenData),	NORMALPRIO, thdGenData, NULL);
     chThdCreateStatic(waDraw, sizeof(waDraw),	NORMALPRIO, thdDraw, NULL);
     chThdCreateStatic(waPlay, sizeof(waPlay),	NORMALPRIO, thdPlay, NULL);
 }

@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
-import java.util.Random;
 import java.util.UUID;
 
 public class TestActivity extends Activity {
@@ -44,6 +43,7 @@ public class TestActivity extends Activity {
 
     private ConnectedThread mConnectedThread;
     final int RECIEVE_MESSAGE = 1;
+    int REQ_LOCK;
     Handler hdl;
 
     private Runnable datreq;
@@ -60,14 +60,13 @@ public class TestActivity extends Activity {
     GraphView grpview;
     Graph graph;
 
-    private Runnable testfunc;
-    Handler hfunc;
-
-    Random nrand;
     int datanmax=200;
     Point[] datadot;
     double vy=0;
     double[] val_y;
+
+    String strData;
+    int vData;
 
 /****************************************************************/
 /* AKtifitas Utama                                              */
@@ -84,6 +83,22 @@ public class TestActivity extends Activity {
         txtOut = (TextView) findViewById(R.id.txtOut);
         txtOut.setMovementMethod(new ScrollingMovementMethod());
 
+        // Graph Function
+        datadot = new Point[datanmax];
+        val_y = new double[datanmax];
+
+        data_zeroing();
+        graph = new Graph.Builder()
+                .addLineGraph(datadot)
+                .setWorldCoordinates(-1, datanmax, -1, 200)
+                .setXTicks(new double[] {0})
+                .setYTicks(new double[] {0})
+                .build();
+        grpview = (GraphView) findViewById(R.id.grpview);
+        grpview.setGraph(graph);
+
+        // Bluetooth Function
+
         hdl = new Handler(){
             public void handleMessage(Message msg){
                 switch (msg.what){
@@ -96,8 +111,11 @@ public class TestActivity extends Activity {
                         if(eolIndex > 0) {
                             String sbprint = sb.substring(0,eolIndex);
                             sb.delete(0,sb.length());
-                            txtData.append(sbprint);
+                            txtData.setText(sbprint);
                         }
+
+                        data_graph();
+
                         break;
                 }
             }
@@ -108,7 +126,7 @@ public class TestActivity extends Activity {
             @Override
             public void run() {
                 DataRequest();
-                hreq.postDelayed(this,200);
+                hreq.postDelayed(this,100);
             }
         };
 
@@ -132,46 +150,6 @@ public class TestActivity extends Activity {
             }
         });
 
-
-        // Graph Function
-        nrand = new Random();
-        datadot = new Point[datanmax];
-        val_y = new double[datanmax];
-
-        for(int i=0; i<datanmax; i++){
-            datadot[i] = new Point(i,0);
-            val_y[i] = vy;
-        }
-
-        graph = new Graph.Builder()
-                .addLineGraph(datadot)
-                .setWorldCoordinates(-1, datanmax, -1, 20)
-                .setXTicks(new double[] {0})
-                .setYTicks(new double[] {0})
-                .build();
-        grpview = (GraphView) findViewById(R.id.grpview);
-        grpview.setGraph(graph);
-
-        hfunc = new Handler();
-        testfunc = new Runnable() {
-            @Override
-            public void run() {
-                hfunc.postDelayed(this,100);
-
-                for(int i=datanmax-1; i>0; i--){
-                    vy = val_y[i-1];
-                    val_y[i] = vy;
-                    datadot[i] = new Point(i,vy);
-                }
-
-                vy = nrand.nextInt((10 - 1) + 1);
-                val_y[0] = vy;
-                datadot[0] = new Point(0,vy);
-
-                grpview.setGraph(graph);
-            }
-        };
-        hfunc.post(testfunc);
     }
 
     @Override
@@ -192,6 +170,41 @@ public class TestActivity extends Activity {
 
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
+    }
+
+    private void data_zeroing(){
+        vy = 0;
+        for(int i=0; i<datanmax; i++){
+            datadot[i] = new Point(i,0);
+            val_y[i] = vy;
+        }
+    }
+
+    private void data_shifting(){
+        for(int i=datanmax-1; i>0; i--){
+            vy = val_y[i-1];
+            val_y[i] = vy;
+            datadot[i] = new Point(i,vy);
+        }
+    }
+
+    private void data_graph(){
+        strData = txtData.getText().toString().trim();
+        if(strData.length()>0){
+
+            String[] arrStrData=strData.split(",");
+            vData = Integer.parseInt(arrStrData[2].trim());
+
+            data_shifting();
+
+            vy = vData;
+            val_y[0] = vy;
+            datadot[0] = new Point(0,vy);
+
+            grpview.setGraph(graph);
+
+            REQ_LOCK = 0;
+        }
     }
 
 /****************************************************************/
@@ -259,8 +272,11 @@ public class TestActivity extends Activity {
     }
 
     private void DataRequest(){
-        txtData.setText("");
-        mConnectedThread.write("adc0\n\r");
+        if(REQ_LOCK == 0) {
+            REQ_LOCK = 1;
+            txtData.setText("");
+            mConnectedThread.write("adc0\n\r");
+        }
     }
 
 /****************************************************************/
