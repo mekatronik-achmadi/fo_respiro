@@ -4,7 +4,7 @@ extern adcsample_t adc0;
 extern point vdata[N_DATA];
 
 static void exti_dataout(void){
-    chprintf((BaseSequentialStream *)&SD1,"ADC0 = %4i | Y0 = %4i\n\r",adc0,vdata[0].y);
+    chprintf((BaseSequentialStream *)&SD1,"ADC0 = %4i\n\r",adc0);
 }
 
 static void extcbDataOut(EXTDriver *extp, expchannel_t channel) {
@@ -38,8 +38,6 @@ static const EXTConfig extcfg = {
 
 void start_exit(void){
     palSetPadMode(GPIOA,9,PAL_MODE_STM32_ALTERNATE_PUSHPULL);
-    palSetPadMode(GPIOA,10,PAL_MODE_INPUT);
-
     palSetPadMode(GPIOC, 0,PAL_MODE_INPUT_PULLUP);
 
     extStart(&EXTD1, &extcfg);
