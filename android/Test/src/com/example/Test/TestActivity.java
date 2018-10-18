@@ -193,15 +193,17 @@ public class TestActivity extends Activity {
         if(strData.length()>0){
 
             String[] arrStrData=strData.split(",");
-            vData = Integer.parseInt(arrStrData[2].trim());
+            if(arrStrData.length > 2){
+                vData = Integer.parseInt(arrStrData[2].trim());
 
-            data_shifting();
+                data_shifting();
 
-            vy = vData;
-            val_y[0] = vy;
-            datadot[0] = new Point(0,vy);
+                vy = vData;
+                val_y[0] = vy;
+                datadot[0] = new Point(0,vy);
 
-            grpview.setGraph(graph);
+                grpview.setGraph(graph);
+            }
 
             REQ_LOCK = 0;
         }
