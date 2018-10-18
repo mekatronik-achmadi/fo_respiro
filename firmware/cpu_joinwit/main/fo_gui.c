@@ -1,6 +1,5 @@
 #include "fo_gui.h"
 
-
 /*===========================================================================*/
 /* IMPORT DATA PART                                                          */
 /*===========================================================================*/
@@ -62,8 +61,6 @@ static void gui_routine(void){
 
 static THD_WORKING_AREA(waDraw, 256);
 static THD_FUNCTION(thdDraw, arg) {
-
-
     font_t	    gfont;
 
     (void)arg;
@@ -120,41 +117,6 @@ static THD_FUNCTION(thdDraw, arg) {
     }
 #endif
 
-#if DRAW_MODE==2
-  while(true){
-        if(!palReadPad(GPIOC,0)){
-            if(play_stt == 0){
-                zeroing();
-
-                play_stt = 1;
-                play_dur = 0;
-
-                palSetPad(GPIOE,5);
-            }
-        }
-
-
-        if(play_stt == 1){
-            gui_routine();
-        }
-
-        if(play_dur >= DURATION){
-            if(play_stt == 1){
-                play_stt = 0;
-                gwinPrintf(gc, "System Ready \n");
-
-                gwinClear(gh);
-                gwinGraphStartSet(gh);
-                gwinGraphDrawAxis(gh);
-
-                palSetPad(GPIOE,5);
-            }
-        }
-
-        gfxSleepMilliseconds(DISP_DELAY);
-  }
-#endif
-
 }
 
 /*===========================================================================*/
@@ -162,7 +124,6 @@ static THD_FUNCTION(thdDraw, arg) {
 /*===========================================================================*/
 
 void start_routine(void){
-    palSetPadMode(GPIOC, 0,PAL_MODE_INPUT_PULLUP);
     palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOE, 5);
 

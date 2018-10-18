@@ -10,6 +10,8 @@ main/fo_bt.c
 main/fo_bt.h
 main/fo_data.c
 main/fo_data.h
+main/fo_exti.c
+main/fo_exti.h
 main/fo_gui.c
 main/fo_gui.h
 main/gfxconf.h

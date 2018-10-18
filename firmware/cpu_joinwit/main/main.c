@@ -11,11 +11,13 @@
 #include "fo_adc.h"
 #include "fo_bt.h"
 #include "fo_data.h"
+#include "fo_exti.h"
 
 int main(void) {
 
     gfxInit();
 
+    start_exit();
     start_adc();
     start_bt();
     start_data();
