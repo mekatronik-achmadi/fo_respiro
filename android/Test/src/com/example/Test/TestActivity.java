@@ -17,19 +17,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.softmoore.android.graphlib.Graph;
+import com.softmoore.android.graphlib.GraphView;
+import com.softmoore.android.graphlib.Point;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Random;
 import java.util.UUID;
 
 public class TestActivity extends Activity {
 
-    /*
-    Deklarasi variabel dan objek untuk satu class
-     */
+/****************************************************************/
+/* Deklarasi                                                    */
+/****************************************************************/
 
     // Bluetooth related
     private BluetoothAdapter btAdapter=null;
@@ -46,15 +49,29 @@ public class TestActivity extends Activity {
     private Runnable datreq;
     Handler hreq;
 
-    // Widget
+     // Widget
     TextView txtOut;
     TextView txtData;
     Button btnConnect;
     Button btnStart;
 
-    /*
-    Aktifitas Intent Utama
-     */
+    // Graph
+
+    GraphView grpview;
+    Graph graph;
+
+    private Runnable testfunc;
+    Handler hfunc;
+
+    Random nrand;
+    int datanmax=200;
+    Point[] datadot;
+    double vy=0;
+    double[] val_y;
+
+/****************************************************************/
+/* AKtifitas Utama                                              */
+/****************************************************************/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +131,47 @@ public class TestActivity extends Activity {
                 btnStart.setEnabled(false);
             }
         });
+
+
+        // Graph Function
+        nrand = new Random();
+        datadot = new Point[datanmax];
+        val_y = new double[datanmax];
+
+        for(int i=0; i<datanmax; i++){
+            datadot[i] = new Point(i,0);
+            val_y[i] = vy;
+        }
+
+        graph = new Graph.Builder()
+                .addLineGraph(datadot)
+                .setWorldCoordinates(-1, datanmax, -1, 20)
+                .setXTicks(new double[] {0})
+                .setYTicks(new double[] {0})
+                .build();
+        grpview = (GraphView) findViewById(R.id.grpview);
+        grpview.setGraph(graph);
+
+        hfunc = new Handler();
+        testfunc = new Runnable() {
+            @Override
+            public void run() {
+                hfunc.postDelayed(this,100);
+
+                for(int i=datanmax-1; i>0; i--){
+                    vy = val_y[i-1];
+                    val_y[i] = vy;
+                    datadot[i] = new Point(i,vy);
+                }
+
+                vy = nrand.nextInt((10 - 1) + 1);
+                val_y[0] = vy;
+                datadot[0] = new Point(0,vy);
+
+                grpview.setGraph(graph);
+            }
+        };
+        hfunc.post(testfunc);
     }
 
     @Override
@@ -123,9 +181,9 @@ public class TestActivity extends Activity {
         txtOut.append("\n...UUID: " + MY_UUID + "...");
     }
 
-    /*
-    Rutin tambahan
-    */
+/****************************************************************/
+/* Rutin tambahan                                               */
+/****************************************************************/
     private void Pesan(String txtpesan){
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
@@ -135,6 +193,10 @@ public class TestActivity extends Activity {
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
+
+/****************************************************************/
+/* Rutin Bluetooth                                              */
+/****************************************************************/
 
     private BluetoothSocket createBluetoothSocket(BluetoothDevice dev) throws IOException{
         if(Build.VERSION.SDK_INT >= 10){
@@ -201,9 +263,9 @@ public class TestActivity extends Activity {
         mConnectedThread.write("adc0\n\r");
     }
 
-    /*
-    Thread tambahan
-     */
+/****************************************************************/
+/* Thread tambahan                                              */
+/****************************************************************/
     private class ConnectedThread extends Thread {
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
@@ -244,5 +306,7 @@ public class TestActivity extends Activity {
 
     }
 
-    //END of One Big Main Class
+/****************************************************************/
+/* END OF MAIN CLASS                                            */
+/****************************************************************/
 }

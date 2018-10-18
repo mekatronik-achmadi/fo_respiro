@@ -5,6 +5,14 @@
               android:layout_height="fill_parent"
               android:weightSum="1">
 
+    <com.softmoore.android.graphlib.GraphView
+            android:id="@+id/grpview"
+            android:layout_width="800dp"
+            android:layout_height="200dp"
+            android:background="@android:color/darker_gray"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"/>
+
     <TextView
             android:id="@+id/txtOut"
             android:layout_width="800dp"
