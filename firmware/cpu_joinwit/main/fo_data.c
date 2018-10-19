@@ -4,6 +4,7 @@
 /*===========================================================================*/
 
 extern adcsample_t adc0;
+u_int16_t c_adc0;
 
 /*===========================================================================*/
 /* GENERATE DATA PART                                                        */
@@ -32,6 +33,10 @@ void data_shifting(void){
         vdata[i].y = vdata[i-1].y;
     }
 #endif
+}
+
+u_int16_t data_calib(u_int16_t vadc){
+    return C_CALIB*vadc;
 }
 
 static THD_WORKING_AREA(waGenData, 128);

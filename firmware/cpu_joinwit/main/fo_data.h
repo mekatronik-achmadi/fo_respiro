@@ -13,9 +13,11 @@
 #define N_DATA 320
 #define LEFT_TO_RIGHT false
 #define DATA_SCALE 0.05 // (200/4095)
+#define C_CALIB 0.2
 
 void data_zeroing(void);
 void data_shifting(void);
+u_int16_t data_calib(u_int16_t vadc);
 void start_data(void);
 
 #endif // FO_DATA_H
