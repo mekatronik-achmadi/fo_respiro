@@ -192,7 +192,6 @@ static THD_FUNCTION(shell_thread, p) {
 /**
  * @brief   Shell manager initialization.
  *
- * @api
  */
 void shellInit(void) {
 
@@ -206,7 +205,6 @@ void shellInit(void) {
  *
  * @param[in] msg       shell exit code
  *
- * @api
  */
 void shellExit(msg_t msg) {
 
@@ -227,7 +225,6 @@ void shellExit(msg_t msg) {
  * @return              A pointer to the shell thread.
  * @retval NULL         thread creation failed because memory allocation.
  *
- * @api
  */
 #if CH_CFG_USE_HEAP && CH_CFG_USE_DYNAMIC
 thread_t *shellCreate(const ShellConfig *scp, size_t size, tprio_t prio) {
@@ -245,7 +242,6 @@ thread_t *shellCreate(const ShellConfig *scp, size_t size, tprio_t prio) {
  * @param[in] prio      priority level for the new shell
  * @return              A pointer to the shell thread.
  *
- * @api
  */
 thread_t *shellCreateStatic(const ShellConfig *scp, void *wsp,
                             size_t size, tprio_t prio) {
@@ -263,7 +259,6 @@ thread_t *shellCreateStatic(const ShellConfig *scp, void *wsp,
  * @retval true         the channel was reset or CTRL-D pressed.
  * @retval false        operation successful.
  *
- * @api
  */
 bool shellGetLine(BaseSequentialStream *chp, char *line, unsigned size) {
   char *p = line;

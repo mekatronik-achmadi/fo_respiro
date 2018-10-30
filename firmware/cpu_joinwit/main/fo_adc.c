@@ -74,7 +74,6 @@ static THD_FUNCTION(thdAdc,arg) {
 /**
  * @brief   Starting ADC routine.
  *
- * @api
  */
 void start_adc(void){
     palSetPadMode(GPIOA,0,PAL_MODE_INPUT_ANALOG);
