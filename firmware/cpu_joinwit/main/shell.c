@@ -131,7 +131,7 @@ static bool cmdexec(const ShellCommand *scp, BaseSequentialStream *chp,
 /**
  * @brief   Shell thread function.
  *
- * @param[in] p         pointer to a @p BaseSequentialStream object
+ * @param[in] p         pointer to a BaseSequentialStream object
  */
 static THD_FUNCTION(shell_thread, p) {
   int n;

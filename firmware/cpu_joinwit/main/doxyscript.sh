@@ -44,6 +44,9 @@ sed -i "s#GENERATE_LATEX         = YES#GENERATE_LATEX         = NO#g" doxyconf
 
 #######################
 
+mkdir doxydoc
+# rm -f doxy_build.log
+# doxygen doxyconf | tee doxy_build.log
 doxygen doxyconf
 ln -sf html/index.html doxydoc/index.html
 rm -f doxyconf
