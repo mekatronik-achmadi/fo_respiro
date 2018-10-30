@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{minted}
 \usepackage{float}
+\usepackage{pdflscape}
 
 %\addto\captionsenglish{\renewcommand{\contentsname}{Daftar Isi}}
 
@@ -159,41 +160,45 @@
 
 	The main section of firmware consist:
 	\begin{itemize}
-		\item Analog to Digital COnverter (ADC)
+		\item Analog to Digital Converter (ADC)
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.5\linewidth]{images/jw_ch_adc}
+			\includegraphics[width=\linewidth]{images/jw_ch_adc}
 			\caption{ADC depedencies diagram}
 		\end{figure}
 	
+		\newpage
 		\item Serial Shell Interface (both for Bluetooth and USB)
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.5\linewidth]{images/jw_ch_adc}
+			\includegraphics[width=\linewidth]{images/jw_ch_bt}
 			\caption{Bluetooth Serial depedencies diagram}
 		\end{figure}
 		\item Data Handling (include calibration)
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.5\linewidth]{images/jw_ch_data}
+			\includegraphics[width=\linewidth]{images/jw_ch_data}
 			\caption{Data handling depedencies diagram}
 		\end{figure}
 		\item LCD-GUI display (both graph and console)
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.5\linewidth]{images/jw_ch_gui}
+			\includegraphics[width=\linewidth]{images/jw_ch_gui}
 			\caption{GUI depedencies diagram}
 		\end{figure}		
 	\end{itemize}
-
-	By including ChibiOS API, all module dependecies can be described below:
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=\linewidth]{images/jw_ch_main}
-		\caption{Main source depedencies diagram}
-	\end{figure}
 	
-		
+	\newpage
+	\begin{landscape}
+		By including ChibiOS API, all module dependecies can be described below:
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\linewidth]{images/jw_ch_main}
+			\caption{Main source depedencies diagram}
+		\end{figure}
+	\end{landscape}
+
+	\newpage	
 	\subsection{Qt-based Desktop Interface}
 	
 	\subsection{Android Mobile Interface}
