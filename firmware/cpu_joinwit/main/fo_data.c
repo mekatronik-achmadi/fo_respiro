@@ -1,17 +1,33 @@
+/**
+ * @file    fo_data.h
+ * @brief   Data handling.
+ *
+ * @addtogroup DATA
+ * @{
+ */
+
 #include "fo_data.h"
+
 /*===========================================================================*/
 /* IMPORT DATA PART                                                          */
 /*===========================================================================*/
 
 extern adcsample_t adc0;
-u_int16_t c_adc0;
 
 /*===========================================================================*/
 /* GENERATE DATA PART                                                        */
 /*===========================================================================*/
 
+/**
+ * @brief   data point array for display.
+ */
 point vdata[N_DATA];
 
+/**
+ * @brief   set data array to zero.
+ *
+ * @api
+ */
 void data_zeroing(void){
     u_int16_t i;
 
@@ -21,6 +37,12 @@ void data_zeroing(void){
     }
 }
 
+/**
+ * @brief   set data shifting by 1.
+ * @pre     @p LEFT_TO_RIGHT must defined.
+ *
+ * @api
+ */
 void data_shifting(void){
     u_int16_t i;
 
@@ -35,10 +57,23 @@ void data_shifting(void){
 #endif
 }
 
+/**
+ * @brief   data calibration function.
+ *
+ * @param[in] vadc		input 16-bit variable from ADC.
+ * @return              16-bit integer calibrated value.
+ *
+ * @api
+ */
 u_int16_t data_calib(u_int16_t vadc){
     return C_CALIB*vadc;
 }
 
+/**
+ * @brief   data update thread.
+ * @pre     @p LEFT_TO_RIGHT must defined.
+ *
+ */
 static THD_WORKING_AREA(waGenData, 128);
 static THD_FUNCTION(thdGenData, arg) {
 
@@ -61,6 +96,13 @@ static THD_FUNCTION(thdGenData, arg) {
   }
 }
 
+/**
+ * @brief   Starting Data routine.
+ *
+ * @api
+ */
 void start_data(void){
     chThdCreateStatic(waGenData, sizeof(waGenData),	NORMALPRIO, thdGenData, NULL);
 }
+
+/** @} */

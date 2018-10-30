@@ -1,13 +1,31 @@
+/**
+ * @file    fo_adc.h
+ * @brief   ADC Handler.
+ *
+ * @addtogroup ADC
+ * @{
+ */
+
 #include "fo_adc.h"
 
+/**
+ * @brief   ADC buffer variable.
+ */
 static adcsample_t samples[ADC_GRP1_NUM_CHANNELS * ADC_GRP1_BUF_DEPTH];
 
+/**
+ * @brief   ADC final variable.
+ */
 adcsample_t adc0;
-uint32_t sum_adc0;
 
+/**
+ * @brief   ADC DMA routine callback .
+ */
 void adccb(ADCDriver *adcp, adcsample_t *buffer, size_t n){
   (void) buffer; (void) n;
   int i;
+  uint32_t sum_adc0;
+
   if (adcp->state == ADC_COMPLETE) {
 
     sum_adc0=0;
@@ -21,6 +39,9 @@ void adccb(ADCDriver *adcp, adcsample_t *buffer, size_t n){
    }
  }
 
+/**
+ * @brief   ADC configuration group.
+ */
 static const ADCConversionGroup adcgrpcfg = {
     false,
     ADC_GRP1_NUM_CHANNELS,
@@ -36,6 +57,9 @@ static const ADCConversionGroup adcgrpcfg = {
     ADC_SQR3_SQ2_N(ADC_CHANNEL_IN0)
 };
 
+/**
+ * @brief   ADC start conversion thread.
+ */
 static THD_WORKING_AREA(waAdc, 128);
 static THD_FUNCTION(thdAdc,arg) {
   (void)arg;
@@ -47,6 +71,11 @@ static THD_FUNCTION(thdAdc,arg) {
   }
 }
 
+/**
+ * @brief   Starting ADC routine.
+ *
+ * @api
+ */
 void start_adc(void){
     palSetPadMode(GPIOA,0,PAL_MODE_INPUT_ANALOG);
     adcStart(&ADCD1, NULL);
@@ -55,3 +84,5 @@ void start_adc(void){
     palSetPadMode(GPIOE, 6,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOE,6);
 }
+
+/** @} */
