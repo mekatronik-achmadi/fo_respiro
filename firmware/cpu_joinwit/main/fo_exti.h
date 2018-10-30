@@ -1,3 +1,11 @@
+/**
+ * @file    fo_exti.h
+ * @brief   GPIO interface handling.
+ *
+ * @addtogroup GPIO
+ * @{
+ */
+
 #ifndef FO_EXTI_H
 #define FO_EXTI_H
 
@@ -13,6 +21,8 @@
 #include "fo_adc.h"
 #include "fo_data.h"
 
-void start_exit(void);
+void start_exti(void);
 
 #endif // FO_EXTI_H
+
+/** @} */

@@ -1,5 +1,5 @@
 /**
- * @file    fo_data.h
+ * @file    fo_data.c
  * @brief   Data handling.
  *
  * @addtogroup DATA

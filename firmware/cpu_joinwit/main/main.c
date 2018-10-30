@@ -1,3 +1,12 @@
+/**
+ * @file    main.c
+ * @brief   GPIO interface handling.
+ *
+ * @addtogroup MAIN
+ * @{
+ */
+
+
 #include "ch.h"
 #include "hal.h"
 #include "gfx.h"
@@ -13,11 +22,19 @@
 #include "fo_data.h"
 #include "fo_exti.h"
 
+/**
+ * @brief   Main Function
+ *
+ * @return              Status of execution
+ * @retval 0	        Success
+ * @retval 1			Not Success
+ *
+ */
 int main(void) {
 
     gfxInit();
 
-    start_exit();
+    start_exti();
     start_adc();
     start_bt();
     start_data();
@@ -28,3 +45,5 @@ int main(void) {
         gfxSleepMilliseconds(500);
     }
 }
+
+/** @} */

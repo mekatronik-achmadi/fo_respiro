@@ -1,3 +1,11 @@
+/**
+ * @file    fo_gui.c
+ * @brief   Display GUI.
+ *
+ * @addtogroup GUI
+ * @{
+ */
+
 #include "fo_gui.h"
 
 /*===========================================================================*/
@@ -10,10 +18,25 @@ extern point vdata[N_DATA];
 /*===========================================================================*/
 /* GRAPH PART                                                                */
 /*===========================================================================*/
+
+/**
+ * @brief   play status variable
+ */
 u_int8_t play_stt;
+
+/**
+ * @brief   play duration counter  variable
+ */
 u_int16_t play_dur;
+
+/**
+ * @brief   object for overall graphic GUI
+ */
 static GGraphObject g;
 
+/**
+ * @brief   graphic line configuration
+ */
 static GGraphStyle GraphLine = {
     { GGRAPH_POINT_DOT, 10, White },          // Point
     { GGRAPH_LINE_SOLID, 10, White },          // Line
@@ -24,6 +47,9 @@ static GGraphStyle GraphLine = {
     GWIN_GRAPH_STYLE_POSITIVE_AXIS_ARROWS   // Flags
 };
 
+/**
+ * @brief   play duration counter thread
+ */
 static THD_WORKING_AREA(waPlay, 256);
 static THD_FUNCTION(thdPlay, arg) {
     (void)arg;
@@ -40,9 +66,20 @@ static THD_FUNCTION(thdPlay, arg) {
 /*===========================================================================*/
 /* DRAWING PART                                                              */
 /*===========================================================================*/
+
+/**
+ * @brief   object for graphic and console window
+ */
 GHandle     gh,gc;
+
+/**
+ * @brief   console string variable
+ */
 char txt_adc0[16];
 
+/**
+ * @brief   Main GUI routine function
+ */
 static void gui_routine(void){
     u_int16_t cadc;
 
@@ -65,6 +102,9 @@ static void gui_routine(void){
     palTogglePad(GPIOE,5);
 }
 
+/**
+ * @brief   Draw graph routine thread. This is main routine for the job
+ */
 static THD_WORKING_AREA(waDraw, 256);
 static THD_FUNCTION(thdDraw, arg) {
     font_t	    gfont;
@@ -129,6 +169,9 @@ static THD_FUNCTION(thdDraw, arg) {
 /* INIT PART                                                                 */
 /*===========================================================================*/
 
+/**
+ * @brief   Start GUI routine
+ */
 void start_routine(void){
     palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOE, 5);
@@ -138,3 +181,5 @@ void start_routine(void){
     chThdCreateStatic(waDraw, sizeof(waDraw),	NORMALPRIO, thdDraw, NULL);
     chThdCreateStatic(waPlay, sizeof(waPlay),	NORMALPRIO, thdPlay, NULL);
 }
+
+/** @} */

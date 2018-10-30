@@ -1,5 +1,5 @@
 /**
- * @file    fo_adc.h
+ * @file    fo_adc.c
  * @brief   ADC Handler.
  *
  * @addtogroup ADC

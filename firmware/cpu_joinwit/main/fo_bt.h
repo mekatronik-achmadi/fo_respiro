@@ -1,3 +1,11 @@
+/**
+ * @file    fo_bt.h
+ * @brief   Bluetooth shell.
+ *
+ * @addtogroup SHELL
+ * @{
+ */
+
 #ifndef FO_BT_H
 #define FO_BT_H
 
@@ -12,9 +20,14 @@
 #include "string.h"
 #include "memstreams.h"
 
+/**
+ * @brief   Main Shell working area size .
+ */
 #define SHELL_WA_SIZE THD_WORKING_AREA_SIZE(512)
 
 void start_bt(void);
 void shell_bt(void);
 
 #endif // FO_BT_H
+
+/** @} */
