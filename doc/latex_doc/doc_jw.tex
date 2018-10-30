@@ -10,6 +10,7 @@
 \usepackage[figurename=Gambar]{caption}
 \usepackage{hyperref}
 \usepackage{minted}
+\usepackage{float}
 
 %\addto\captionsenglish{\renewcommand{\contentsname}{Daftar Isi}}
 
@@ -150,7 +151,7 @@
 	The HAL component is meant to be an abstraction layer between the application and the underlying micro-controller hardware.
 	HAL offers an high level API for accessing common MCU peripheral like GPIO, ADC, SPI and so on and also take care of clocks-related and board-level initializations.
 	
-	\begin{figure}[h]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=175pt]{images/chibios_hal_arch}
 		\caption{ChibiOS Hardware Abstraction Layer}
@@ -159,17 +160,39 @@
 	The main section of firmware consist:
 	\begin{itemize}
 		\item Analog to Digital COnverter (ADC)
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth]{images/jw_ch_adc}
+			\caption{ADC depedencies diagram}
+		\end{figure}
+	
 		\item Serial Shell Interface (both for Bluetooth and USB)
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth]{images/jw_ch_adc}
+			\caption{Bluetooth Serial depedencies diagram}
+		\end{figure}
 		\item Data Handling (include calibration)
-		\item LCD-GUI display (both graph and console)		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth]{images/jw_ch_data}
+			\caption{Data handling depedencies diagram}
+		\end{figure}
+		\item LCD-GUI display (both graph and console)
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth]{images/jw_ch_gui}
+			\caption{GUI depedencies diagram}
+		\end{figure}		
 	\end{itemize}
 
 	By including ChibiOS API, all module dependecies can be described below:
-	\begin{figure}[h]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=\linewidth]{images/jw_ch_main}
-		\caption{Firmware Main Modules}
+		\caption{Main source depedencies diagram}
 	\end{figure}
+	
 		
 	\subsection{Qt-based Desktop Interface}
 	
