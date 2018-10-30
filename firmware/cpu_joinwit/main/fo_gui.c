@@ -1,6 +1,6 @@
 /**
  * @file    fo_gui.c
- * @brief   Display GUI.
+ * @brief   Display GUI code
  *
  * @addtogroup GUI
  * @{

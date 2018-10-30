@@ -1,6 +1,6 @@
 /**
  * @file    fo_data.h
- * @brief   Data handling.
+ * @brief   Data handling header
  *
  * @addtogroup DATA
  * @{

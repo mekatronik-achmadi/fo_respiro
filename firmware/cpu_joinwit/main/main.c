@@ -1,6 +1,6 @@
 /**
  * @file    main.c
- * @brief   GPIO interface handling.
+ * @brief  Main source code
  *
  * @addtogroup MAIN
  * @{

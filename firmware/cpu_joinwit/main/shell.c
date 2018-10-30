@@ -16,7 +16,7 @@
 
 /**
  * @file    shell.c
- * @brief   Simple CLI shell code.
+ * @brief   Simple CLI shell code
  *
  * @addtogroup SHELL
  * @{

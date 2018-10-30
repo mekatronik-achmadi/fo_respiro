@@ -1,6 +1,6 @@
 /**
  * @file    fo_gui.h
- * @brief   Display GUI.
+ * @brief   Display GUI header
  *
  * @addtogroup GUI
  * @{

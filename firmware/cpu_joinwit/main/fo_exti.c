@@ -1,6 +1,6 @@
 /**
  * @file    fo_exti.c
- * @brief   GPIO interface handling.
+ * @brief   GPIO interface handling code
  *
  * @addtogroup GPIO
  * @{

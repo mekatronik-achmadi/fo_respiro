@@ -1,6 +1,6 @@
 /**
  * @file    fo_bt.h
- * @brief   Bluetooth shell.
+ * @brief   Bluetooth shell header
  *
  * @addtogroup SHELL
  * @{

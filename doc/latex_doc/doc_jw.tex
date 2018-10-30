@@ -84,6 +84,13 @@
 	This module has no any modification or engineering.
 	Type and brand used is JW (Joinwit) 3109 series.
 	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=200pt]{images/jw3208}
+		\includegraphics[width=200pt]{images/jw3109}
+		\caption{Instrumen JW3208 dan JW3109}
+	\end{figure}
+	
 	\subsection{Custom Central Processing Unit}
 	This module (development board )is used as central processing system.
 	Type and brand used is CZ-miniSTM32F103Vx.
@@ -95,9 +102,23 @@
 		\item General digital I/O to control Laser Source module.
 	\end{itemize}
 
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=400pt]{images/ministm32f103}
+		\caption{Development Board CZ miniSTM32F103Vx}
+	\end{figure}
+
+	\newpage
 	\subsection{Bluetooth Serial}
 	This module is used to provide communication feature with any device (either computer or mobile) that support Bluetooth radio communication. 
 	Type and brand used is HC-05.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=200pt]{images/hc-05}
+		\caption{Module Bluetooth HC-05}
+	\end{figure}
+	
 	
 	\section{Hardware Bill of Material}
 	
@@ -119,10 +140,37 @@
 	ChibiOS/RT Kernel is the high performance RTOS part of the ChibiOS embedded collection.
 	Kernel RT has been designed with the idea of creating a very feature-complete RTOS that could excel in performance and code size.
 	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=300pt]{images/chibios_kernel}
+		\caption{ChibiOS Multithreading Kernel}
+	\end{figure}
+	
+	\newpage
 	The HAL component is meant to be an abstraction layer between the application and the underlying micro-controller hardware.
 	HAL offers an high level API for accessing common MCU peripheral like GPIO, ADC, SPI and so on and also take care of clocks-related and board-level initializations.
 	
-	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=175pt]{images/chibios_hal_arch}
+		\caption{ChibiOS Hardware Abstraction Layer}
+	\end{figure}
+
+	The main section of firmware consist:
+	\begin{itemize}
+		\item Analog to Digital COnverter (ADC)
+		\item Serial Shell Interface (both for Bluetooth and USB)
+		\item Data Handling (include calibration)
+		\item LCD-GUI display (both graph and console)		
+	\end{itemize}
+
+	By including ChibiOS API, all module dependecies can be described below:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\linewidth]{images/jw_ch_main}
+		\caption{Firmware Main Modules}
+	\end{figure}
+		
 	\subsection{Qt-based Desktop Interface}
 	
 	\subsection{Android Mobile Interface}

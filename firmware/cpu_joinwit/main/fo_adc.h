@@ -1,6 +1,6 @@
 /**
  * @file    fo_adc.h
- * @brief   ADC Handler.
+ * @brief   ADC Handler header
  *
  * @addtogroup ADC
  * @{
