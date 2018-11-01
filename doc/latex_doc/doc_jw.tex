@@ -12,6 +12,7 @@
 \usepackage{minted}
 \usepackage{float}
 \usepackage{pdflscape}
+\usepackage{pdfpages}
 
 %\addto\captionsenglish{\renewcommand{\contentsname}{Daftar Isi}}
 
@@ -210,7 +211,71 @@
 	
 	\section{Hardware}
 	
+	\subsection{Core}
+	Core STM32F103Vx
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\linewidth]{images/old_core_Fcu}
+		\includegraphics[width=0.6\linewidth]{images/old_core_3d}
+		\caption{Core Board Layout and Model}
+	\end{figure}
+
+	\subsection{Mainboard}
+	Core STM32F407Vx
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{images/old_board_Fcu}
+		\caption{Core Board Layout Up}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{images/old_board_Bcu}
+		\caption{Core Board Layout Bottom}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{images/old_board_F3d}
+		\caption{Core Board Model Up}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{images/old_board_B3d}
+		\caption{Core Board Model Bottom}
+	\end{figure}
+
+	\newpage
+	\begin{landscape}
+		\includepdf[landscape=true]{images/schematic.pdf}
+	\end{landscape}
+	
 	\section{Hardware Bill of Material}
+	
+	Below are part list for purchasing purposes:
+	\begin{itemize}
+		\item STM32F407VGT6 from Digiware: \url{http://digiwarestore.com/en/arm-core/stm32f407vgt6-131222.html}
+		\item Graphic LCD 128x64 from Digiware: \url{http://digiwarestore.com/en/lcd-graphic/graphic-lcd-128x64-stn-yellow-green-background-yellow-green-backlight-780-x-700-x-130-712089.html} 
+		\item R\_0805 330 from Digiware
+		\item R\_0805 180 from Digiware
+		\item R\_0805 12K from Digiware
+		\item R\_0805 3K9 from Digiware
+		\item R\_0805 R from Digiware
+		\item R\_0805 10K from Digiware
+		\item R\_0805 1K from Digiware
+		\item MC33063/MC34063D  from Digiware
+		\item FT232RL from Digiware
+		\item H28 from Digiware
+		\item Elco 100uF
+		\item Elco 10uF
+		\item USB Mini B
+		\item LED\_0805 from Digiware
+		\item C\_0805 1nF from Digiware
+		\item Schottky Diode from Digiware
+		\item PIN Photodiode module T-11-155-R-SFC-AGC from Digikey
+		\item Laser module TRDFB-1550-P-X-Y from Digikey
+	\end{itemize}
 		
 	\section{Software}
 	
