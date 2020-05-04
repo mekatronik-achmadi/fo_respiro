@@ -45,7 +45,6 @@
 
 void data_zeroing(void);
 void data_shifting(void);
-u_int16_t data_calib(u_int16_t vadc);
 void start_data(void);
 
 #endif // FO_DATA_H

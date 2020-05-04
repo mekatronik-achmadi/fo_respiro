@@ -56,17 +56,6 @@ void data_shifting(void){
 }
 
 /**
- * @brief   data calibration function.
- *
- * @param[in] vadc		input 16-bit variable from ADC.
- * @return              16-bit integer calibrated value.
- *
- */
-u_int16_t data_calib(u_int16_t vadc){
-    return C_CALIB*(vadc);
-}
-
-/**
  * @brief   data update thread.
  * @pre     @p LEFT_TO_RIGHT must defined.
  *

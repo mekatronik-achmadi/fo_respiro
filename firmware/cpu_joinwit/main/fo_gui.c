@@ -20,16 +20,6 @@ extern point vdata[N_DATA];
 /*===========================================================================*/
 
 /**
- * @brief   play status variable
- */
-u_int8_t play_stt;
-
-/**
- * @brief   play duration counter  variable
- */
-u_int16_t play_dur;
-
-/**
  * @brief   object for overall graphic GUI
  */
 static GGraphObject g;
@@ -46,22 +36,6 @@ static GGraphStyle GraphLine = {
     { GGRAPH_LINE_DOT, 5, Gray, 50 },     // Y grid
     GWIN_GRAPH_STYLE_POSITIVE_AXIS_ARROWS   // Flags
 };
-
-/**
- * @brief   play duration counter thread
- */
-static THD_WORKING_AREA(waPlay, 256);
-static THD_FUNCTION(thdPlay, arg) {
-    (void)arg;
-    chRegSetThreadName("playduration");
-
-    while(true){
-        if(play_stt == 1){
-            play_dur++;
-        }
-        gfxSleepMilliseconds(PLAY_DELAY);
-    }
-}
 
 /*===========================================================================*/
 /* DRAWING PART                                                              */
@@ -81,27 +55,22 @@ char txt_adc0[16];
  * @brief   Main GUI routine function
  */
 static void gui_routine(void){
-//    u_int16_t cadc;
 
     gwinGraphStartSet(gh);
     gwinGraphDrawAxis(gh);
     gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
 
-//    cadc = data_calib(adc0);
-
     chsnprintf(txt_adc0,16,"ADC0= %4i |",adc0);
     gwinPrintf(gc, txt_adc0);
     chsnprintf(txt_adc0,16,"dADC= %4i |",(adc0-C_OFFSET));
     gwinPrintf(gc, txt_adc0);
-//    chsnprintf(txt_adc0,16,"CADC= %4i uW |",cadc);
-//    gwinPrintf(gc, txt_adc0);
-//    chsnprintf(txt_adc0,16," Y0= %4i\n",vdata[0].y);
-//    gwinPrintf(gc, txt_adc0);
 
-    gfxSleepMicroseconds(DISP_DELAY);
+    gfxSleepMicroseconds(DISP_SHOW_DELAY);
+
     gwinClear(gh);
     gwinClear(gc);
     palTogglePad(GPIOE,5);
+    gfxSleepMicroseconds(DISP_CLEAR_DELAY);
 }
 
 /**
@@ -178,10 +147,9 @@ void start_routine(void){
     palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOE, 5);
 
-    gdispSetOrientation(GDISP_ROTATE_270);
+    gdispSetOrientation(GDISP_ROTATE_0);
 
     chThdCreateStatic(waDraw, sizeof(waDraw),	NORMALPRIO, thdDraw, NULL);
-    chThdCreateStatic(waPlay, sizeof(waPlay),	NORMALPRIO, thdPlay, NULL);
 }
 
 /** @} */

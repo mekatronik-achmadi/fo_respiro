@@ -22,14 +22,14 @@
 #include "fo_data.h"
 
 /**
- * @brief   Display refresh rate.
+ * @brief   Display show duration.
  */
-#define DISP_DELAY  5
+#define DISP_SHOW_DELAY  100
 
 /**
- * @brief   Display play delay counter.
+ * @brief   Display clear duration.
  */
-#define PLAY_DELAY  500
+#define DISP_CLEAR_DELAY  5
 
 /**
  * @brief   define GUI draw mode:

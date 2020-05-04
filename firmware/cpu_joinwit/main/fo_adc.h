@@ -29,7 +29,7 @@
 /**
  * @brief   define ADC matrix depth.
  */
-#define ADC_GRP1_BUF_DEPTH      100
+#define ADC_GRP1_BUF_DEPTH      200
 
 void start_adc(void);
 
