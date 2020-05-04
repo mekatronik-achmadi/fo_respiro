@@ -98,7 +98,7 @@ static void gui_routine(void){
 //    chsnprintf(txt_adc0,16," Y0= %4i\n",vdata[0].y);
 //    gwinPrintf(gc, txt_adc0);
 
-    gfxSleepMilliseconds(DISP_DELAY);
+    gfxSleepMicroseconds(DISP_DELAY);
     gwinClear(gh);
     gwinClear(gc);
     palTogglePad(GPIOE,5);

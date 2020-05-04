@@ -24,17 +24,12 @@
 /**
  * @brief   Display refresh rate.
  */
-#define DISP_DELAY  500
+#define DISP_DELAY  5
 
 /**
- * @brief   Display play delay counter in milliseconds.
+ * @brief   Display play delay counter.
  */
 #define PLAY_DELAY  500
-
-/**
- * @brief   Display duration. Total duration should be DURATION*@p PLAY_DELAY
- */
-#define DURATION    50
 
 /**
  * @brief   define GUI draw mode:

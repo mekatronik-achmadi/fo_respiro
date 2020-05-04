@@ -89,7 +89,7 @@ static THD_FUNCTION(thdGenData, arg) {
       vdata[0].y = DATA_SCALE * (adc0-C_OFFSET);
 #endif
 
-      gfxSleepMilliseconds(50);
+      gfxSleepMicroseconds(100);
   }
 }
 
