@@ -63,7 +63,7 @@ void data_shifting(void){
  *
  */
 u_int16_t data_calib(u_int16_t vadc){
-    return C_CALIB*vadc;
+    return C_CALIB*(vadc);
 }
 
 /**
@@ -86,7 +86,7 @@ static THD_FUNCTION(thdGenData, arg) {
 #if LEFT_TO_RIGHT
     vdata[N_DATA-1].y = DATA_SCALE * adc0;
 #else
-      vdata[0].y = DATA_SCALE * adc0;
+      vdata[0].y = DATA_SCALE * (adc0-C_OFFSET);
 #endif
 
       gfxSleepMilliseconds(50);

@@ -18,6 +18,8 @@
 #include "stdio.h"
 #include "string.h"
 
+#include "fo_data.h"
+
 /**
  * @brief   define ADC channel.
  */

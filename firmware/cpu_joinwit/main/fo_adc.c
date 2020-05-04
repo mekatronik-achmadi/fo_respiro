@@ -34,7 +34,7 @@ void adccb(ADCDriver *adcp, adcsample_t *buffer, size_t n){
         sum_adc0=sum_adc0+samples[0+(i*ADC_GRP1_NUM_CHANNELS)];
     }
 
-    adc0=sum_adc0/ADC_GRP1_BUF_DEPTH;
+    adc0=(sum_adc0/ADC_GRP1_BUF_DEPTH);
 
    }
  }

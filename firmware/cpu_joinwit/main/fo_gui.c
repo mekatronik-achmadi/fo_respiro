@@ -81,20 +81,22 @@ char txt_adc0[16];
  * @brief   Main GUI routine function
  */
 static void gui_routine(void){
-    u_int16_t cadc;
+//    u_int16_t cadc;
 
     gwinGraphStartSet(gh);
     gwinGraphDrawAxis(gh);
     gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
 
-    cadc = data_calib(adc0);
+//    cadc = data_calib(adc0);
 
     chsnprintf(txt_adc0,16,"ADC0= %4i |",adc0);
     gwinPrintf(gc, txt_adc0);
-    chsnprintf(txt_adc0,16,"CADC= %4i uW |",cadc);
+    chsnprintf(txt_adc0,16,"dADC= %4i |",(adc0-C_OFFSET));
     gwinPrintf(gc, txt_adc0);
-    chsnprintf(txt_adc0,16," Y0= %4i\n",vdata[0].y);
-    gwinPrintf(gc, txt_adc0);
+//    chsnprintf(txt_adc0,16,"CADC= %4i uW |",cadc);
+//    gwinPrintf(gc, txt_adc0);
+//    chsnprintf(txt_adc0,16," Y0= %4i\n",vdata[0].y);
+//    gwinPrintf(gc, txt_adc0);
 
     gfxSleepMilliseconds(DISP_DELAY);
     gwinClear(gh);
