@@ -25,7 +25,7 @@
 /**
  * @brief   Draw graph routine thread. This is main routine for the job
  */
-static THD_WORKING_AREA(waLED, 512);
+static THD_WORKING_AREA(waLED, 32);
 static THD_FUNCTION(thdLED, arg) {
     (void)arg;
     chRegSetThreadName("runled");

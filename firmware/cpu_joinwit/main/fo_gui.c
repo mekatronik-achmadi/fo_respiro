@@ -77,7 +77,7 @@ static void gui_routine(void){
 /**
  * @brief   Draw graph routine thread. This is main routine for the job
  */
-static THD_WORKING_AREA(waDraw, 512);
+static THD_WORKING_AREA(waDraw, 256);
 static THD_FUNCTION(thdDraw, arg) {
     font_t	    gfont;
 

@@ -60,7 +60,7 @@ static const ADCConversionGroup adcgrpcfg = {
 /**
  * @brief   ADC start conversion thread.
  */
-static THD_WORKING_AREA(waAdc, 256);
+static THD_WORKING_AREA(waAdc, 128);
 static THD_FUNCTION(thdAdc,arg) {
   (void)arg;
   chRegSetThreadName("adctrigger");
