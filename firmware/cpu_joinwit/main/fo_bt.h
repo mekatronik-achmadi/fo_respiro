@@ -23,7 +23,7 @@
 /**
  * @brief   Main Shell working area size .
  */
-#define SHELL_WA_SIZE THD_WORKING_AREA_SIZE(512)
+#define SHELL_WA_SIZE THD_WORKING_AREA_SIZE(1024)
 
 void start_bt(void);
 void shell_bt(void);

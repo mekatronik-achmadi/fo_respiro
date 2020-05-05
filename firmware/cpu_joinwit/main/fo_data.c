@@ -60,7 +60,7 @@ void data_shifting(void){
  * @pre     @p LEFT_TO_RIGHT must defined.
  *
  */
-static THD_WORKING_AREA(waGenData, 128);
+static THD_WORKING_AREA(waGenData, 256);
 static THD_FUNCTION(thdGenData, arg) {
 
   (void)arg;
@@ -78,7 +78,8 @@ static THD_FUNCTION(thdGenData, arg) {
       vdata[0].y = DATA_SCALE * (adc0-C_OFFSET);
 #endif
 
-      gfxSleepMicroseconds(100);
+      gfxSleepMicroseconds(50);
+      palTogglePad(GPIOE,6);
   }
 }
 
@@ -87,6 +88,9 @@ static THD_FUNCTION(thdGenData, arg) {
  *
  */
 void start_data(void){
+    palSetPadMode(GPIOE, 6,PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOE,6);
+
     chThdCreateStatic(waGenData, sizeof(waGenData),	NORMALPRIO, thdGenData, NULL);
 }
 

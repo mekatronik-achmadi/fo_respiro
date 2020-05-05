@@ -35,6 +35,7 @@
 #define GDISP_NEED_MULTITHREAD	TRUE
 #define GDISP_NEED_CONTROL      TRUE
 #define GDISP_INCLUDE_FONT_UI2	TRUE
+#define GDISP_NEED_PIXMAP       TRUE
 #define GDISP_NEED_STARTUP_LOGO	FALSE
 
 /* Features for the GWIN subsystem. */

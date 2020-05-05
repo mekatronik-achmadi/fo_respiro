@@ -65,18 +65,20 @@ static void gui_routine(void){
     chsnprintf(txt_adc0,16,"dADC= %4i |",(adc0-C_OFFSET));
     gwinPrintf(gc, txt_adc0);
 
+#if USE_FAST_REFRESH
     gfxSleepMicroseconds(DISP_SHOW_DELAY);
+#else
+    gfxSleepMilliseconds(1000);
+#endif
 
     gwinClear(gh);
     gwinClear(gc);
-    palTogglePad(GPIOE,5);
-    gfxSleepMicroseconds(DISP_CLEAR_DELAY);
 }
 
 /**
  * @brief   Draw graph routine thread. This is main routine for the job
  */
-static THD_WORKING_AREA(waDraw, 256);
+static THD_WORKING_AREA(waDraw, 512);
 static THD_FUNCTION(thdDraw, arg) {
     font_t	    gfont;
 
@@ -144,11 +146,7 @@ static THD_FUNCTION(thdDraw, arg) {
  * @brief   Start GUI routine
  */
 void start_routine(void){
-    palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
-    palSetPad(GPIOE, 5);
-
     gdispSetOrientation(GDISP_ROTATE_0);
-
     chThdCreateStatic(waDraw, sizeof(waDraw),	NORMALPRIO, thdDraw, NULL);
 }
 

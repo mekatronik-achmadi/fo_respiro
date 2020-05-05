@@ -22,14 +22,14 @@
 #include "fo_data.h"
 
 /**
- * @brief   Display show duration.
+ * @brief   Either use fast or each 1 second
  */
-#define DISP_SHOW_DELAY  100
+#define USE_FAST_REFRESH TRUE
 
 /**
- * @brief   Display clear duration.
+ * @brief   Display show duration.
  */
-#define DISP_CLEAR_DELAY  5
+#define DISP_SHOW_DELAY  10
 
 /**
  * @brief   define GUI draw mode:

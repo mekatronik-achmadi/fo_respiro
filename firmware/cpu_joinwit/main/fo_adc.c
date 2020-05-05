@@ -60,13 +60,13 @@ static const ADCConversionGroup adcgrpcfg = {
 /**
  * @brief   ADC start conversion thread.
  */
-static THD_WORKING_AREA(waAdc, 128);
+static THD_WORKING_AREA(waAdc, 256);
 static THD_FUNCTION(thdAdc,arg) {
   (void)arg;
+  chRegSetThreadName("adctrigger");
 
   while (true) {
-    chThdSleepMilliseconds(100);
-    palTogglePad(GPIOE,6);
+    chThdSleepMicroseconds(10);
     adcStartConversion(&ADCD1, &adcgrpcfg, samples, ADC_GRP1_BUF_DEPTH);
   }
 }
@@ -79,9 +79,6 @@ void start_adc(void){
     palSetPadMode(GPIOA,0,PAL_MODE_INPUT_ANALOG);
     adcStart(&ADCD1, NULL);
     chThdCreateStatic(waAdc, sizeof(waAdc), NORMALPRIO, thdAdc, NULL);
-
-    palSetPadMode(GPIOE, 6,PAL_MODE_OUTPUT_PUSHPULL);
-    palSetPad(GPIOE,6);
 }
 
 /** @} */

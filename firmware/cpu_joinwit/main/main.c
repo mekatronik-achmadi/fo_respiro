@@ -23,6 +23,20 @@
 #include "fo_exti.h"
 
 /**
+ * @brief   Draw graph routine thread. This is main routine for the job
+ */
+static THD_WORKING_AREA(waLED, 512);
+static THD_FUNCTION(thdLED, arg) {
+    (void)arg;
+    chRegSetThreadName("runled");
+
+    while(1){
+        palTogglePad(GPIOE,5);
+        gfxSleepMilliseconds(500);
+    }
+}
+
+/**
  * @brief   Main Function
  *
  * @return              Status of execution
@@ -39,6 +53,10 @@ int main(void) {
     start_bt();
     start_data();
     start_routine();
+
+    palSetPadMode(GPIOE, 5,PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOE, 5);
+    chThdCreateStatic(waLED, sizeof(waLED),	NORMALPRIO, thdLED, NULL);
 
     while(true) {
         shell_bt();

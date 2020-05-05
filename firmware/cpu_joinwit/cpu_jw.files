@@ -24,5 +24,6 @@ ugfx/ILI9320/driver.mk
 ugfx/ILI9320/gdisp_lld_ILI9320.c
 ugfx/ILI9320/gdisp_lld_config.h
 ugfx/board_ILI9320.h
+ugfx/gfxconf.h
 ugfx/gmouse_lld_ADS7843_board.h
 ugfx/ugfx.mk
