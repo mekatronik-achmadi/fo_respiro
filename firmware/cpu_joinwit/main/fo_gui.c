@@ -61,7 +61,7 @@ static void gui_routine(void){
 
     chsnprintf(txt_adc0,16,"ADC0= %4i |",adc0);
     gwinPrintf(gc, txt_adc0);
-    chsnprintf(txt_adc0,16,"dADC= %4i |",(adc0-C_OFFSET));
+    chsnprintf(txt_adc0,16," dADC= %4i |",(adc0-C_OFFSET));
     gwinPrintf(gc, txt_adc0);
 
 #if USE_FAST_REFRESH

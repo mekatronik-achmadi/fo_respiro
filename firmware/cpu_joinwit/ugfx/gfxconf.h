@@ -20,6 +20,7 @@
 
 /* The operating system to use. One of these must be defined - preferably in your Makefile */
 #define GFX_USE_OS_CHIBIOS      TRUE
+#define GFX_MEM_LT64K           FALSE
 
 /* GFX sub-systems to turn on */
 #define GFX_USE_GDISP			TRUE
@@ -35,7 +36,6 @@
 #define GDISP_NEED_MULTITHREAD	TRUE
 #define GDISP_NEED_CONTROL      TRUE
 #define GDISP_INCLUDE_FONT_UI2	TRUE
-#define GDISP_NEED_PIXMAP       TRUE
 #define GDISP_NEED_STARTUP_LOGO	FALSE
 
 /* Features for the GWIN subsystem. */
