@@ -22,9 +22,9 @@
 #include "fo_data.h"
 
 /**
- * @brief   Either use fast or each 1 second
+ * @brief   Either use fast or each 250 ms
  */
-#define USE_FAST_REFRESH TRUE
+#define USE_FAST_REFRESH FALSE
 
 /**
  * @brief   Display show duration.

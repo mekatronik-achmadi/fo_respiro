@@ -14,6 +14,9 @@
 
 extern adcsample_t adc0;
 
+adcsample_t vcurr,vprev,dval;
+u_int16_t Tchange, Tcount;
+
 /*===========================================================================*/
 /* GENERATE DATA PART                                                        */
 /*===========================================================================*/
@@ -74,13 +77,50 @@ static THD_FUNCTION(thdGenData, arg) {
 
 #if LEFT_TO_RIGHT
     vdata[N_DATA-1].y = DATA_SCALE * adc0;
+    vprev = vcurr;
+    vcurr = vdata[N_DATA-1].y;
 #else
       vdata[0].y = DATA_SCALE * (adc0-C_OFFSET);
+      vprev = vcurr;
+      vcurr = vdata[0].y;
 #endif
+
+      if(vcurr>=vprev){dval = vcurr-vprev;}
+      else if(vcurr<vprev){dval = vprev-vcurr;}
+
+      if(dval>=10){
+          Tchange = Tcount;
+          Tcount = 0;
+      }
 
       gfxSleepMicroseconds(50);
       palTogglePad(GPIOE,6);
   }
+}
+
+/**
+ * @brief   Changes frequency counter.
+ *
+ */
+static THD_WORKING_AREA(waChange, 128);
+static THD_FUNCTION(thdChange, arg) {
+
+    (void)arg;
+
+    chRegSetThreadName("frequencycounter");
+    Tcount = 0;
+    Tchange = 0;
+
+    while(1){
+        Tcount++;
+        if(Tcount==1000){
+            Tcount = 0;
+            Tchange = 0;
+        }
+
+        gfxSleepMicroseconds(100);
+    }
+
 }
 
 /**
@@ -92,6 +132,7 @@ void start_data(void){
     palSetPad(GPIOE,6);
 
     chThdCreateStatic(waGenData, sizeof(waGenData),	NORMALPRIO, thdGenData, NULL);
+    chThdCreateStatic(waChange, sizeof(waChange),	NORMALPRIO, thdChange, NULL);
 }
 
 /** @} */

@@ -57,6 +57,7 @@ char txt_adc0[16];
 static void gui_routine(void){
 
     gwinGraphStartSet(gh);
+    gwinGraphDrawAxis(gh);
     gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
 
     chsnprintf(txt_adc0,16,"ADC0= %4i |",adc0);
@@ -67,7 +68,7 @@ static void gui_routine(void){
 #if USE_FAST_REFRESH
     gfxSleepMicroseconds(DISP_SHOW_DELAY);
 #else
-    gfxSleepMilliseconds(1000);
+    gfxSleepMilliseconds(250);
 #endif
 
     gwinClear(gh);
