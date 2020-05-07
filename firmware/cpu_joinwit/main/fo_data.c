@@ -15,7 +15,7 @@
 extern adcsample_t adc0;
 
 adcsample_t vcurr,vprev,dval;
-u_int16_t Tchange, Tcount;
+adcsample_t Tchange, Tcount;
 
 /*===========================================================================*/
 /* GENERATE DATA PART                                                        */
