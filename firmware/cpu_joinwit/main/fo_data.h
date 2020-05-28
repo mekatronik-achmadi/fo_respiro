@@ -43,6 +43,11 @@
  */
 #define C_OFFSET 600
 
+/**
+ * @brief   define minimum value of change
+ */
+#define C_DVAL  50
+
 void data_zeroing(void);
 void data_shifting(void);
 void start_data(void);

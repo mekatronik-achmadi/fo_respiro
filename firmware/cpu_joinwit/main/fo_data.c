@@ -88,7 +88,7 @@ static THD_FUNCTION(thdGenData, arg) {
       if(vcurr>=vprev){dval = vcurr-vprev;}
       else if(vcurr<vprev){dval = vprev-vcurr;}
 
-      if(dval>=10){
+      if(dval>=C_DVAL){
           Tchange = Tcount;
           Tcount = 0;
       }
