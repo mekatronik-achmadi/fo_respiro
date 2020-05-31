@@ -14,7 +14,7 @@
 
 extern adcsample_t adc0;
 extern point vdata[N_DATA];
-extern adcsample_t dval;
+extern adcsample_t vval,vcurr,vprev,dval;
 extern icucnt_t Tchange;
 
 /*===========================================================================*/
@@ -62,9 +62,9 @@ static void gui_routine(void){
     gwinGraphDrawAxis(gh);
     gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
 
-    chsnprintf(txt_adc0,16,"V= %4i |",adc0);
+    chsnprintf(txt_adc0,16,"V= %4i |",vval);
     gwinPrintf(gc, txt_adc0);
-    chsnprintf(txt_adc0,16," dV= %4i |",(adc0-C_OFFSET));
+    chsnprintf(txt_adc0,16," dV= %4i |",vcurr);
     gwinPrintf(gc, txt_adc0);
     chsnprintf(txt_adc0,16," ddV= %4i |",dval);
     gwinPrintf(gc, txt_adc0);

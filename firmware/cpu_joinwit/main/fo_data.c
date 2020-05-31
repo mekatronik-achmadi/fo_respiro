@@ -14,7 +14,7 @@
 
 extern adcsample_t adc0;
 
-adcsample_t vcurr,vprev,dval;
+adcsample_t vval,vcurr,vprev,dval=0;
 icucnt_t Tchange, Tcount;
 
 /*===========================================================================*/
@@ -58,7 +58,6 @@ void data_shifting(void){
 #endif
 }
 
-
 /**
  * @brief   main data processing
  * @pre     @p LEFT_TO_RIGHT must defined.
@@ -67,35 +66,38 @@ void data_shifting(void){
 void data_process(void){
     data_shifting();
 
-#if LEFT_TO_RIGHT
-  vdata[N_DATA-1].y = DATA_SCALE * adc0;
-  vprev = vcurr;
-  vcurr = vdata[N_DATA-1].y;
-#else
-    vdata[0].y = DATA_SCALE * (adc0-C_OFFSET);
+    vval = adc0;
     vprev = vcurr;
-    vcurr = vdata[0].y;
-#endif
+    vcurr = vval-C_OFFSET;
 
     if(vcurr>=vprev){dval = vcurr-vprev;}
     else if(vcurr<vprev){dval = vprev-vcurr;}
 
     if(dval>=C_DVAL){
+        Tcount = 0;
         palClearPad(GPIOE,6);
         palSetPad(GPIOC,7);
     }
+
+#if LEFT_TO_RIGHT
+   vdata[N_DATA-1].y = DATA_SCALE * vcurr;
+#else
+    vdata[0].y = DATA_SCALE * vcurr;
+#endif
 }
 
 static void gptcb(GPTDriver *gptp) {
   (void)gptp;
+
 #if TEST_GPT_ICU
   palTogglePad(GPIOC,7);
 #endif
-  data_process();
+
+    data_process();
 }
 
 static const GPTConfig gptcfg = {
-  10000,    /* 10kHz timer clock.*/
+  100,    /* 10kHz timer clock.*/
   gptcb,   /* Timer callback.*/
   0,
   0
@@ -124,7 +126,7 @@ static THD_FUNCTION(thdChange, arg) {
             palClearPad(GPIOC,7);
         }
 
-        gfxSleepMicroseconds(100);
+        gfxSleepMicroseconds(500);
     }
 
 }
@@ -163,7 +165,7 @@ void start_data(void){
     icuEnableNotifications(&ICUD3);
 
     gptStart(&GPTD4, &gptcfg);
-    gptStartContinuous(&GPTD4,100);
+    gptStartContinuous(&GPTD4,50);
 
     data_zeroing();
     chThdCreateStatic(waChange, sizeof(waChange),	NORMALPRIO, thdChange, NULL);

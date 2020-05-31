@@ -24,7 +24,7 @@
 /**
  * @brief   Either use fast or each 250 ms
  */
-#define USE_FAST_REFRESH FALSE
+#define USE_FAST_REFRESH TRUE
 
 /**
  * @brief   Display show duration.

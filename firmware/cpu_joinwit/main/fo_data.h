@@ -28,7 +28,7 @@
 /**
  * @brief   define data array movement direction.
  */
-#define LEFT_TO_RIGHT false
+#define LEFT_TO_RIGHT FALSE
 
 /**
  * @brief   define data scaling for display.
@@ -48,7 +48,7 @@
 /**
  * @brief   define minimum value of change
  */
-#define C_DVAL  50
+#define C_DVAL  7
 
 void data_zeroing(void);
 void data_shifting(void);
