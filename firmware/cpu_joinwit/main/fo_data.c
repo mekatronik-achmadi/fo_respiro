@@ -75,7 +75,6 @@ void data_process(void){
 
     if(dval>=C_DVAL){
         Tcount = 0;
-        palClearPad(GPIOE,6);
         palSetPad(GPIOC,7);
     }
 
@@ -119,14 +118,14 @@ static THD_FUNCTION(thdChange, arg) {
     while(1){
         Tcount++;
 
-        if(Tcount==1000){
+        if(Tcount==50){
             Tcount = 0;
             Tchange = 0;
-            palSetPad(GPIOE,6);
+            palTogglePad(GPIOE,6);
             palClearPad(GPIOC,7);
         }
 
-        gfxSleepMicroseconds(500);
+        gfxSleepMilliseconds(1);
     }
 
 }
