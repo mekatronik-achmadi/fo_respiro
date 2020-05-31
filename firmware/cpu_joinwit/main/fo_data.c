@@ -15,7 +15,7 @@
 extern adcsample_t adc0;
 
 adcsample_t vcurr,vprev,dval;
-adcsample_t Tchange, Tcount;
+icucnt_t Tchange, Tcount;
 
 /*===========================================================================*/
 /* GENERATE DATA PART                                                        */
@@ -89,8 +89,7 @@ static THD_FUNCTION(thdGenData, arg) {
       else if(vcurr<vprev){dval = vprev-vcurr;}
 
       if(dval>=C_DVAL){
-          Tchange = Tcount;
-          Tcount = 0;
+          palSetPad(GPIOC,7);
       }
 
       gfxSleepMicroseconds(50);
@@ -107,21 +106,40 @@ static THD_FUNCTION(thdChange, arg) {
 
     (void)arg;
 
-    chRegSetThreadName("frequencycounter");
+    chRegSetThreadName("frequencyoverflow");
     Tcount = 0;
     Tchange = 0;
 
     while(1){
         Tcount++;
+
         if(Tcount==1000){
             Tcount = 0;
             Tchange = 0;
+            palClearPad(GPIOC,7);
         }
 
         gfxSleepMicroseconds(100);
     }
 
 }
+
+static void icuperiodcb(ICUDriver *icup) {
+  Tchange = icuGetPeriodX(icup);
+  palClearPad(GPIOC,7);
+  Tcount = 0;
+}
+
+
+static ICUConfig icucfg = {
+  ICU_INPUT_ACTIVE_HIGH,
+  10000,                                  /* 10kHz ICU clock frequency.   */
+  NULL,
+  icuperiodcb,
+  NULL,
+  ICU_CHANNEL_2,
+  0
+};
 
 /**
  * @brief   Starting Data routine.
@@ -130,6 +148,14 @@ static THD_FUNCTION(thdChange, arg) {
 void start_data(void){
     palSetPadMode(GPIOE, 6,PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOE,6);
+
+    palSetPadMode(GPIOC, 7, PAL_MODE_OUTPUT_PUSHPULL);
+    palClearPad(GPIOC,7);
+
+    icuStart(&ICUD3, &icucfg);
+    palSetPadMode(GPIOA, 7, PAL_MODE_INPUT_PULLDOWN);
+    icuStartCapture(&ICUD3);
+    icuEnableNotifications(&ICUD3);
 
     chThdCreateStatic(waGenData, sizeof(waGenData),	NORMALPRIO, thdGenData, NULL);
     chThdCreateStatic(waChange, sizeof(waChange),	NORMALPRIO, thdChange, NULL);

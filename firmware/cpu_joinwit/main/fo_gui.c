@@ -14,7 +14,8 @@
 
 extern adcsample_t adc0;
 extern point vdata[N_DATA];
-extern adcsample_t dval,Tchange;
+extern adcsample_t dval;
+extern icucnt_t Tchange;
 
 /*===========================================================================*/
 /* GRAPH PART                                                                */
@@ -67,7 +68,7 @@ static void gui_routine(void){
     gwinPrintf(gc, txt_adc0);
     chsnprintf(txt_adc0,16," ddV= %4i |",dval);
     gwinPrintf(gc, txt_adc0);
-    chsnprintf(txt_adc0,16," dTv= %4i |",Tchange);
+    chsnprintf(txt_adc0,16," T= %6i",Tchange);
     gwinPrintf(gc, txt_adc0);
 
 #if USE_FAST_REFRESH
