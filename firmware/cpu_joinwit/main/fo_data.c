@@ -58,44 +58,48 @@ void data_shifting(void){
 #endif
 }
 
+
 /**
- * @brief   data update thread.
+ * @brief   main data processing
  * @pre     @p LEFT_TO_RIGHT must defined.
  *
  */
-static THD_WORKING_AREA(waGenData, 128);
-static THD_FUNCTION(thdGenData, arg) {
-
-  (void)arg;
-
-  chRegSetThreadName("dataupdate");
-
-  data_zeroing();
-
-  while (true) {
-      data_shifting();
+void data_process(void){
+    data_shifting();
 
 #if LEFT_TO_RIGHT
-    vdata[N_DATA-1].y = DATA_SCALE * adc0;
-    vprev = vcurr;
-    vcurr = vdata[N_DATA-1].y;
+  vdata[N_DATA-1].y = DATA_SCALE * adc0;
+  vprev = vcurr;
+  vcurr = vdata[N_DATA-1].y;
 #else
-      vdata[0].y = DATA_SCALE * (adc0-C_OFFSET);
-      vprev = vcurr;
-      vcurr = vdata[0].y;
+    vdata[0].y = DATA_SCALE * (adc0-C_OFFSET);
+    vprev = vcurr;
+    vcurr = vdata[0].y;
 #endif
 
-      if(vcurr>=vprev){dval = vcurr-vprev;}
-      else if(vcurr<vprev){dval = vprev-vcurr;}
+    if(vcurr>=vprev){dval = vcurr-vprev;}
+    else if(vcurr<vprev){dval = vprev-vcurr;}
 
-      if(dval>=C_DVAL){
-          palSetPad(GPIOC,7);
-      }
-
-      gfxSleepMicroseconds(50);
-      palTogglePad(GPIOE,6);
-  }
+    if(dval>=C_DVAL){
+        palClearPad(GPIOE,6);
+        palSetPad(GPIOC,7);
+    }
 }
+
+static void gptcb(GPTDriver *gptp) {
+  (void)gptp;
+#if TEST_GPT_ICU
+  palTogglePad(GPIOC,7);
+#endif
+  data_process();
+}
+
+static const GPTConfig gptcfg = {
+  10000,    /* 10kHz timer clock.*/
+  gptcb,   /* Timer callback.*/
+  0,
+  0
+};
 
 /**
  * @brief   Changes frequency counter.
@@ -116,6 +120,7 @@ static THD_FUNCTION(thdChange, arg) {
         if(Tcount==1000){
             Tcount = 0;
             Tchange = 0;
+            palSetPad(GPIOE,6);
             palClearPad(GPIOC,7);
         }
 
@@ -157,7 +162,10 @@ void start_data(void){
     icuStartCapture(&ICUD3);
     icuEnableNotifications(&ICUD3);
 
-    chThdCreateStatic(waGenData, sizeof(waGenData),	NORMALPRIO, thdGenData, NULL);
+    gptStart(&GPTD4, &gptcfg);
+    gptStartContinuous(&GPTD4,100);
+
+    data_zeroing();
     chThdCreateStatic(waChange, sizeof(waChange),	NORMALPRIO, thdChange, NULL);
 }
 

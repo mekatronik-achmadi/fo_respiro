@@ -18,6 +18,8 @@
 #include "stdio.h"
 #include "string.h"
 
+#define TEST_GPT_ICU FALSE
+
 /**
  * @brief   define total data point for display.
  */
