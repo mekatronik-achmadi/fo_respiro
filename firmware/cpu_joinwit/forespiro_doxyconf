@@ -61,8 +61,8 @@ LOOKUP_CACHE_SIZE      = 0
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
-EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = YES
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
 EXTRACT_PACKAGE        = NO
 EXTRACT_STATIC         = YES
 EXTRACT_LOCAL_CLASSES  = YES
@@ -113,15 +113,9 @@ WARN_LOGFILE           =
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
 INPUT                  = . \
-						main \
-						ugfx \
-						board \
-						/opt/ugfxlib/src \
-						/opt/ugfxlib/drivers \
-						/opt/stm32chlib/chibios30/os/rt/src \
-						/opt/stm32chlib/chibios30/os/hal/src \
-						/opt/stm32chlib/chibios30/os/rt/include \
-						/opt/stm32chlib/chibios30/os/hal/include \
+			main \
+			ugfx \
+			board
 
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
@@ -239,7 +233,7 @@ QHP_SECT_FILTER_ATTRS  =
 QHG_LOCATION           =
 GENERATE_ECLIPSEHELP   = NO
 ECLIPSE_DOC_ID         = org.doxygen.Project
-DISABLE_INDEX          = NO
+DISABLE_INDEX          = YES
 GENERATE_TREEVIEW      = YES
 ENUM_VALUES_PER_LINE   = 4
 TREEVIEW_WIDTH         = 250
