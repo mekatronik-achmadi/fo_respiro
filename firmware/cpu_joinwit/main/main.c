@@ -22,11 +22,13 @@
 #include "fo_data.h"
 #include "fo_exti.h"
 
-/**
- * @brief   LED RUN thread.
- */
 static THD_WORKING_AREA(waLED, 32);
-static THD_FUNCTION(thdLED, arg) {
+#define ThdFunc_RunLED THD_FUNCTION
+
+/**
+ * @brief   LED RUN Blink thread.
+ */
+static ThdFunc_RunLED(thdLED, arg) {
     (void)arg;
     chRegSetThreadName("runled");
 

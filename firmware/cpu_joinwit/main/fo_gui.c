@@ -81,11 +81,14 @@ static void gui_routine(void){
     gwinClear(gc);
 }
 
-/**
- * @brief   Draw graph routine thread. This is main routine for the job
- */
+
 static THD_WORKING_AREA(waDraw, 256);
-static THD_FUNCTION(thdDraw, arg) {
+#define ThdFunc_Graph THD_FUNCTION
+
+/**
+ * @brief   Main Draw graph routine thread.
+ */
+static ThdFunc_Graph(thdDraw, arg) {
     font_t	    gfont;
 
     (void)arg;

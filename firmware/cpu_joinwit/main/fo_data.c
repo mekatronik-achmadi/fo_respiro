@@ -142,13 +142,15 @@ static const GPTConfig gptcfg = {
   0
 };
 
+static THD_WORKING_AREA(waChange, 128);
+#define ThdFunc_FreqReset THD_FUNCTION
+
 /**
  * @brief   Frequency reset thread here.
  * @details PC.7 cleared to LOW here
  * @details Delay sleep in ms is precise but not accurate
  */
-static THD_WORKING_AREA(waChange, 128);
-static THD_FUNCTION(thdChange, arg) {
+static ThdFunc_FreqReset(thdChange, arg) {
 
     (void)arg;
 
