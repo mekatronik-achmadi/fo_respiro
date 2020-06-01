@@ -25,7 +25,6 @@
  */
 #define ADC_GRP1_NUM_CHANNELS   1
 
-
 /**
  * @brief   define ADC matrix depth.
  */

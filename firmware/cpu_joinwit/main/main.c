@@ -23,7 +23,7 @@
 #include "fo_exti.h"
 
 /**
- * @brief   Draw graph routine thread. This is main routine for the job
+ * @brief   LED RUN thread.
  */
 static THD_WORKING_AREA(waLED, 32);
 static THD_FUNCTION(thdLED, arg) {
@@ -38,10 +38,6 @@ static THD_FUNCTION(thdLED, arg) {
 
 /**
  * @brief   Main Function
- *
- * @return              Status of execution
- * @retval 0	        Success
- * @retval 1			Not Success
  *
  */
 int main(void) {

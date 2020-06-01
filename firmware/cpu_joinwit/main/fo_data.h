@@ -18,6 +18,9 @@
 #include "stdio.h"
 #include "string.h"
 
+/**
+ * @brief define test Timer and Input-Capture
+ */
 #define TEST_GPT_ICU FALSE
 
 /**

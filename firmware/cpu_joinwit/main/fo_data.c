@@ -14,8 +14,38 @@
 
 extern adcsample_t adc0;
 
-adcsample_t vval,vcurr,vprev,dval=0;
-icucnt_t Tchange, Tcount;
+/**
+ * @brief Variable to store ADC.0 result
+ */
+adcsample_t vval;
+
+/**
+ * @brief Current Value as difference between ADC.0 and C_OFFSET
+ * @pre @p C_OFFSET must suitable for experiment setup
+ */
+adcsample_t vcurr;
+
+/**
+ * @brief Previous Value as Current Value at on step behind
+ */
+adcsample_t vprev;
+
+/**
+ * @brief Difference between Current and Previous Value
+ */
+adcsample_t dval=0;
+
+/**
+ * @brief Timer Period between two @p dval value that more than @p C_DVAL
+ * @pre @p C_DVAL must suitable for experiment setup
+ */
+icucnt_t Tchange;
+
+/**
+ * @brief Counter on reset thread
+ * @details Make sure it is not too fast and not too slow
+ */
+icucnt_t Tcount;
 
 /*===========================================================================*/
 /* GENERATE DATA PART                                                        */
@@ -60,6 +90,8 @@ void data_shifting(void){
 
 /**
  * @brief   main data processing
+ * @details PC.7 set HIGH here to read by Input-Capture
+ * @pre     @p C_DVAL and C_OFFSET must suitable for experiment setup
  * @pre     @p LEFT_TO_RIGHT must defined.
  *
  */
@@ -85,6 +117,11 @@ void data_process(void){
 #endif
 }
 
+/**
+ * @brief Timer Interrupt callback
+ * @details Main Data Process run here
+ * @details Test on Timer (emulate PWM) and Input-Capture
+ */
 static void gptcb(GPTDriver *gptp) {
   (void)gptp;
 
@@ -95,6 +132,9 @@ static void gptcb(GPTDriver *gptp) {
     data_process();
 }
 
+/**
+ * @brief Timer Interrupt Config
+ */
 static const GPTConfig gptcfg = {
   100,    /* 10kHz timer clock.*/
   gptcb,   /* Timer callback.*/
@@ -103,8 +143,9 @@ static const GPTConfig gptcfg = {
 };
 
 /**
- * @brief   Changes frequency counter.
- *
+ * @brief   Frequency reset thread here.
+ * @details PC.7 cleared to LOW here
+ * @details Delay sleep in ms is precise but not accurate
  */
 static THD_WORKING_AREA(waChange, 128);
 static THD_FUNCTION(thdChange, arg) {
@@ -130,13 +171,20 @@ static THD_FUNCTION(thdChange, arg) {
 
 }
 
+/**
+ * @brief Input-Capture Interrupt Callback
+ * @details Frequency of change defined here
+ * @details PC.7 cleared to LOW here
+ */
 static void icuperiodcb(ICUDriver *icup) {
   Tchange = icuGetPeriodX(icup);
   palClearPad(GPIOC,7);
   Tcount = 0;
 }
 
-
+/**
+ * @brief Input-Capture Config
+ */
 static ICUConfig icucfg = {
   ICU_INPUT_ACTIVE_HIGH,
   10000,                                  /* 10kHz ICU clock frequency.   */
