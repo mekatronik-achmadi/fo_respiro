@@ -36,17 +36,7 @@
 /**
  * @brief   define data scaling for display.
  */
-#define DATA_SCALE 1 // (200/4095)*20
-
-/**
- * @brief   define calibration factor.
- */
-#define C_CALIB 0.2
-
-/**
- * @brief   define offset value.
- */
-#define C_OFFSET 600
+#define DATA_SCALE 10 // (200/4095)*20
 
 /**
  * @brief   define minimum value of change

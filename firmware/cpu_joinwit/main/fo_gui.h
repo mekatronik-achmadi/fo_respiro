@@ -22,14 +22,19 @@
 #include "fo_data.h"
 
 /**
- * @brief   Either use fast or each 250 ms
+ * @brief   Value of slow refresh delay in ms
  */
-#define USE_FAST_REFRESH TRUE
+#define SLOW_REFRESH_DELAY 100
+
+/**
+ * @brief   Either use fast or each @p SLOW_REFRESH_DELAY ms
+ */
+#define USE_FAST_REFRESH FALSE
 
 /**
  * @brief   Display show duration.
  */
-#define DISP_SHOW_DELAY  10
+#define DISP_SHOW_DELAY  1
 
 /**
  * @brief   define GUI draw mode:

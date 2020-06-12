@@ -15,11 +15,6 @@
 extern adcsample_t adc0;
 
 /**
- * @brief Variable to store ADC.0 result
- */
-adcsample_t vval;
-
-/**
  * @brief Current Value as difference between ADC.0 and C_OFFSET
  * @pre @p C_OFFSET must suitable for experiment setup
  */
@@ -98,9 +93,8 @@ void data_shifting(void){
 void data_process(void){
     data_shifting();
 
-    vval = adc0;
     vprev = vcurr;
-    vcurr = vval-C_OFFSET;
+    vcurr = adc0;
 
     if(vcurr>=vprev){dval = vcurr-vprev;}
     else if(vcurr<vprev){dval = vprev-vcurr;}
@@ -111,9 +105,9 @@ void data_process(void){
     }
 
 #if LEFT_TO_RIGHT
-   vdata[N_DATA-1].y = DATA_SCALE * vcurr;
+   vdata[N_DATA-1].y = DATA_SCALE * dval;
 #else
-    vdata[0].y = DATA_SCALE * vcurr;
+    vdata[0].y = DATA_SCALE * dval;
 #endif
 }
 
@@ -136,7 +130,7 @@ static void gptcb(GPTDriver *gptp) {
  * @brief Timer Interrupt Config
  */
 static const GPTConfig gptcfg = {
-  100,    /* 10kHz timer clock.*/
+  10000,    /* 10kHz timer clock.*/
   gptcb,   /* Timer callback.*/
   0,
   0
@@ -214,7 +208,7 @@ void start_data(void){
     icuEnableNotifications(&ICUD3);
 
     gptStart(&GPTD4, &gptcfg);
-    gptStartContinuous(&GPTD4,50);
+    gptStartContinuous(&GPTD4,5000);
 
     data_zeroing();
     chThdCreateStatic(waChange, sizeof(waChange),	NORMALPRIO, thdChange, NULL);
