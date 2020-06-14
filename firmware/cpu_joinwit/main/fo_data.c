@@ -99,7 +99,7 @@ void data_process(void){
     if(vcurr>=vprev){dval = vcurr-vprev;}
     else if(vcurr<vprev){dval = vprev-vcurr;}
 
-    if(dval>=C_DVAL){
+    if(dval>C_DVAL){
         Tcount = 0;
         palSetPad(GPIOC,7);
     }

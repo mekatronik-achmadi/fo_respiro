@@ -41,7 +41,7 @@
 /**
  * @brief   define minimum value of change
  */
-#define C_DVAL  10
+#define C_DVAL  2
 
 void data_zeroing(void);
 void data_shifting(void);
