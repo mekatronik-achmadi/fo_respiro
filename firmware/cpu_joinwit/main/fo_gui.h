@@ -24,7 +24,7 @@
 /**
  * @brief   Value of slow refresh delay in ms
  */
-#define SLOW_REFRESH_DELAY 100
+#define SLOW_REFRESH_DELAY 10
 
 /**
  * @brief   Either use fast or each @p SLOW_REFRESH_DELAY ms
@@ -34,7 +34,7 @@
 /**
  * @brief   Display show duration.
  */
-#define DISP_SHOW_DELAY  1
+#define DISP_SHOW_DELAY  100
 
 /**
  * @brief   define GUI draw mode:
