@@ -19,7 +19,6 @@
 #include "fo_gui.h"
 #include "fo_adc.h"
 #include "fo_bt.h"
-#include "fo_mmc.h"
 #include "fo_data.h"
 #include "fo_exti.h"
 
