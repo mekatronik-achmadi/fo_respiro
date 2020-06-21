@@ -21,6 +21,9 @@
 #include "fo_adc.h"
 #include "fo_data.h"
 
+#define PAUSE_STATE 0
+#define RUN_STATE   1
+
 void start_exti(void);
 
 #endif // FO_EXTI_H

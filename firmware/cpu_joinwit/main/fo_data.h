@@ -18,6 +18,8 @@
 #include "stdio.h"
 #include "string.h"
 
+#include "fo_exti.h"
+
 /**
  * @brief define test Timer and Input-Capture
  */

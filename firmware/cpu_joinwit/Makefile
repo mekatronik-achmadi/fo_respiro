@@ -93,6 +93,7 @@ include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f1xx.mk
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/hal/ports/STM32/STM32F1xx/platform.mk
 include $(CHIBIOS)/os/hal/osal/rt/osal.mk
+include $(CHIBIOS)/os/various/fatfs_bindings/fatfs.mk
 include ./board/board.mk
 # RTOS files (optional).
 include $(CHIBIOS)/os/rt/rt.mk
@@ -118,6 +119,7 @@ CSRC = $(STARTUPSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
+       $(FATFSSRC) \
        $(CHIBIOS)/os/various/syscalls.c \
        $(CHIBIOS)/os/various/evtimer.c \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
@@ -153,7 +155,7 @@ TCPPSRC =
 ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
-         $(HALINC) $(PLATFORMINC) $(BOARDINC) \
+         $(HALINC) $(PLATFORMINC) $(BOARDINC) $(FATFSINC) \
          $(CHIBIOS)/os/various \
          $(CHIBIOS)/os/hal/lib/streams \
          $(GFXINC)

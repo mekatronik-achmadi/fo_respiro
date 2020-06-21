@@ -6,6 +6,7 @@ GFXSRC += $(DEMODIR)/main.c \
                 $(DEMODIR)/fo_exti.c \
                 $(DEMODIR)/fo_gui.c \
                 $(DEMODIR)/fo_adc.c \
+                $(DEMODIR)/fo_mmc.c \
                 $(DEMODIR)/fo_bt.c
 
 

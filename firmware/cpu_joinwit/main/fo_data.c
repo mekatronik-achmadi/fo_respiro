@@ -13,6 +13,7 @@
 /*===========================================================================*/
 
 extern adcsample_t adc0;
+extern uint8_t run_mode;
 
 /**
  * @brief Current Value as difference between ADC.0 and C_OFFSET
@@ -123,7 +124,7 @@ static void gptcb(GPTDriver *gptp) {
   palTogglePad(GPIOC,7);
 #endif
 
-    data_process();
+  if(run_mode==RUN_STATE)data_process();
 }
 
 /**

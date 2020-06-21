@@ -20,6 +20,7 @@
 
 #include "fo_adc.h"
 #include "fo_data.h"
+#include "fo_exti.h"
 
 /**
  * @brief   Value of slow refresh delay in ms

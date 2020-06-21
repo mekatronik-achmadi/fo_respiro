@@ -3,6 +3,7 @@ board/board.c
 board/board.h
 board/board.mk
 chconf.h
+ffconf.h
 halconf.h
 main/fo_adc.c
 main/fo_adc.h
@@ -14,6 +15,8 @@ main/fo_exti.c
 main/fo_exti.h
 main/fo_gui.c
 main/fo_gui.h
+main/fo_mmc.c
+main/fo_mmc.h
 main/gfxconf.h
 main/main.c
 main/main.mk

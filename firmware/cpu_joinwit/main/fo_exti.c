@@ -11,12 +11,7 @@
 extern adcsample_t adc0;
 extern point vdata[N_DATA];
 
-/**
- * @brief   data out to serial function
- */
-static void exti_dataout(void){
-    chprintf((BaseSequentialStream *)&SD1,"ADC0 = %4i\n\r",adc0);
-}
+uint8_t run_mode=RUN_STATE;
 
 /**
  * @brief   EXTI PORTC.0 callback:
@@ -27,7 +22,8 @@ static void extcbDataOut(EXTDriver *extp, expchannel_t channel) {
     (void)extp;
     (void)channel;
 
-    exti_dataout();
+    if(run_mode==RUN_STATE)run_mode=PAUSE_STATE;
+    else if(run_mode==PAUSE_STATE)run_mode=RUN_STATE;
 }
 
 /**
