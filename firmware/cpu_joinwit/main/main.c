@@ -21,6 +21,7 @@
 #include "fo_bt.h"
 #include "fo_data.h"
 #include "fo_exti.h"
+#include "fo_comm.h"
 
 static THD_WORKING_AREA(waLED, 32);
 #define ThdFunc_RunLED THD_FUNCTION
@@ -48,7 +49,7 @@ int main(void) {
 
     start_exti();
     start_adc();
-    start_bt();
+    start_comm();
     start_data();
     start_routine();
 
@@ -57,7 +58,7 @@ int main(void) {
     chThdCreateStatic(waLED, sizeof(waLED),	NORMALPRIO, thdLED, NULL);
 
     while(true) {
-        shell_bt();
+        shell_comm();
         gfxSleepMilliseconds(500);
     }
 }

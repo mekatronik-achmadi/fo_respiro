@@ -8,6 +8,8 @@ main/fo_adc.c
 main/fo_adc.h
 main/fo_bt.c
 main/fo_bt.h
+main/fo_comm.c
+main/fo_comm.h
 main/fo_data.c
 main/fo_data.h
 main/fo_exti.c

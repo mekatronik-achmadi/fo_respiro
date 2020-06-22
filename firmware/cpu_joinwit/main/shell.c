@@ -141,11 +141,17 @@ static THD_FUNCTION(shell_thread, p) {
   char *args[SHELL_MAX_ARGUMENTS + 1];
 
   chRegSetThreadName("shell");
-//  chprintf(chp, "\r\nChibiOS/RT Shell\r\n");
+#if SHELL_BOOT
+  chprintf(chp, "\r\nChibiOS/RT Shell\r\n");
+#endif
   while (true) {
-//    chprintf(chp, "stm32>> ");
+#if SHELL_PROMPT
+    chprintf(chp, "achmadi>> ");
+#endif
     if (shellGetLine(chp, line, sizeof(line))) {
-//      chprintf(chp, "\r\nlogout");
+#if SHELL_BOOT
+      chprintf(chp, "\r\nlogout");
+#endif
       break;
     }
     lp = _strtok(line, " \t", &tokp);
@@ -181,8 +187,8 @@ static THD_FUNCTION(shell_thread, p) {
       }
       else if (cmdexec(local_commands, chp, cmd, n, args) &&
           ((scp == NULL) || cmdexec(scp, chp, cmd, n, args))) {
-        chprintf(chp, "%s", cmd);
-        chprintf(chp, " ?\r\n");
+        chprintf(chp, "command not found: ");
+        chprintf(chp, "%s\r\n", cmd);
       }
     }
   }
@@ -282,14 +288,18 @@ bool shellGetLine(BaseSequentialStream *chp, char *line, unsigned size) {
       continue;
     }
     if (c == '\r') {
-//      chprintf(chp, "\r\n");
+#if SHELL_ECHO
+      chprintf(chp, "\r\n");
+#endif
       *p = 0;
       return false;
     }
     if (c < 0x20)
       continue;
     if (p < line + size - 1) {
-//      chSequentialStreamPut(chp, c);
+#if SHELL_ECHO
+      chSequentialStreamPut(chp, c);
+#endif
       *p++ = (char)c;
     }
   }

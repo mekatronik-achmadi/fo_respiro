@@ -53,6 +53,11 @@ icucnt_t Tcount;
 point vdata[N_DATA];
 
 /**
+ * @brief   data point array as 16bit integer
+ */
+uint16_t pdata[N_DATA];
+
+/**
  * @brief   set data array to zero.
  *
  */
@@ -62,6 +67,7 @@ void data_zeroing(void){
     for(i=0;i<N_DATA;i++){
        vdata[i].x = i;
        vdata[i].y = 0;
+       pdata[i] = 0;
     }
 }
 
@@ -76,10 +82,12 @@ void data_shifting(void){
 #if LEFT_TO_RIGHT
     for(i=0;i<N_DATA-1;i++){
         vdata[i].y = vdata[i+1].y;
+        pdata[i] = pdata[i+1];
     }
 #else
     for(i=N_DATA-1;i>0;i--){
         vdata[i].y = vdata[i-1].y;
+        pdata[i] = pdata[i-1];
     }
 #endif
 }
@@ -107,8 +115,10 @@ void data_process(void){
 
 #if LEFT_TO_RIGHT
    vdata[N_DATA-1].y = DATA_SCALE * dval;
+   pdata[N_DATA-1] = DATA_SCALE * dval;
 #else
     vdata[0].y = DATA_SCALE * dval;
+    pdata[0] = DATA_SCALE * dval;
 #endif
 }
 
