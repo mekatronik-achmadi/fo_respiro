@@ -63,13 +63,16 @@ static void gui_routine(void){
     gwinGraphDrawAxis(gh);
     gwinGraphDrawPoints(gh, vdata, sizeof(vdata)/sizeof(vdata[0]));
 
-
-    chsnprintf(txt_adc0,16,"R= %1i |",run_mode);
+    if(run_mode==RUN_STATE)chsnprintf(txt_adc0,16,"RUN  |");
+    else if(run_mode==PAUSE_STATE)chsnprintf(txt_adc0,16,"STOP |");
     gwinPrintf(gc, txt_adc0);
+
     chsnprintf(txt_adc0,16,"V= %4i |",vcurr);
     gwinPrintf(gc, txt_adc0);
+
     chsnprintf(txt_adc0,16," ddV= %4i |",dval);
     gwinPrintf(gc, txt_adc0);
+
     chsnprintf(txt_adc0,16," T= %6i",Tchange);
     gwinPrintf(gc, txt_adc0);
 

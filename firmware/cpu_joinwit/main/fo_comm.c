@@ -26,26 +26,67 @@ static void cmd_test(BaseSequentialStream *chp, int argc, char *argv[]){
     (void) argv;
     (void) argc;
 
+    if(argc!=0){chprintf(chp,"usage: test\r\n");}
+
     chprintf(chp,"serial ok \r\n");
     return;
 }
 
 /**
- * @brief   Command routine to test serial data.
+ * @brief   Command routine to get data array.
  */
 static void cmd_data(BaseSequentialStream *chp, int argc, char *argv[]){
     (void) argv;
     (void) argc;
-
     uint16_t i;
-    uint16_t end = N_DATA-1;
+
+    if(argc!=0){chprintf(chp,"usage: data\r\n");}
 
     if(run_mode==RUN_STATE){chprintf(chp,"Please pause to get data snapshot\r\n");}
     else{
-        chprintf(chp,"{");
-        for(i=0;i<end;i++){chprintf(chp,"%3i,",pdata[i]);}
-        chprintf(chp,"%3i",pdata[end]);
-        chprintf(chp," }\r\n");
+        chprintf(chp,"[ ");
+        for(i=0;i<N_DATA;i++){chprintf(chp,"%3i ",pdata[i]);}
+        chprintf(chp,"]\r\n");
+    }
+
+    return;
+}
+
+/**
+ * @brief   Command routine to run the measurement.
+ */
+static void cmd_run(BaseSequentialStream *chp, int argc, char *argv[]){
+    (void) argv;
+    (void) argc;
+
+    if(argc!=0){chprintf(chp,"usage: run\r\n");}
+
+    if(run_mode==RUN_STATE){
+        chprintf(chp,"data process already run\r\n");
+    }
+    else{
+        run_mode=RUN_STATE;
+        chprintf(chp,"data process started\r\n");
+    }
+
+    return;
+}
+
+/**
+ * @brief   Command routine to pause the measurement.
+ */
+static void cmd_stop(BaseSequentialStream *chp, int argc, char *argv[]){
+    (void) argv;
+    (void) argc;
+
+    if(argc!=0){chprintf(chp,"usage: stop\r\n");}
+
+    if(run_mode==PAUSE_STATE){
+        chprintf(chp,"data process already paused\r\n");
+    }
+    else{
+        run_mode=PAUSE_STATE;
+        chprintf(chp,"data process stopped\r\n");
     }
 
     return;
@@ -66,6 +107,8 @@ thread_t *shelltp = NULL;
 static const ShellCommand commands[] = {
   {"test",cmd_test},
   {"data",cmd_data},
+  {"run",cmd_run},
+  {"stop",cmd_stop},
   {NULL, NULL}
 };
 
