@@ -58,6 +58,21 @@ point vdata[N_DATA];
 uint16_t pdata[N_DATA];
 
 /**
+ * @brief   data array for actual power analysis
+ */
+uint16_t rdata[R_DATA];
+
+/**
+ * @brief   actual power analysis data counter
+ */
+uint16_t rdata_cnt=0;
+
+/**
+ * @brief   actual power analysis data full status
+ */
+uint8_t rdata_ful=0;
+
+/**
  * @brief   set data array to zero.
  *
  */
@@ -93,6 +108,37 @@ void data_shifting(void){
 }
 
 /**
+ * @brief set actual power data array to zero
+ */
+void real_zeroing(void){
+     u_int16_t i;
+
+     for(i=0;i<R_DATA;i++){
+        rdata[i] = 0;
+     }
+}
+
+/**
+ * @brief shift actual power data array
+ */
+void real_shifting(void){
+     u_int16_t i;
+
+     for(i=R_DATA-1;i>0;i--){
+         rdata[i] = rdata[i-1];
+     }
+
+     if(rdata_ful==0){
+         if(rdata_cnt<=R_DATA){
+            rdata_cnt++;
+         }
+         else{
+            rdata_ful = 1;
+         }
+     }
+}
+
+/**
  * @brief   main data processing
  * @details PC.7 set HIGH here to read by Input-Capture
  * @pre     @p C_DVAL and C_OFFSET must suitable for experiment setup
@@ -101,9 +147,12 @@ void data_shifting(void){
  */
 void data_process(void){
     data_shifting();
+    real_shifting();
 
     vprev = vcurr;
     vcurr = adc0;
+
+    rdata[0] = vcurr;
 
     if(vcurr>=vprev){dval = vcurr-vprev;}
     else if(vcurr<vprev){dval = vprev-vcurr;}
@@ -222,6 +271,7 @@ void start_data(void){
     gptStartContinuous(&GPTD4,5000);
 
     data_zeroing();
+    real_zeroing();
     chThdCreateStatic(waChange, sizeof(waChange),	NORMALPRIO, thdChange, NULL);
 }
 

@@ -17,6 +17,7 @@ extern point vdata[N_DATA];
 extern adcsample_t vcurr,vprev,dval;
 extern icucnt_t Tchange;
 extern uint8_t run_mode;
+extern uint8_t rdata_ful;
 
 /*===========================================================================*/
 /* GRAPH PART                                                                */
@@ -67,13 +68,16 @@ static void gui_routine(void){
     else if(run_mode==PAUSE_STATE)chsnprintf(txt_adc0,16,"STOP |");
     gwinPrintf(gc, txt_adc0);
 
-    chsnprintf(txt_adc0,16,"V= %4i |",vcurr);
+    chsnprintf(txt_adc0,16,"V=%4i |",vcurr);
     gwinPrintf(gc, txt_adc0);
 
-    chsnprintf(txt_adc0,16," ddV= %4i |",dval);
+    chsnprintf(txt_adc0,16," ddV=%4i |",dval);
     gwinPrintf(gc, txt_adc0);
 
-    chsnprintf(txt_adc0,16," T= %6i",Tchange);
+    chsnprintf(txt_adc0,16," T=%6i |",Tchange);
+    gwinPrintf(gc, txt_adc0);
+
+    chsnprintf(txt_adc0,16," F=%1i",rdata_ful);
     gwinPrintf(gc, txt_adc0);
 
 #if USE_FAST_REFRESH

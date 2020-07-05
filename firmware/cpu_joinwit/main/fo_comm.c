@@ -13,6 +13,9 @@
 /*===========================================================================*/
 
 extern uint16_t pdata[N_DATA];
+extern uint16_t rdata[R_DATA];
+extern uint16_t rdata_cnt;
+extern uint8_t rdata_ful;
 extern uint8_t run_mode;
 
 /*===========================================================================*/
@@ -92,6 +95,47 @@ static void cmd_stop(BaseSequentialStream *chp, int argc, char *argv[]){
     return;
 }
 
+
+/**
+ * @brief   Command routine to get real data array.
+ */
+static void cmd_real(BaseSequentialStream *chp, int argc, char *argv[]){
+    (void) argv;
+    (void) argc;
+    uint16_t i;
+
+    if(argc!=0){chprintf(chp,"usage: real\r\n");}
+
+    if(run_mode==RUN_STATE){chprintf(chp,"Please pause to get real data snapshot\r\n");}
+    else{
+        chprintf(chp,"[ ");
+        for(i=0;i<R_DATA;i++){chprintf(chp,"%3i ",rdata[i]);}
+        chprintf(chp,"]\r\n");
+    }
+
+    return;
+}
+
+/**
+ * @brief   Command routine to get real data array.
+ */
+static void cmd_clear(BaseSequentialStream *chp, int argc, char *argv[]){
+    (void) argv;
+    (void) argc;
+
+    if(argc!=0){chprintf(chp,"usage: clr\r\n");}
+
+    if(run_mode==RUN_STATE){chprintf(chp,"Please pause to clr real data snapshot\r\n");}
+    else{
+        real_zeroing();
+        rdata_cnt = 0;
+        rdata_ful = 0;
+        chprintf(chp,"Real data array cleared\r\n");
+    }
+
+    return;
+}
+
 /*===========================================================================*/
 /* SERIAL ROUTINE                                                            */
 /*===========================================================================*/
@@ -109,6 +153,8 @@ static const ShellCommand commands[] = {
   {"data",cmd_data},
   {"run",cmd_run},
   {"stop",cmd_stop},
+  {"real",cmd_real},
+  {"clr",cmd_clear},
   {NULL, NULL}
 };
 
