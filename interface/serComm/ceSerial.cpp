@@ -71,11 +71,11 @@ ceSerial::~ceSerial()
 	Close();
 }
 
-void ceSerial::SetPort(string Device) {
+void ceSerial::SetComPort(string Device) {
 	port = Device;
 }
 
-string ceSerial::GetPort() {
+string ceSerial::GetComPort() {
 	return port;
 }
 
@@ -600,4 +600,4 @@ bool ceSerial::GetCD(bool& success) {
 }
 #endif
 
-} // namespace ce 
+} // namespace ce

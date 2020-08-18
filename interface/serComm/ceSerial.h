@@ -15,7 +15,7 @@
 #include <string>
 
 #if defined(_WIN64) || defined(__WIN32__) || defined(_WIN32) || defined(WIN32) || defined(__WINDOWS__) || defined(__TOS_WIN__)
-    #define ceWINDOWS 
+    #define ceWINDOWS
 #elif defined(unix) || defined(__unix) || defined(__unix__)
     #define ceLINUX
 #endif
@@ -60,8 +60,8 @@ public:
 	bool GetRI(bool& success);
 	bool GetCD(bool& success);
 	bool IsOpened();
-	void SetPort(std::string Port);
-	std::string GetPort();
+	void SetComPort(std::string Port);
+	std::string GetComPort();
 	void SetBaudRate(long baudrate);
 	long GetBaudRate();
 	void SetDataSize(long nbits);
@@ -72,6 +72,6 @@ public:
 	float GetStopBits();
 };
 
-} // namespace ce 
+} // namespace ce
 
 #endif // CESERIAL_H
