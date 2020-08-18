@@ -25,9 +25,9 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
-#define SHELL_ECHO      TRUE
+#define SHELL_ECHO      FALSE
 #define SHELL_BOOT      FALSE
-#define SHELL_PROMPT    TRUE
+#define SHELL_PROMPT    FALSE
 
 /**
  * @brief   Shell maximum input line length.

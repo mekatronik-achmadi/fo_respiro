@@ -48,7 +48,7 @@ static void cmd_data(BaseSequentialStream *chp, int argc, char *argv[]){
     if(run_mode==RUN_STATE){chprintf(chp,"Please pause to get data snapshot\r\n");}
     else{
         chprintf(chp,"[ ");
-        for(i=0;i<N_DATA;i++){chprintf(chp,"%3i ",pdata[i]);}
+        for(i=0;i<N_DATA;i++){chprintf(chp,"%i,%4i;",i,pdata[i]);chThdSleepMilliseconds(50);}
         chprintf(chp,"]\r\n");
     }
 
@@ -109,7 +109,7 @@ static void cmd_real(BaseSequentialStream *chp, int argc, char *argv[]){
     if(run_mode==RUN_STATE){chprintf(chp,"Please pause to get real data snapshot\r\n");}
     else{
         chprintf(chp,"[ ");
-        for(i=0;i<R_DATA;i++){chprintf(chp,"%3i ",rdata[i]);}
+        for(i=0;i<R_DATA;i++){chprintf(chp,"i,%4i ",i,rdata[i]);chThdSleepMilliseconds(50);}
         chprintf(chp,"]\r\n");
     }
 
